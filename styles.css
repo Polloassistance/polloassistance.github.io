@@ -123,6 +123,15 @@ ul {
     font-weight: 800;
     color: #fff;
     transition: color 0.3s;
+    display: flex;
+    align-items: center;
+    gap: 8px;
+}
+
+.nav-logo-img {
+    width: 28px;
+    height: 28px;
+    border-radius: 6px;
 }
 
 .navbar.scrolled .nav-logo {
@@ -608,9 +617,17 @@ ul {
 
 .footer-grid {
     display: grid;
-    grid-template-columns: 2fr 1fr 1fr;
-    gap: 48px;
+    grid-template-columns: 2fr 1fr 1fr 1fr;
+    gap: 40px;
     margin-bottom: 40px;
+}
+
+.footer-logo {
+    width: 36px;
+    height: 36px;
+    border-radius: 8px;
+    opacity: 0.6;
+    margin-bottom: 12px;
 }
 
 .footer-brand h3 {
