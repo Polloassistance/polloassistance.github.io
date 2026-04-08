@@ -1,10 +1,13 @@
 <!DOCTYPE html>
-<html lang="es">
+<html lang="en">
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pollo Assistance - Tu asistente de IA todo en uno</title>
-    <meta name="description" content="Pollo Assistance: ecosistema de inteligencia artificial todo en uno. Chat, imagenes, estudio, codigo y mas. Pago unico de $25, sin suscripciones.">
+    <title>Pollo Assistance - All-in-one AI assistant</title>
+    <meta name="description" content="Pollo Assistance: all-in-one AI ecosystem. Chat, images, study, code and more. One-time payment, no subscriptions.">
+    <meta property="og:image" content="https://polloassistance.github.io/logo.png">
+    <meta name="twitter:image" content="https://polloassistance.github.io/logo.png">
+    <link rel="apple-touch-icon" href="logo.png">
     <meta name="author" content="Pollo Assistance Studios">
     <meta name="keywords" content="pollo assistance, asistente IA, inteligencia artificial, chat IA, generador de imagenes, AI assistant, pago unico">
 
@@ -40,7 +43,13 @@
                 <a href="#empezar">Empezar</a>
                 <a href="wiki/">Wiki</a>
             </div>
-            <a href="https://pollo-assistance.web.app" class="nav-cta">Abrir app</a>
+            <a href="https://pollo-assistance.web.app" class="nav-cta" data-i18n="nav.open_app">Open app</a>
+            <div id="ghUserWidget" style="display:none; align-items:center; gap:10px; margin-left:10px;">
+                <img id="ghUserAvatar" src="logo.png" alt="" style="width:34px; height:34px; border-radius:50%; object-fit:cover; border:2px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,0.15);">
+                <span id="ghUserName" style="font-weight:600; font-size:14px; color:#1a1a2e; max-width:150px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"></span>
+                <button id="ghLogoutBtn" style="background:none; border:1px solid #ddd; border-radius:8px; padding:4px 10px; cursor:pointer; font-size:12px;" title="Log out">↩</button>
+            </div>
+            <button id="ghLoginBtn" onclick="ghOpenLogin()" style="margin-left:10px; background:linear-gradient(135deg,#FF9800,#F57C00); color:white; border:none; padding:8px 16px; border-radius:8px; cursor:pointer; font-size:14px; font-weight:600;" data-i18n="common.login">Log in</button>
             <button class="nav-toggle" id="navToggle" aria-label="Menu">
                 <span></span><span></span><span></span>
             </button>
@@ -314,5 +323,97 @@
     </footer>
 
     <script src="script.js"></script>
+
+    <!-- ============================================================ -->
+    <!-- LOGIN MODAL + FIREBASE AUTH + i18n                         -->
+    <!-- ============================================================ -->
+    <div id="ghLoginModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:white; padding:32px; border-radius:18px; max-width:380px; width:90%; box-shadow:0 20px 60px rgba(0,0,0,0.3);">
+            <div style="text-align:center; margin-bottom:20px;">
+                <img src="logo.png" style="width:60px; height:60px; border-radius:14px; margin-bottom:10px;">
+                <h2 style="font-size:22px; color:#1a1a2e; margin:0;" data-i18n="common.login">Log in</h2>
+                <p style="font-size:13px; color:#888; margin-top:4px;">Pollo Assistance</p>
+            </div>
+            <input type="email" id="ghEmail" placeholder="Email" style="width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:10px; font-size:14px; margin-bottom:10px;">
+            <input type="password" id="ghPassword" placeholder="Password" style="width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:10px; font-size:14px; margin-bottom:14px;">
+            <button onclick="ghDoLogin()" style="width:100%; background:linear-gradient(135deg,#FF9800,#F57C00); color:white; border:none; padding:12px; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer; margin-bottom:8px;" data-i18n="common.login">Log in</button>
+            <button onclick="ghDoSignup()" style="width:100%; background:white; color:#FF9800; border:1px solid #FF9800; padding:12px; border-radius:10px; font-size:14px; font-weight:600; cursor:pointer; margin-bottom:8px;" data-i18n="common.signup">Sign up</button>
+            <button onclick="document.getElementById('ghLoginModal').style.display='none'" style="width:100%; background:none; border:none; color:#999; padding:8px; font-size:13px; cursor:pointer;" data-i18n="common.close">Close</button>
+            <p id="ghLoginError" style="color:#f44336; font-size:13px; text-align:center; margin-top:8px; min-height:18px;"></p>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script>
+    (function(){
+        const firebaseConfig = {
+            apiKey: "AIzaSyAF-Cnq56kTOZ8ltRfi2lmJNyaeronW0Zw",
+            authDomain: "pollo-assistance.firebaseapp.com",
+            projectId: "pollo-assistance",
+            storageBucket: "pollo-assistance.firebasestorage.app",
+            messagingSenderId: "823252162365",
+            appId: "1:823252162365:web:abc123def456"
+        };
+        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        window.ghOpenLogin = function(){ document.getElementById('ghLoginModal').style.display='flex'; };
+        window.ghDoLogin = function(){
+            const e = document.getElementById('ghEmail').value;
+            const p = document.getElementById('ghPassword').value;
+            auth.signInWithEmailAndPassword(e, p).then(()=>{
+                document.getElementById('ghLoginModal').style.display='none';
+            }).catch(err => document.getElementById('ghLoginError').textContent = err.message);
+        };
+        window.ghDoSignup = function(){
+            const e = document.getElementById('ghEmail').value;
+            const p = document.getElementById('ghPassword').value;
+            auth.createUserWithEmailAndPassword(e, p).then(u => {
+                if (u.user) u.user.sendEmailVerification();
+                document.getElementById('ghLoginModal').style.display='none';
+            }).catch(err => document.getElementById('ghLoginError').textContent = err.message);
+        };
+        document.getElementById('ghLogoutBtn').onclick = function(){ auth.signOut(); };
+
+        auth.onAuthStateChanged(async function(user){
+            const widget = document.getElementById('ghUserWidget');
+            const loginBtn = document.getElementById('ghLoginBtn');
+            if (user) {
+                widget.style.display = 'flex';
+                loginBtn.style.display = 'none';
+                let displayName = user.email;
+                let avatarUrl = user.photoURL || 'logo.png';
+                let userLang = null;
+                try {
+                    const doc = await db.collection('users').doc(user.uid).get();
+                    if (doc.exists) {
+                        const d = doc.data();
+                        if (d.displayName) displayName = d.displayName;
+                        if (d.avatarUrl) avatarUrl = d.avatarUrl;
+                        if (d.settings && d.settings.language) userLang = d.settings.language;
+                    }
+                } catch(e){}
+                document.getElementById('ghUserName').textContent = displayName;
+                document.getElementById('ghUserAvatar').src = avatarUrl;
+                if (!avatarUrl || avatarUrl === 'logo.png') {
+                    // letter fallback
+                    const letter = (displayName || 'P').charAt(0).toUpperCase();
+                    document.getElementById('ghUserAvatar').src =
+                        'data:image/svg+xml;utf8,' + encodeURIComponent(
+                            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="#FF9800"/><text x="32" y="42" font-family="Arial,sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle">'+letter+'</text></svg>'
+                        );
+                }
+                if (userLang && window.PolloI18n) window.PolloI18n.setLang(userLang);
+            } else {
+                widget.style.display = 'none';
+                loginBtn.style.display = '';
+            }
+        });
+    })();
+    </script>
+    <script src="i18n.js"></script>
 </body>
 </html>
