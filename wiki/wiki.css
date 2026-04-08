@@ -1,0 +1,418 @@
+/* ============================================================
+   POLLO ASSISTANCE - Wiki Styles
+   Estilos compartidos para todas las paginas de la wiki
+   ============================================================ */
+
+*, *::before, *::after {
+    margin: 0;
+    padding: 0;
+    box-sizing: border-box;
+}
+
+html {
+    scroll-behavior: smooth;
+    scroll-padding-top: 80px;
+}
+
+body {
+    font-family: 'Inter', 'Segoe UI', sans-serif;
+    color: #1a1a2e;
+    background: #fafafa;
+    line-height: 1.7;
+    -webkit-font-smoothing: antialiased;
+}
+
+a {
+    text-decoration: none;
+    color: #FF9800;
+}
+
+a:hover {
+    color: #F57C00;
+}
+
+/* --- NAVBAR WIKI --- */
+.wiki-navbar {
+    position: fixed;
+    top: 0;
+    left: 0;
+    right: 0;
+    z-index: 1000;
+    background: rgba(255, 255, 255, 0.97);
+    backdrop-filter: blur(20px);
+    border-bottom: 1px solid #eee;
+    padding: 12px 0;
+}
+
+.wiki-navbar-inner {
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 0 24px;
+    display: flex;
+    align-items: center;
+    justify-content: space-between;
+}
+
+.wiki-navbar-brand {
+    display: flex;
+    align-items: center;
+    gap: 12px;
+}
+
+.wiki-navbar-brand a {
+    font-size: 18px;
+    font-weight: 800;
+    color: #1a1a2e;
+}
+
+.wiki-navbar-brand .wiki-label {
+    font-size: 11px;
+    font-weight: 600;
+    padding: 3px 10px;
+    background: #FFF3E0;
+    color: #E65100;
+    border-radius: 50px;
+    text-transform: uppercase;
+    letter-spacing: 0.5px;
+}
+
+.wiki-navbar-links {
+    display: flex;
+    gap: 24px;
+    align-items: center;
+}
+
+.wiki-navbar-links a {
+    font-size: 13px;
+    font-weight: 500;
+    color: #666;
+    transition: color 0.2s;
+}
+
+.wiki-navbar-links a:hover {
+    color: #FF9800;
+}
+
+.wiki-navbar-links .wiki-cta {
+    background: linear-gradient(135deg, #FF9800, #F57C00);
+    color: #fff;
+    padding: 7px 18px;
+    border-radius: 8px;
+    font-weight: 600;
+}
+
+.wiki-navbar-links .wiki-cta:hover {
+    color: #fff;
+    opacity: 0.9;
+}
+
+/* --- LAYOUT WIKI --- */
+.wiki-layout {
+    display: grid;
+    grid-template-columns: 260px 1fr;
+    max-width: 1200px;
+    margin: 0 auto;
+    padding: 80px 24px 60px;
+    gap: 40px;
+    min-height: 100vh;
+}
+
+/* --- SIDEBAR --- */
+.wiki-sidebar {
+    padding-top: 24px;
+    position: sticky;
+    top: 80px;
+    align-self: start;
+    max-height: calc(100vh - 100px);
+    overflow-y: auto;
+}
+
+.wiki-sidebar h3 {
+    font-size: 11px;
+    font-weight: 700;
+    text-transform: uppercase;
+    letter-spacing: 1px;
+    color: #999;
+    margin-bottom: 12px;
+    margin-top: 24px;
+}
+
+.wiki-sidebar h3:first-child {
+    margin-top: 0;
+}
+
+.wiki-sidebar ul {
+    list-style: none;
+}
+
+.wiki-sidebar ul li a {
+    display: block;
+    padding: 6px 12px;
+    font-size: 14px;
+    color: #555;
+    border-radius: 6px;
+    transition: all 0.2s;
+    border-left: 3px solid transparent;
+}
+
+.wiki-sidebar ul li a:hover {
+    background: #fff;
+    color: #FF9800;
+    border-left-color: #FF9800;
+}
+
+.wiki-sidebar ul li a.active {
+    background: #FFF3E0;
+    color: #E65100;
+    font-weight: 600;
+    border-left-color: #FF9800;
+}
+
+/* --- CONTENIDO PRINCIPAL --- */
+.wiki-content {
+    background: #fff;
+    border-radius: 16px;
+    border: 1px solid #eee;
+    padding: 48px;
+    min-width: 0;
+}
+
+.wiki-content h1 {
+    font-size: 32px;
+    font-weight: 800;
+    color: #1a1a2e;
+    margin-bottom: 8px;
+    line-height: 1.2;
+}
+
+.wiki-content .wiki-subtitle {
+    font-size: 17px;
+    color: #888;
+    margin-bottom: 36px;
+    padding-bottom: 24px;
+    border-bottom: 1px solid #eee;
+}
+
+.wiki-content h2 {
+    font-size: 22px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-top: 40px;
+    margin-bottom: 16px;
+    padding-top: 20px;
+    border-top: 1px solid #f0f0f0;
+}
+
+.wiki-content h2:first-of-type {
+    border-top: none;
+    padding-top: 0;
+}
+
+.wiki-content h3 {
+    font-size: 18px;
+    font-weight: 600;
+    color: #333;
+    margin-top: 28px;
+    margin-bottom: 12px;
+}
+
+.wiki-content p {
+    font-size: 15px;
+    color: #444;
+    margin-bottom: 16px;
+    line-height: 1.8;
+}
+
+.wiki-content ul, .wiki-content ol {
+    margin-bottom: 16px;
+    padding-left: 24px;
+}
+
+.wiki-content li {
+    font-size: 15px;
+    color: #444;
+    margin-bottom: 8px;
+    line-height: 1.7;
+}
+
+.wiki-content strong {
+    color: #1a1a2e;
+}
+
+/* Tabla informativa */
+.wiki-info-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin-bottom: 24px;
+    font-size: 14px;
+}
+
+.wiki-info-table th {
+    text-align: left;
+    padding: 10px 16px;
+    background: #f8f8f8;
+    color: #666;
+    font-weight: 600;
+    border-bottom: 1px solid #eee;
+    width: 180px;
+}
+
+.wiki-info-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #333;
+}
+
+/* Tarjeta destacada */
+.wiki-highlight {
+    background: linear-gradient(135deg, #FFF8E1, #FFF3E0);
+    border: 1px solid #FFE0B2;
+    border-radius: 12px;
+    padding: 24px;
+    margin: 24px 0;
+}
+
+.wiki-highlight h4 {
+    font-size: 15px;
+    font-weight: 700;
+    color: #E65100;
+    margin-bottom: 8px;
+}
+
+.wiki-highlight p {
+    font-size: 14px;
+    color: #555;
+    margin-bottom: 0;
+}
+
+/* Nota informativa */
+.wiki-note {
+    background: #f0f4ff;
+    border-left: 4px solid #667eea;
+    border-radius: 0 8px 8px 0;
+    padding: 16px 20px;
+    margin: 20px 0;
+}
+
+.wiki-note p {
+    font-size: 14px;
+    color: #444;
+    margin-bottom: 0;
+}
+
+/* Tabla comparativa (precios, etc.) */
+.wiki-compare-table {
+    width: 100%;
+    border-collapse: collapse;
+    margin: 24px 0;
+    font-size: 14px;
+}
+
+.wiki-compare-table th {
+    padding: 12px 16px;
+    background: #1a1a2e;
+    color: #fff;
+    font-weight: 600;
+    text-align: left;
+}
+
+.wiki-compare-table td {
+    padding: 10px 16px;
+    border-bottom: 1px solid #f0f0f0;
+    color: #333;
+}
+
+.wiki-compare-table tr:nth-child(even) {
+    background: #fafafa;
+}
+
+/* Grid de tarjetas (para indice) */
+.wiki-cards {
+    display: grid;
+    grid-template-columns: repeat(2, 1fr);
+    gap: 16px;
+    margin: 24px 0;
+}
+
+.wiki-card {
+    display: block;
+    background: #fff;
+    border: 1px solid #eee;
+    border-radius: 12px;
+    padding: 24px;
+    transition: all 0.25s ease;
+}
+
+.wiki-card:hover {
+    border-color: #FF9800;
+    box-shadow: 0 6px 20px rgba(255, 152, 0, 0.1);
+    transform: translateY(-2px);
+}
+
+.wiki-card-icon {
+    font-size: 28px;
+    margin-bottom: 10px;
+}
+
+.wiki-card h3 {
+    font-size: 16px;
+    font-weight: 700;
+    color: #1a1a2e;
+    margin-top: 0;
+    margin-bottom: 6px;
+}
+
+.wiki-card p {
+    font-size: 13px;
+    color: #888;
+    margin-bottom: 0;
+    line-height: 1.5;
+}
+
+/* --- FOOTER WIKI --- */
+.wiki-footer {
+    text-align: center;
+    padding: 32px 24px;
+    font-size: 13px;
+    color: #aaa;
+    border-top: 1px solid #eee;
+    margin-top: 40px;
+}
+
+/* --- RESPONSIVE --- */
+@media (max-width: 900px) {
+    .wiki-layout {
+        grid-template-columns: 1fr;
+        padding-top: 70px;
+    }
+
+    .wiki-sidebar {
+        position: static;
+        max-height: none;
+        border-bottom: 1px solid #eee;
+        padding-bottom: 20px;
+        margin-bottom: 0;
+    }
+
+    .wiki-content {
+        padding: 32px 24px;
+    }
+
+    .wiki-cards {
+        grid-template-columns: 1fr;
+    }
+
+    .wiki-navbar-links {
+        display: none;
+    }
+}
+
+@media (max-width: 480px) {
+    .wiki-content {
+        padding: 24px 16px;
+    }
+
+    .wiki-content h1 {
+        font-size: 26px;
+    }
+}
