@@ -1,0 +1,233 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Wiki - Pollo Assistance</title>
+    <meta name="description" content="Documentacion oficial de Pollo Assistance: guias, modulos, precios y todo lo que necesitas saber sobre el ecosistema de IA.">
+    <meta name="author" content="Pollo Assistance Studios">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+
+    <!-- NAVBAR -->
+    <nav class="wiki-navbar">
+        <div class="wiki-navbar-inner">
+            <div class="wiki-navbar-brand">
+                <a href="../"><img src="logo.png" alt="" style="width:24px;height:24px;border-radius:5px;vertical-align:middle;margin-right:6px;">Pollo Assistance</a>
+                <span class="wiki-label">Wiki</span>
+            </div>
+            <div class="wiki-navbar-links">
+                <a href="../" data-i18n="nav.home">Home</a>
+                <a href="./" data-i18n="nav.wiki">Wiki</a>
+                <a href="https://pollo-assistance.web.app" class="wiki-cta" data-i18n="nav.open_app">Open app</a>
+                <div id="wikiUserWidget" style="display:none; align-items:center; gap:8px; margin-left:10px;">
+                    <img id="wikiUserAvatar" src="logo.png" alt="" style="width:30px; height:30px; border-radius:50%; object-fit:cover;">
+                    <span id="wikiUserName" style="font-size:13px; font-weight:600; max-width:120px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"></span>
+                    <button id="wikiLogoutBtn" style="background:none; border:1px solid #ddd; border-radius:6px; padding:3px 8px; cursor:pointer; font-size:11px;" title="Log out">↩</button>
+                </div>
+                <button id="wikiLoginBtn" onclick="wikiOpenLogin()" style="background:linear-gradient(135deg,#FF9800,#F57C00); color:white; border:none; padding:6px 14px; border-radius:8px; cursor:pointer; font-size:13px; font-weight:600; margin-left:8px;" data-i18n="common.login">Log in</button>
+            </div>
+        </div>
+    </nav>
+
+    <!-- LAYOUT -->
+    <div class="wiki-layout">
+
+        <!-- SIDEBAR -->
+        <aside class="wiki-sidebar">
+            <h3>General</h3>
+            <ul>
+                <li><a href="./" class="active">Inicio</a></li>
+                <li><a href="pollo-assistance.html">Pollo Assistance</a></li>
+                <li><a href="primeros-pasos.html">Primeros pasos</a></li>
+            </ul>
+            <h3>Modulos</h3>
+            <ul>
+                <li><a href="pollo-study.html">Pollo STUDY</a></li>
+                <li><a href="pollo-code.html">Pollo CODE</a></li>
+                <li><a href="pollo-files.html">Pollo FILES</a></li>
+                <li><a href="pollo-go.html">Pollo GO</a></li>
+            </ul>
+            <h3>Plataforma</h3>
+            <ul>
+                <li><a href="modelos-ia.html">Modelos de IA</a></li>
+                <li><a href="precios.html">Precios y Premium</a></li>
+                <li><a href="auraeon.html">AuraEON</a></li>
+            </ul>
+            <h3>Ayuda</h3>
+            <ul>
+                <li><a href="preguntas-frecuentes.html">Preguntas frecuentes</a></li>
+            </ul>
+        </aside>
+
+        <!-- CONTENIDO -->
+        <main class="wiki-content">
+            <h1>Wiki de Pollo Assistance</h1>
+            <p class="wiki-subtitle">Documentacion oficial del ecosistema de inteligencia artificial.</p>
+
+            <p>Bienvenido a la wiki oficial de <strong>Pollo Assistance</strong>. Aqui encontraras toda la informacion sobre la plataforma, sus modulos, como empezar a usarla y respuestas a las preguntas mas frecuentes.</p>
+
+            <div class="wiki-highlight">
+                <h4>Que es Pollo Assistance</h4>
+                <p>Un ecosistema de inteligencia artificial todo en uno que incluye chat, generacion de imagenes, herramientas de estudio, editor de codigo, analisis de documentos y mas. Con un modelo de pago unico de $25 y sin suscripciones mensuales.</p>
+            </div>
+
+            <h2>Modulos</h2>
+            <div class="wiki-cards">
+                <a href="pollo-assistance.html" class="wiki-card">
+                    <div class="wiki-card-icon">🐔</div>
+                    <h3>Pollo Assistance</h3>
+                    <p>El asistente principal: chat con IA, imagenes, voz, busqueda web y mas.</p>
+                </a>
+                <a href="pollo-study.html" class="wiki-card">
+                    <div class="wiki-card-icon">📚</div>
+                    <h3>Pollo STUDY</h3>
+                    <p>Asistente academico para resumenes, examenes y esquemas interactivos.</p>
+                </a>
+                <a href="pollo-code.html" class="wiki-card">
+                    <div class="wiki-card-icon">💻</div>
+                    <h3>Pollo CODE</h3>
+                    <p>Entorno de programacion con generacion, depuracion y ejecucion de codigo.</p>
+                </a>
+                <a href="pollo-files.html" class="wiki-card">
+                    <div class="wiki-card-icon">📄</div>
+                    <h3>Pollo FILES</h3>
+                    <p>Analisis profundo de documentos y PDFs con inteligencia artificial.</p>
+                </a>
+                <a href="pollo-go.html" class="wiki-card">
+                    <div class="wiki-card-icon">🚀</div>
+                    <h3>Pollo GO</h3>
+                    <p>Utilidades rapidas y navegacion inteligente dentro de la plataforma.</p>
+                </a>
+                <a href="auraeon.html" class="wiki-card">
+                    <div class="wiki-card-icon">🎓</div>
+                    <h3>AuraEON</h3>
+                    <p>Proyecto educativo para centros escolares integrado con Pollo Assistance.</p>
+                </a>
+            </div>
+
+            <h2>Guias</h2>
+            <div class="wiki-cards">
+                <a href="primeros-pasos.html" class="wiki-card">
+                    <div class="wiki-card-icon">🏁</div>
+                    <h3>Primeros pasos</h3>
+                    <p>Como crear tu cuenta, verificar el email y empezar a usar la plataforma.</p>
+                </a>
+                <a href="modelos-ia.html" class="wiki-card">
+                    <div class="wiki-card-icon">🧠</div>
+                    <h3>Modelos de IA</h3>
+                    <p>Diferencias entre Palos, Luces y Summum. Cual elegir y para que.</p>
+                </a>
+                <a href="precios.html" class="wiki-card">
+                    <div class="wiki-card-icon">💰</div>
+                    <h3>Precios y Premium</h3>
+                    <p>Plan gratuito vs premium. Que incluye el pago unico de $25.</p>
+                </a>
+                <a href="preguntas-frecuentes.html" class="wiki-card">
+                    <div class="wiki-card-icon">❓</div>
+                    <h3>Preguntas frecuentes</h3>
+                    <p>Respuestas a las dudas mas comunes sobre la plataforma.</p>
+                </a>
+            </div>
+        </main>
+    </div>
+
+    <footer class="wiki-footer">
+        &copy; 2024-2026 Pollo Assistance Studios. All rights reserved.
+    </footer>
+
+    <!-- Login modal -->
+    <div id="wikiLoginModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:white; padding:32px; border-radius:18px; max-width:380px; width:90%;">
+            <div style="text-align:center; margin-bottom:20px;">
+                <img src="logo.png" style="width:60px; height:60px; border-radius:14px;">
+                <h2 style="font-size:22px; color:#1a1a2e; margin:10px 0 0;" data-i18n="common.login">Log in</h2>
+            </div>
+            <input type="email" id="wikiEmail" placeholder="Email" style="width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:10px; font-size:14px; margin-bottom:10px;">
+            <input type="password" id="wikiPassword" placeholder="Password" style="width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:10px; font-size:14px; margin-bottom:14px;">
+            <button onclick="wikiDoLogin()" style="width:100%; background:linear-gradient(135deg,#FF9800,#F57C00); color:white; border:none; padding:12px; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer; margin-bottom:8px;" data-i18n="common.login">Log in</button>
+            <button onclick="wikiDoSignup()" style="width:100%; background:white; color:#FF9800; border:1px solid #FF9800; padding:12px; border-radius:10px; font-size:14px; font-weight:600; cursor:pointer; margin-bottom:8px;" data-i18n="common.signup">Sign up</button>
+            <button onclick="document.getElementById('wikiLoginModal').style.display='none'" style="width:100%; background:none; border:none; color:#999; padding:8px; cursor:pointer;" data-i18n="common.close">Close</button>
+            <p id="wikiLoginError" style="color:#f44336; font-size:13px; text-align:center; margin-top:8px; min-height:18px;"></p>
+        </div>
+    </div>
+
+    <script src="i18n.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script>
+    (function(){
+        const firebaseConfig = {
+            apiKey: "AIzaSyAF-Cnq56kTOZ8ltRfi2lmJNyaeronW0Zw",
+            authDomain: "pollo-assistance.firebaseapp.com",
+            projectId: "pollo-assistance",
+            storageBucket: "pollo-assistance.firebasestorage.app",
+            messagingSenderId: "823252162365",
+            appId: "1:823252162365:web:abc123def456"
+        };
+        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        window.wikiOpenLogin = function(){ document.getElementById('wikiLoginModal').style.display='flex'; };
+        window.wikiDoLogin = function(){
+            const e = document.getElementById('wikiEmail').value;
+            const p = document.getElementById('wikiPassword').value;
+            auth.signInWithEmailAndPassword(e, p)
+                .then(()=>document.getElementById('wikiLoginModal').style.display='none')
+                .catch(err => document.getElementById('wikiLoginError').textContent = err.message);
+        };
+        window.wikiDoSignup = function(){
+            const e = document.getElementById('wikiEmail').value;
+            const p = document.getElementById('wikiPassword').value;
+            auth.createUserWithEmailAndPassword(e, p).then(u=>{
+                if (u.user) u.user.sendEmailVerification();
+                document.getElementById('wikiLoginModal').style.display='none';
+            }).catch(err => document.getElementById('wikiLoginError').textContent = err.message);
+        };
+        document.getElementById('wikiLogoutBtn').onclick = function(){ auth.signOut(); };
+
+        auth.onAuthStateChanged(async function(user){
+            const widget = document.getElementById('wikiUserWidget');
+            const loginBtn = document.getElementById('wikiLoginBtn');
+            if (user) {
+                widget.style.display = 'flex';
+                loginBtn.style.display = 'none';
+                let displayName = user.email;
+                let avatarUrl = user.photoURL || 'logo.png';
+                let userLang = null;
+                try {
+                    const doc = await db.collection('users').doc(user.uid).get();
+                    if (doc.exists) {
+                        const d = doc.data();
+                        if (d.displayName) displayName = d.displayName;
+                        if (d.avatarUrl) avatarUrl = d.avatarUrl;
+                        if (d.settings && d.settings.language) userLang = d.settings.language;
+                    }
+                } catch(e){}
+                document.getElementById('wikiUserName').textContent = displayName;
+                if (avatarUrl && avatarUrl !== 'logo.png') {
+                    document.getElementById('wikiUserAvatar').src = avatarUrl;
+                } else {
+                    const letter = (displayName || 'P').charAt(0).toUpperCase();
+                    document.getElementById('wikiUserAvatar').src =
+                        'data:image/svg+xml;utf8,' + encodeURIComponent(
+                            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="#FF9800"/><text x="32" y="42" font-family="Arial,sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle">'+letter+'</text></svg>'
+                        );
+                }
+                if (userLang && window.PolloI18n) window.PolloI18n.setLang(userLang);
+            } else {
+                widget.style.display = 'none';
+                loginBtn.style.display = '';
+            }
+        });
+    })();
+    </script>
+</body>
+</html>

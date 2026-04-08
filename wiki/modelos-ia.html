@@ -1,0 +1,172 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelos de IA - Wiki Pollo Assistance</title>
+    <meta name="description" content="Pollo Assistance ofrece tres modelos de IA: Palos, Luces y Summum. Conoce las diferencias, capacidades y cual elegir segun tus necesidades.">
+    <meta name="author" content="Pollo Assistance Studios">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+
+    <nav class="wiki-navbar">
+        <div class="wiki-navbar-inner">
+            <div class="wiki-navbar-brand">
+                <a href="../"><img src="logo.png" alt="" style="width:24px;height:24px;border-radius:5px;vertical-align:middle;margin-right:6px;">Pollo Assistance</a>
+                <span class="wiki-label">Wiki</span>
+            </div>
+            <div class="wiki-navbar-links">
+                <a href="../">Inicio</a>
+                <a href="./">Wiki</a>
+                <a href="https://pollo-assistance.web.app" class="wiki-cta">Abrir app</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="wiki-layout">
+
+        <aside class="wiki-sidebar">
+            <h3>General</h3>
+            <ul>
+                <li><a href="./">Inicio</a></li>
+                <li><a href="pollo-assistance.html">Pollo Assistance</a></li>
+                <li><a href="primeros-pasos.html">Primeros pasos</a></li>
+            </ul>
+            <h3>Modulos</h3>
+            <ul>
+                <li><a href="pollo-study.html">Pollo STUDY</a></li>
+                <li><a href="pollo-code.html">Pollo CODE</a></li>
+                <li><a href="pollo-files.html">Pollo FILES</a></li>
+                <li><a href="pollo-go.html">Pollo GO</a></li>
+            </ul>
+            <h3>Plataforma</h3>
+            <ul>
+                <li><a href="modelos-ia.html" class="active">Modelos de IA</a></li>
+                <li><a href="precios.html">Precios y Premium</a></li>
+                <li><a href="auraeon.html">AuraEON</a></li>
+            </ul>
+            <h3>Ayuda</h3>
+            <ul>
+                <li><a href="preguntas-frecuentes.html">Preguntas frecuentes</a></li>
+            </ul>
+        </aside>
+
+        <main class="wiki-content">
+            <h1>Modelos de IA</h1>
+            <p class="wiki-subtitle">Los tres niveles de inteligencia artificial de Pollo Assistance.</p>
+
+            <h2>Como funcionan los modelos</h2>
+            <p>Pollo Assistance ofrece <strong>tres modelos de inteligencia artificial</strong> con diferentes niveles de capacidad. Cada modelo esta optimizado para un tipo de uso, desde respuestas rapidas hasta analisis complejos y profundos.</p>
+
+            <p>Los modelos estan basados en la <strong>familia LLaMA de Meta</strong>, ejecutados a traves de la infraestructura de <strong>Groq</strong>, que proporciona tiempos de respuesta muy bajos gracias a su hardware especializado (LPU).</p>
+
+            <div class="wiki-note">
+                <p><strong>Importante:</strong> Una vez que envias el primer mensaje en un chat, el modelo queda bloqueado para esa conversacion. Si quieres cambiar de modelo, necesitas crear un chat nuevo.</p>
+            </div>
+
+            <h2>Pollo Palos v1.0</h2>
+            <table class="wiki-info-table">
+                <tr><th>Modelo base</th><td>LLaMA 3.1 8B (8 mil millones de parametros)</td></tr>
+                <tr><th>Disponibilidad</th><td>Gratis</td></tr>
+                <tr><th>Tokens maximos</th><td>500 por respuesta</td></tr>
+                <tr><th>Streaming</th><td>No</td></tr>
+                <tr><th>Mejor para</th><td>Respuestas rapidas y preguntas sencillas</td></tr>
+            </table>
+            <p><strong>Pollo Palos</strong> es el modelo mas ligero y rapido. Usa un modelo de 8 mil millones de parametros, lo que le permite dar respuestas casi instantaneas. Es ideal para preguntas cortas, traducciones rapidas, calculos sencillos o consultas que no requieran un analisis profundo.</p>
+            <p>Al tener menos parametros, sus respuestas son mas concisas y puede tener dificultades con tareas muy complejas o que requieran razonamiento largo. Es el modelo perfecto cuando necesitas algo rapido y al grano.</p>
+
+            <h2>Pollo Luces v1.0</h2>
+            <table class="wiki-info-table">
+                <tr><th>Modelo base</th><td>LLaMA 3.3 70B (70 mil millones de parametros)</td></tr>
+                <tr><th>Disponibilidad</th><td>Gratis</td></tr>
+                <tr><th>Tokens maximos</th><td>1000 por respuesta</td></tr>
+                <tr><th>Streaming</th><td>Si (respuesta progresiva)</td></tr>
+                <tr><th>Mejor para</th><td>Uso cotidiano, conversaciones normales</td></tr>
+            </table>
+            <p><strong>Pollo Luces</strong> es el modelo recomendado para el uso diario. Con 70 mil millones de parametros, ofrece respuestas mas completas, mejor razonamiento y mayor capacidad para entender contexto y matices. Ademas, soporta <strong>streaming</strong>, lo que significa que la respuesta aparece progresivamente en pantalla (palabra por palabra) en vez de esperar a que se genere toda.</p>
+            <p>Es la mejor opcion para conversaciones normales, ayuda con tareas, redaccion de textos, explicaciones detalladas y la mayoria de usos cotidianos.</p>
+
+            <h2>Pollo Summum v1.0</h2>
+            <table class="wiki-info-table">
+                <tr><th>Modelo base</th><td>LLaMA 3.3 70B (70 mil millones de parametros)</td></tr>
+                <tr><th>Disponibilidad</th><td>Solo Premium</td></tr>
+                <tr><th>Tokens maximos</th><td>2000 por respuesta</td></tr>
+                <tr><th>Streaming</th><td>Si (respuesta progresiva)</td></tr>
+                <tr><th>Mejor para</th><td>Analisis profundos, tareas complejas</td></tr>
+            </table>
+            <p><strong>Pollo Summum</strong> es el modelo mas potente de la plataforma, exclusivo para usuarios premium. Aunque usa la misma arquitectura de 70B que Luces, Summum tiene el <strong>doble de tokens permitidos</strong> (2000 vs 1000), lo que le permite dar respuestas mucho mas largas y detalladas.</p>
+            <p>Es el modelo ideal para tareas que requieren analisis exhaustivo: redaccion larga, resolucion de problemas complejos, generacion de codigo extenso, analisis de partidas de ajedrez y cualquier situacion donde se necesite profundidad y detalle.</p>
+
+            <h2>Comparativa</h2>
+            <table class="wiki-compare-table">
+                <tr>
+                    <th>Caracteristica</th>
+                    <th>Palos</th>
+                    <th>Luces</th>
+                    <th>Summum</th>
+                </tr>
+                <tr>
+                    <td>Parametros</td>
+                    <td>8B</td>
+                    <td>70B</td>
+                    <td>70B</td>
+                </tr>
+                <tr>
+                    <td>Tokens/respuesta</td>
+                    <td>500</td>
+                    <td>1.000</td>
+                    <td>2.000</td>
+                </tr>
+                <tr>
+                    <td>Streaming</td>
+                    <td>No</td>
+                    <td>Si</td>
+                    <td>Si</td>
+                </tr>
+                <tr>
+                    <td>Velocidad</td>
+                    <td>Muy rapida</td>
+                    <td>Rapida</td>
+                    <td>Rapida</td>
+                </tr>
+                <tr>
+                    <td>Razonamiento</td>
+                    <td>Basico</td>
+                    <td>Avanzado</td>
+                    <td>Avanzado</td>
+                </tr>
+                <tr>
+                    <td>Disponibilidad</td>
+                    <td>Gratis</td>
+                    <td>Gratis</td>
+                    <td>Premium</td>
+                </tr>
+            </table>
+
+            <h2>Vision por IA</h2>
+            <p>Ademas de los modelos de texto, Pollo Assistance incluye un modelo de <strong>vision artificial</strong> para el analisis de imagenes:</p>
+            <table class="wiki-info-table">
+                <tr><th>Modelo</th><td>LLaMA 4 Scout (Groq Vision)</td></tr>
+                <tr><th>Funcion</th><td>Analisis y descripcion de imagenes</td></tr>
+                <tr><th>Disponibilidad</th><td>Gratis y Premium</td></tr>
+            </table>
+            <p>Este modelo se activa automaticamente cuando el usuario sube una imagen al chat. La IA analiza el contenido visual y puede describir la imagen, responder preguntas sobre ella o, en el caso de imagenes de tableros de ajedrez, iniciar un analisis de la partida.</p>
+
+            <div class="wiki-highlight">
+                <h4>Cual elegir</h4>
+                <p><strong>Palos</strong> si necesitas algo rapido y sencillo. <strong>Luces</strong> para el uso diario (es la opcion recomendada). <strong>Summum</strong> cuando necesitas profundidad y detalle (requiere premium).</p>
+            </div>
+        </main>
+    </div>
+
+    <footer class="wiki-footer">
+        &copy; 2024-2026 Pollo Assistance Studios. Todos los derechos reservados.
+    </footer>
+
+</body>
+</html>
