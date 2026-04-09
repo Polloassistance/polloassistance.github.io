@@ -1,0 +1,184 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AI Models - Wiki Pollo Assistance</title>
+    <meta name="description" content="Pollo Assistance ofrece tres modelos de IA: Palos, Luces y Summum. Conoce las diferencias, capacidades y cual elegir segun tus necesidades.">
+    <meta name="author" content="Pollo Assistance Studios">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="i18n.js"></script>
+    <link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+
+    <nav class="wiki-navbar">
+        <div class="wiki-navbar-inner">
+            <div class="wiki-navbar-brand">
+                <a href="../"><img src="logo.png" alt="" style="width:24px;height:24px;border-radius:5px;vertical-align:middle;margin-right:6px;">Pollo Assistance</a>
+                <span class="wiki-label">Wiki</span>
+            </div>
+            <div class="wiki-navbar-links">
+                <a href="../">Home</a>
+                <a href="./">Wiki</a>
+                <a href="https://pollo-assistance.web.app" class="wiki-cta">Open app</a>
+            </div>
+        </div>
+    </nav>
+
+    <div class="wiki-layout">
+
+        <aside class="wiki-sidebar">
+            <h3>General</h3>
+            <ul>
+                <li><a href="./">Home</a></li>
+                <li><a href="pollo-assistance.html">Pollo Assistance</a></li>
+                <li><a href="primeros-pasos.html">Getting started</a></li>
+            </ul>
+            <h3>Modules</h3>
+            <ul>
+                <li><a href="pollo-study.html">Pollo STUDY</a></li>
+                <li><a href="pollo-code.html">Pollo CODE</a></li>
+                <li><a href="pollo-files.html">Pollo FILES</a></li>
+                <li><a href="pollo-go.html">Pollo GO</a></li>
+            </ul>
+            <h3>Platform</h3>
+            <ul>
+                <li><a href="modelos-ia.html" class="active">AI Models</a></li>
+                <li><a href="precios.html">Pricing and Premium</a></li>
+                <li><a href="auraeon.html">AuraEON</a></li>
+            </ul>
+            <h3>Help</h3>
+            <ul>
+                <li><a href="preguntas-frecuentes.html">FAQ</a></li>
+            </ul>
+        </aside>
+
+        <main class="wiki-content">
+            <h1>AI Models</h1>
+            <p class="wiki-subtitle">The three AI tiers of Pollo Assistance.</p>
+
+            <div class="wiki-note" style="background:linear-gradient(135deg,#FFF3E0,#FFE0B2); border-left:4px solid #FF9800;">
+                <p><strong>🆕 New in v2:</strong> Each model (Palos, Luces, Summum) now acts as an <strong>orchestrator brain</strong> that decides on every message which AI from the pool to use (Llama, Qwen, GPT-OSS, Kimi K2…) based on the task: fast chat, code, deep reasoning, multilingual, etc. It also decides when to <strong>search the web</strong>, when to draw an <strong>interactive diagram</strong>, when to activate <strong>chess mode</strong>, and when to <strong>think before answering</strong> (think mode) — all automatically.</p>
+                <ul style="margin:10px 0 0 18px;">
+                    <li><strong>Smart search</strong>: when the brain decides it needs updated info, it performs a web search and shows the <em>Sources</em> button with the pages consulted.</li>
+                    <li><strong>Inline diagrams</strong>: complex explanations are rendered as interactive mind maps inside the chat.</li>
+                    <li><strong>Think mode</strong>: for difficult tasks, the Luces and Summum models show a collapsible panel with their internal reasoning before the response.</li>
+                    <li><strong>Integrated chess</strong>: the brain decides when to open a playable board inside the chat.</li>
+                    <li><strong>Chat memory</strong>: the AI can remember previous conversations to provide relevant context (configurable in Settings).</li>
+                </ul>
+            </div>
+
+            <h2>How the models work</h2>
+            <p>Pollo Assistance offers <strong>three artificial intelligence models</strong> with different capability levels. Each model is optimized for a type of use, from quick responses to complex and deep analysis.</p>
+
+            <p>The models are based on the <strong>Meta LLaMA family</strong>, run through the <strong>Groq</strong> infrastructure, which provides very low response times thanks to its specialized hardware (LPU).</p>
+
+            <div class="wiki-note">
+                <p><strong>Important:</strong> Once you send the first message in a chat, the model is locked for that conversation. If you want to change the model, you need to create a new chat.</p>
+            </div>
+
+            <h2>Pollo Palos v1.0</h2>
+            <table class="wiki-info-table">
+                <tr><th>Base model</th><td>LLaMA 3.1 8B (8 mil millones de parametros)</td></tr>
+                <tr><th>Availability</th><td>Free</td></tr>
+                <tr><th>Max tokens</th><td>500 por respuesta</td></tr>
+                <tr><th>Streaming</th><td>No</td></tr>
+                <tr><th>Best for</th><td>Quick responses and simple questions</td></tr>
+            </table>
+            <p><strong>Pollo Palos</strong> is the lightest and fastest model. It uses a model with 8 billion parameters, which allows it to give near-instant responses. It is ideal for short questions, quick translations, simple calculations or queries that do not require deep analysis.</p>
+            <p>Having fewer parameters, its responses are more concise and it may struggle with very complex tasks or those requiring long reasoning. It is the perfect model when you need something fast and to the point.</p>
+
+            <h2>Pollo Luces v1.0</h2>
+            <table class="wiki-info-table">
+                <tr><th>Base model</th><td>LLaMA 3.3 70B (70 mil millones de parametros)</td></tr>
+                <tr><th>Availability</th><td>Free</td></tr>
+                <tr><th>Max tokens</th><td>1000 por respuesta</td></tr>
+                <tr><th>Streaming</th><td>Yes (progressive response)</td></tr>
+                <tr><th>Best for</th><td>Daily use, normal conversations</td></tr>
+            </table>
+            <p><strong>Pollo Luces</strong> is the recommended model for daily use. With 70 billion parameters, it offers more complete responses, better reasoning and greater ability to understand context and nuance. It also supports <strong>streaming</strong>, meaning the response appears progressively on screen (word by word) instead of waiting for it all to generate.</p>
+            <p>It is the best option for normal conversations, task help, text writing, detailed explanations and most everyday uses.</p>
+
+            <h2>Pollo Summum v1.0</h2>
+            <table class="wiki-info-table">
+                <tr><th>Base model</th><td>LLaMA 3.3 70B (70 mil millones de parametros)</td></tr>
+                <tr><th>Availability</th><td>Premium only</td></tr>
+                <tr><th>Max tokens</th><td>2000 por respuesta</td></tr>
+                <tr><th>Streaming</th><td>Yes (progressive response)</td></tr>
+                <tr><th>Best for</th><td>Deep analysis, complex tasks</td></tr>
+            </table>
+            <p><strong>Pollo Summum</strong> is the most powerful model on the platform, exclusive to premium users. Although it uses the same 70B architecture as Luces, Summum has <strong>double the allowed tokens</strong> (2000 vs 1000), which allows it to give much longer and more detailed responses.</p>
+            <p>It is the ideal model for tasks requiring exhaustive analysis: long writing, complex problem solving, extensive code generation, chess game analysis and any situation where depth and detail are needed.</p>
+
+            <h2>Comparison</h2>
+            <table class="wiki-compare-table">
+                <tr>
+                    <th>Feature</th>
+                    <th>Palos</th>
+                    <th>Luces</th>
+                    <th>Summum</th>
+                </tr>
+                <tr>
+                    <td>Parametros</td>
+                    <td>8B</td>
+                    <td>70B</td>
+                    <td>70B</td>
+                </tr>
+                <tr>
+                    <td>Tokens/respuesta</td>
+                    <td>500</td>
+                    <td>1.000</td>
+                    <td>2.000</td>
+                </tr>
+                <tr>
+                    <td>Streaming</td>
+                    <td>No</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Velocidad</td>
+                    <td>Very fast</td>
+                    <td>Fast</td>
+                    <td>Fast</td>
+                </tr>
+                <tr>
+                    <td>Razonamiento</td>
+                    <td>Basic</td>
+                    <td>Advanced</td>
+                    <td>Advanced</td>
+                </tr>
+                <tr>
+                    <td>Disponibilidad</td>
+                    <td>Free</td>
+                    <td>Free</td>
+                    <td>Premium</td>
+                </tr>
+            </table>
+
+            <h2>AI Vision</h2>
+            <p>In addition to the text models, Pollo Assistance includes an <strong>artificial vision</strong> model for image analysis:</p>
+            <table class="wiki-info-table">
+                <tr><th>Model</th><td>LLaMA 4 Scout (Groq Vision)</td></tr>
+                <tr><th>Function</th><td>Image analysis and description</td></tr>
+                <tr><th>Availability</th><td>Free and Premium</td></tr>
+            </table>
+            <p>This model activates automatically when the user uploads an image to the chat. The AI analyzes the visual content and can describe the image, answer questions about it or, in the case of chess board images, start a game analysis.</p>
+
+            <div class="wiki-highlight">
+                <h4>Which one to choose</h4>
+                <p><strong>Palos</strong> if you need something fast and simple. <strong>Luces</strong> for daily use (the recommended option). <strong>Summum</strong> when you need depth and detail (requires premium).</p>
+            </div>
+        </main>
+    </div>
+
+    <footer class="wiki-footer">
+        &copy; 2024-2026 Pollo Assistance Studios. All rights reserved.
+    </footer>
+
+</body>
+</html>
