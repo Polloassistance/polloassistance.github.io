@@ -1,0 +1,178 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraEON - Wiki Pollo Assistance</title>
+    <meta name="description" content="AuraEON es un proyecto educativo para centros escolares que utiliza Pollo Assistance como sistema central de cuentas e inteligencia artificial.">
+    <meta name="author" content="Pollo Assistance Studios">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="i18n.js"></script>
+    <link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+
+    <nav class="wiki-navbar">
+        <div class="wiki-navbar-inner">
+            <div class="wiki-navbar-brand">
+                <a href="../"><img src="logo.png" alt="" style="width:24px;height:24px;border-radius:5px;vertical-align:middle;margin-right:6px;">Pollo Assistance</a>
+                <span class="wiki-label">Wiki</span>
+            </div>
+            <div class="wiki-navbar-links">
+                <a href="../" data-i18n="nav.home">Home</a>
+                <a href="./" data-i18n="nav.wiki">Wiki</a>
+                <a href="https://pollo-assistance.web.app" class="wiki-cta" data-i18n="nav.open_app">Open app</a>
+                <select id="wikiLangSwitch" onchange="if(window.PolloI18n)window.PolloI18n.setLang(this.value)" style="background:white; border:1px solid #ddd; border-radius:6px; padding:4px 8px; font-size:12px; font-weight:600; cursor:pointer; margin-left:8px;">
+                    <option value="en">🇬🇧 EN</option>
+                    <option value="es">🇪🇸 ES</option>
+                </select>
+                <div id="wikiUserWidget" style="display:none; align-items:center; gap:8px; margin-left:10px;">
+                    <img id="wikiUserAvatar" src="logo.png" alt="" style="width:30px; height:30px; border-radius:50%; object-fit:cover;">
+                    <span id="wikiUserName" style="font-size:13px; font-weight:600; max-width:120px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"></span>
+                    <button id="wikiLogoutBtn" style="background:none; border:1px solid #ddd; border-radius:6px; padding:3px 8px; cursor:pointer; font-size:11px;" title="Log out">↩</button>
+                </div>
+                <button id="wikiLoginBtn" onclick="wikiOpenLogin()" style="background:linear-gradient(135deg,#FF9800,#F57C00); color:white; border:none; padding:6px 14px; border-radius:8px; cursor:pointer; font-size:13px; font-weight:600; margin-left:8px;" data-i18n="common.login">Log in</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="wiki-layout">
+
+        <aside class="wiki-sidebar">
+            <h3>General</h3>
+            <ul>
+                <li><a href="./">Home</a></li>
+                <li><a href="pollo-assistance.html">Pollo Assistance</a></li>
+                <li><a href="primeros-pasos.html">Getting started</a></li>
+            </ul>
+            <h3>Modules</h3>
+            <ul>
+                <li><a href="pollo-study.html">Pollo STUDY</a></li>
+                <li><a href="pollo-code.html">Pollo CODE</a></li>
+                <li><a href="pollo-files.html">Pollo FILES</a></li>
+                <li><a href="pollo-go.html">Pollo GO</a></li>
+            </ul>
+            <h3>Platform</h3>
+            <ul>
+                <li><a href="modelos-ia.html">AI Models</a></li>
+                <li><a href="precios.html">Pricing and Premium</a></li>
+                <li><a href="auraeon.html" class="active">AuraEON</a></li>
+            </ul>
+            <h3>Help</h3>
+            <ul>
+                <li><a href="preguntas-frecuentes.html">FAQ</a></li>
+            </ul>
+        </aside>
+
+        <main class="wiki-content">
+            <h1>AuraEON</h1>
+            <p class="wiki-subtitle">Comprehensive educational ecosystem for schools.</p>
+
+            <table class="wiki-info-table">
+                <tr><th>Type</th><td>Educational project</td></tr>
+                <tr><th>Relation</th><td>Integrated with Pollo Assistance</td></tr>
+                <tr><th>Target audience</th><td>Schools, teachers, and students</td></tr>
+                <tr><th>Official website</th><td><a href="https://auraeon.es">auraeon.es</a></td></tr>
+                <tr><th>Status</th><td>In development</td></tr>
+            </table>
+
+            <h2>What is AuraEON</h2>
+            <p><strong>AuraEON</strong> is an educational project designed for schools to manage student learning, participation and coexistence. Its goal is to modernize the educational experience through the responsible and efficient use of artificial intelligence.</p>
+
+            <p>AuraEON is not a standalone product: it uses <a href="pollo-assistance.html">Pollo Assistance</a> as its <strong>central account and AI system</strong>. Students and teachers using AuraEON access AI features through Pollo Assistance.</p>
+
+            <h2>Relation to Pollo Assistance</h2>
+            <p>The relationship between AuraEON and Pollo Assistance can be understood as follows:</p>
+            <ul>
+                <li><strong>Pollo Assistance</strong> provides the AI technology, user account system and technical infrastructure.</li>
+                <li><strong>AuraEON</strong> provides the educational context, school management tools and classroom-specific features.</li>
+            </ul>
+            <p>Together they form a complete solution for integrating artificial intelligence in education in a safe and controlled way.</p>
+
+            <h2>Main features</h2>
+
+            <h3>School coexistence management</h3>
+            <p>AuraEON includes tools for schools to manage student coexistence: behavior tracking, incident logging and communication between teachers, students and families.</p>
+
+            <h3>Learning management</h3>
+            <p>Teachers can use AuraEON to organize content, assign tasks and track their students' academic progress. The integration with <a href="pollo-study.html">Pollo STUDY</a> allows students to access AI-powered study tools directly from the platform.</p>
+
+            <h3>eduWORLD mode</h3>
+            <p>When Pollo Assistance is used in the context of AuraEON, a special mode called <strong>eduWORLD</strong> is activated that includes:</p>
+            <ul>
+                <li><strong>Differentiated visual theme:</strong> Green colors to distinguish the educational environment from personal use.</li>
+                <li><strong>Controlled access:</strong> Students access via verification codes provided by the school.</li>
+                <li><strong>Optimized prompts:</strong> The AI adjusts its behavior for the classroom context, with more pedagogical responses.</li>
+                <li><strong>Reinforced privacy:</strong> Messages in eduWORLD mode are not saved to the database, protecting student privacy.</li>
+            </ul>
+
+            <h2>Responsible AI use</h2>
+            <p>One of the pillars of AuraEON is the <strong>responsible use of artificial intelligence</strong> in the educational environment. The platform includes:</p>
+            <ul>
+                <li>Content moderation system (<a href="pollo-assistance.html">ai-moderation</a>) to filter inappropriate content.</li>
+                <li>Access control so only authorized students can use the AI.</li>
+                <li>Usage limits adapted to the school context.</li>
+                <li>Transparency in data usage and privacy by design.</li>
+            </ul>
+
+            <div class="wiki-highlight">
+                <h4>AI in service of education</h4>
+                <p>AuraEON and Pollo Assistance work together to bring artificial intelligence to classrooms in a safe, controlled and pedagogically useful way. The goal is not to replace the teacher, but to give them tools to enhance their students' learning.</p>
+            </div>
+        </main>
+    </div>
+
+    <footer class="wiki-footer">
+        &copy; 2024-2026 Pollo Assistance Studios. All rights reserved.
+    </footer>
+
+
+    <!-- Login modal -->
+    <div id="wikiLoginModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:white; padding:32px; border-radius:18px; max-width:380px; width:90%%;">
+            <div style="text-align:center; margin-bottom:20px;">
+                <img src="logo.png" style="width:60px; height:60px; border-radius:14px;">
+                <h2 style="font-size:22px; color:#1a1a2e; margin:10px 0 0;" data-i18n="common.login">Log in</h2>
+            </div>
+            <input type="email" id="wikiEmail" placeholder="Email" style="width:100%%; padding:12px 14px; border:1px solid #ddd; border-radius:10px; font-size:14px; margin-bottom:10px;">
+            <input type="password" id="wikiPassword" placeholder="Password" style="width:100%%; padding:12px 14px; border:1px solid #ddd; border-radius:10px; font-size:14px; margin-bottom:14px;">
+            <button onclick="wikiDoLogin()" style="width:100%%; background:linear-gradient(135deg,#FF9800,#F57C00); color:white; border:none; padding:12px; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer; margin-bottom:8px;" data-i18n="common.login">Log in</button>
+            <button onclick="wikiDoSignup()" style="width:100%%; background:white; color:#FF9800; border:1px solid #FF9800; padding:12px; border-radius:10px; font-size:14px; font-weight:600; cursor:pointer; margin-bottom:8px;" data-i18n="common.signup">Sign up</button>
+            <button onclick="document.getElementById('wikiLoginModal').style.display='none'" style="width:100%%; background:none; border:none; color:#999; padding:8px; cursor:pointer;" data-i18n="common.close">Close</button>
+            <p id="wikiLoginError" style="color:#f44336; font-size:13px; text-align:center; margin-top:8px; min-height:18px;"></p>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var sel = document.getElementById('wikiLangSwitch');
+            if (sel && window.PolloI18n) sel.value = window.PolloI18n.getLang();
+        });
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script>
+    (function(){
+        const cfg={apiKey:'AIzaSyAF-Cnq56kTOZ8ltRfi2lmJNyaeronW0Zw',authDomain:'pollo-assistance.firebaseapp.com',projectId:'pollo-assistance',storageBucket:'pollo-assistance.firebasestorage.app',messagingSenderId:'823252162365',appId:'1:823252162365:web:abc123def456'};
+        if(!firebase.apps.length)firebase.initializeApp(cfg);
+        const auth=firebase.auth(),db=firebase.firestore();
+        window.wikiOpenLogin=function(){document.getElementById('wikiLoginModal').style.display='flex';};
+        window.wikiDoLogin=function(){var e=document.getElementById('wikiEmail').value,p=document.getElementById('wikiPassword').value;auth.signInWithEmailAndPassword(e,p).then(function(){document.getElementById('wikiLoginModal').style.display='none';}).catch(function(err){document.getElementById('wikiLoginError').textContent=err.message;});};
+        window.wikiDoSignup=function(){var e=document.getElementById('wikiEmail').value,p=document.getElementById('wikiPassword').value;auth.createUserWithEmailAndPassword(e,p).then(function(u){if(u.user)u.user.sendEmailVerification();document.getElementById('wikiLoginModal').style.display='none';}).catch(function(err){document.getElementById('wikiLoginError').textContent=err.message;});};
+        var lb=document.getElementById('wikiLogoutBtn');if(lb)lb.onclick=function(){auth.signOut();};
+        auth.onAuthStateChanged(async function(user){
+            var w=document.getElementById('wikiUserWidget'),b=document.getElementById('wikiLoginBtn');
+            if(user){w.style.display='flex';b.style.display='none';var dn=user.email,av=user.photoURL||'logo.png';
+            try{var doc=await db.collection('users').doc(user.uid).get();if(doc.exists){var d=doc.data();if(d.displayName)dn=d.displayName;if(d.avatarUrl)av=d.avatarUrl;}}catch(e){}
+            document.getElementById('wikiUserName').textContent=dn;
+            if(av&&av!=='logo.png'){document.getElementById('wikiUserAvatar').src=av;}
+            else{var l=(dn||'P').charAt(0).toUpperCase();document.getElementById('wikiUserAvatar').src='data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="#FF9800"/><text x="32" y="42" font-family="Arial" font-size="32" font-weight="bold" fill="white" text-anchor="middle">'+l+'</text></svg>');}
+            }else{w.style.display='none';b.style.display='';}
+        });
+    })();
+    </script>
+</body>
+</html>

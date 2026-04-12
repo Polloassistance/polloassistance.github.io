@@ -1,0 +1,214 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Getting Started - Wiki Pollo Assistance</title>
+    <meta name="description" content="Guia para empezar a usar Pollo Assistance: como crear tu cuenta, verificar el email, elegir modelo de IA y enviar tu primer mensaje.">
+    <meta name="author" content="Pollo Assistance Studios">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="i18n.js"></script>
+    <link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+
+    <nav class="wiki-navbar">
+        <div class="wiki-navbar-inner">
+            <div class="wiki-navbar-brand">
+                <a href="../"><img src="logo.png" alt="" style="width:24px;height:24px;border-radius:5px;vertical-align:middle;margin-right:6px;">Pollo Assistance</a>
+                <span class="wiki-label">Wiki</span>
+            </div>
+            <div class="wiki-navbar-links">
+                <a href="../" data-i18n="nav.home">Home</a>
+                <a href="./" data-i18n="nav.wiki">Wiki</a>
+                <a href="https://pollo-assistance.web.app" class="wiki-cta" data-i18n="nav.open_app">Open app</a>
+                <select id="wikiLangSwitch" onchange="if(window.PolloI18n)window.PolloI18n.setLang(this.value)" style="background:white; border:1px solid #ddd; border-radius:6px; padding:4px 8px; font-size:12px; font-weight:600; cursor:pointer; margin-left:8px;">
+                    <option value="en">🇬🇧 EN</option>
+                    <option value="es">🇪🇸 ES</option>
+                </select>
+                <div id="wikiUserWidget" style="display:none; align-items:center; gap:8px; margin-left:10px;">
+                    <img id="wikiUserAvatar" src="logo.png" alt="" style="width:30px; height:30px; border-radius:50%; object-fit:cover;">
+                    <span id="wikiUserName" style="font-size:13px; font-weight:600; max-width:120px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"></span>
+                    <button id="wikiLogoutBtn" style="background:none; border:1px solid #ddd; border-radius:6px; padding:3px 8px; cursor:pointer; font-size:11px;" title="Log out">↩</button>
+                </div>
+                <button id="wikiLoginBtn" onclick="wikiOpenLogin()" style="background:linear-gradient(135deg,#FF9800,#F57C00); color:white; border:none; padding:6px 14px; border-radius:8px; cursor:pointer; font-size:13px; font-weight:600; margin-left:8px;" data-i18n="common.login">Log in</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="wiki-layout">
+
+        <aside class="wiki-sidebar">
+            <h3>General</h3>
+            <ul>
+                <li><a href="./">Home</a></li>
+                <li><a href="pollo-assistance.html">Pollo Assistance</a></li>
+                <li><a href="primeros-pasos.html" class="active">Getting started</a></li>
+            </ul>
+            <h3>Modules</h3>
+            <ul>
+                <li><a href="pollo-study.html">Pollo STUDY</a></li>
+                <li><a href="pollo-code.html">Pollo CODE</a></li>
+                <li><a href="pollo-files.html">Pollo FILES</a></li>
+                <li><a href="pollo-go.html">Pollo GO</a></li>
+            </ul>
+            <h3>Platform</h3>
+            <ul>
+                <li><a href="modelos-ia.html">AI Models</a></li>
+                <li><a href="precios.html">Pricing and Premium</a></li>
+                <li><a href="auraeon.html">AuraEON</a></li>
+            </ul>
+            <h3>Help</h3>
+            <ul>
+                <li><a href="preguntas-frecuentes.html">FAQ</a></li>
+            </ul>
+        </aside>
+
+        <main class="wiki-content">
+            <h1>Getting started</h1>
+            <p class="wiki-subtitle">Everything you need to start using Pollo Assistance.</p>
+
+            <h2>1. Create your account</h2>
+            <p>To use Pollo Assistance you need an account. You have two options to register:</p>
+
+            <h3>Register with email</h3>
+            <ol>
+                <li>Entra en <a href="https://pollo-assistance.web.app">pollo-assistance.web.app</a>.</li>
+                <li>Haz clic en <strong>"Sign up"</strong>.</li>
+                <li>Enter your email address and choose a password.</li>
+                <li>Haz clic en <strong>"Create account"</strong>.</li>
+                <li>You will receive a verification email (check your spam folder if you don't see it).</li>
+            </ol>
+
+            <h3>Register with Google</h3>
+            <ol>
+                <li>Entra en <a href="https://pollo-assistance.web.app">pollo-assistance.web.app</a>.</li>
+                <li>Haz clic en el boton de <strong>Google</strong>.</li>
+                <li>Select your Google account.</li>
+                <li>Done. No verification needed because Google has already verified your email.</li>
+            </ol>
+
+            <div class="wiki-note">
+                <p><strong>Verification required:</strong> If you register with email, you must verify your address before using the platform. Check your inbox and click the verification link.</p>
+            </div>
+
+            <h2>2. Welcome screen</h2>
+            <p>Once inside, you will see the <strong>welcome screen</strong> with quick actions to get started. From here you can:</p>
+            <ul>
+                <li>Create a new chat with the AI.</li>
+                <li>Access Pollo STUDY, CODE or FILES.</li>
+                <li>View your profile and settings.</li>
+            </ul>
+
+            <h2>3. Create your first chat</h2>
+            <ol>
+                <li>Haz clic en <strong>"New chat"</strong> o en el boton de crear chat.</li>
+                <li>The chat window will open with a text field at the bottom.</li>
+                <li>Type your message or question and press Send.</li>
+                <li>The AI will respond in a few seconds.</li>
+            </ol>
+
+            <h2>4. Choose an AI model</h2>
+            <p>Before sending your first message, you can choose which AI model to use. Pollo Assistance offers three models (see <a href="modelos-ia.html">AI Models</a> para mas detalles):</p>
+            <ul>
+                <li><strong>Pollo Palos:</strong> The fastest. Ideal for short questions.</li>
+                <li><strong>Pollo Luces:</strong> The recommended one. Balance between speed and quality.</li>
+                <li><strong>Pollo Summum:</strong> The most powerful. Only available in premium.</li>
+            </ul>
+
+            <div class="wiki-note">
+                <p><strong>Remember:</strong> Once you send the first message, the model is locked for that chat. If you want to change models, create a new chat.</p>
+            </div>
+
+            <h2>5. Basic chat features</h2>
+
+            <h3>Send images</h3>
+            <p>You can attach an image to your message for the AI to analyze. Click the image button (or drag the file) and the AI will describe, interpret or answer questions about what it sees.</p>
+
+            <h3>Use voice</h3>
+            <p>Click the microphone button to dictate your message by voice. The platform uses the browser's voice recognition to convert your speech to text. You can also enable text-to-speech so the AI reads its responses aloud.</p>
+
+            <h3>Web search</h3>
+            <p>When the AI detects that your question needs updated information, it automatically searches the internet and shows you results with the original sources.</p>
+
+            <h3>Generate images</h3>
+            <p>Ask the AI to generate an image by describing what you want. For example: "Generate an image of a chicken astronaut on the moon". The image will be generated and appear directly in the chat.</p>
+
+            <h2>6. Manage your chats</h2>
+            <p>All your chats are saved automatically. You can:</p>
+            <ul>
+                <li><strong>View history:</strong> Open the side menu to see all your chats.</li>
+                <li><strong>Continue a conversation:</strong> Click any previous chat to resume it.</li>
+                <li><strong>Delete a chat:</strong> Remove chats you no longer need to keep your list organized.</li>
+            </ul>
+
+            <h2>7. Explore the modules</h2>
+            <p>Once you feel comfortable with the basic chat, explore the other modules:</p>
+            <ul>
+                <li><a href="pollo-study.html"><strong>Pollo STUDY</strong></a> — Para estudiar y preparar examenes.</li>
+                <li><a href="pollo-code.html"><strong>Pollo CODE</strong></a> — Para programar con ayuda de IA.</li>
+                <li><a href="pollo-files.html"><strong>Pollo FILES</strong></a> — Para analizar documentos y PDFs.</li>
+                <li><a href="pollo-go.html"><strong>Pollo GO</strong></a> — Para accesos rapidos y utilidades.</li>
+            </ul>
+
+            <div class="wiki-highlight">
+                <h4>Tip</h4>
+                <p>Start with the <strong>Pollo Luces</strong> model for your first chat. It is the most balanced and will give you a good idea of what the platform can do. If you need longer or deeper responses, consider upgrading to premium to access Summum.</p>
+            </div>
+        </main>
+    </div>
+
+    <footer class="wiki-footer">
+        &copy; 2024-2026 Pollo Assistance Studios. All rights reserved.
+    </footer>
+
+
+    <!-- Login modal -->
+    <div id="wikiLoginModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:white; padding:32px; border-radius:18px; max-width:380px; width:90%%;">
+            <div style="text-align:center; margin-bottom:20px;">
+                <img src="logo.png" style="width:60px; height:60px; border-radius:14px;">
+                <h2 style="font-size:22px; color:#1a1a2e; margin:10px 0 0;" data-i18n="common.login">Log in</h2>
+            </div>
+            <input type="email" id="wikiEmail" placeholder="Email" style="width:100%%; padding:12px 14px; border:1px solid #ddd; border-radius:10px; font-size:14px; margin-bottom:10px;">
+            <input type="password" id="wikiPassword" placeholder="Password" style="width:100%%; padding:12px 14px; border:1px solid #ddd; border-radius:10px; font-size:14px; margin-bottom:14px;">
+            <button onclick="wikiDoLogin()" style="width:100%%; background:linear-gradient(135deg,#FF9800,#F57C00); color:white; border:none; padding:12px; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer; margin-bottom:8px;" data-i18n="common.login">Log in</button>
+            <button onclick="wikiDoSignup()" style="width:100%%; background:white; color:#FF9800; border:1px solid #FF9800; padding:12px; border-radius:10px; font-size:14px; font-weight:600; cursor:pointer; margin-bottom:8px;" data-i18n="common.signup">Sign up</button>
+            <button onclick="document.getElementById('wikiLoginModal').style.display='none'" style="width:100%%; background:none; border:none; color:#999; padding:8px; cursor:pointer;" data-i18n="common.close">Close</button>
+            <p id="wikiLoginError" style="color:#f44336; font-size:13px; text-align:center; margin-top:8px; min-height:18px;"></p>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var sel = document.getElementById('wikiLangSwitch');
+            if (sel && window.PolloI18n) sel.value = window.PolloI18n.getLang();
+        });
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script>
+    (function(){
+        const cfg={apiKey:'AIzaSyAF-Cnq56kTOZ8ltRfi2lmJNyaeronW0Zw',authDomain:'pollo-assistance.firebaseapp.com',projectId:'pollo-assistance',storageBucket:'pollo-assistance.firebasestorage.app',messagingSenderId:'823252162365',appId:'1:823252162365:web:abc123def456'};
+        if(!firebase.apps.length)firebase.initializeApp(cfg);
+        const auth=firebase.auth(),db=firebase.firestore();
+        window.wikiOpenLogin=function(){document.getElementById('wikiLoginModal').style.display='flex';};
+        window.wikiDoLogin=function(){var e=document.getElementById('wikiEmail').value,p=document.getElementById('wikiPassword').value;auth.signInWithEmailAndPassword(e,p).then(function(){document.getElementById('wikiLoginModal').style.display='none';}).catch(function(err){document.getElementById('wikiLoginError').textContent=err.message;});};
+        window.wikiDoSignup=function(){var e=document.getElementById('wikiEmail').value,p=document.getElementById('wikiPassword').value;auth.createUserWithEmailAndPassword(e,p).then(function(u){if(u.user)u.user.sendEmailVerification();document.getElementById('wikiLoginModal').style.display='none';}).catch(function(err){document.getElementById('wikiLoginError').textContent=err.message;});};
+        var lb=document.getElementById('wikiLogoutBtn');if(lb)lb.onclick=function(){auth.signOut();};
+        auth.onAuthStateChanged(async function(user){
+            var w=document.getElementById('wikiUserWidget'),b=document.getElementById('wikiLoginBtn');
+            if(user){w.style.display='flex';b.style.display='none';var dn=user.email,av=user.photoURL||'logo.png';
+            try{var doc=await db.collection('users').doc(user.uid).get();if(doc.exists){var d=doc.data();if(d.displayName)dn=d.displayName;if(d.avatarUrl)av=d.avatarUrl;}}catch(e){}
+            document.getElementById('wikiUserName').textContent=dn;
+            if(av&&av!=='logo.png'){document.getElementById('wikiUserAvatar').src=av;}
+            else{var l=(dn||'P').charAt(0).toUpperCase();document.getElementById('wikiUserAvatar').src='data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="#FF9800"/><text x="32" y="42" font-family="Arial" font-size="32" font-weight="bold" fill="white" text-anchor="middle">'+l+'</text></svg>');}
+            }else{w.style.display='none';b.style.display='';}
+        });
+    })();
+    </script>
+</body>
+</html>
