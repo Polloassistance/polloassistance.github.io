@@ -1,0 +1,245 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pricing and Premium - Wiki Pollo Assistance</title>
+    <meta name="description" content="Pollo Assistance ofrece un plan gratuito y un plan premium de pago unico de $25 sin suscripciones. Conoce que incluye cada plan.">
+    <meta name="author" content="Pollo Assistance Studios">
+    <link rel="icon" type="image/png" href="logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <script src="i18n.js"></script>
+    <link rel="stylesheet" href="wiki.css">
+</head>
+<body>
+
+    <nav class="wiki-navbar">
+        <div class="wiki-navbar-inner">
+            <div class="wiki-navbar-brand">
+                <a href="../"><img src="logo.png" alt="" style="width:24px;height:24px;border-radius:5px;vertical-align:middle;margin-right:6px;">Pollo Assistance</a>
+                <span class="wiki-label">Wiki</span>
+            </div>
+            <div class="wiki-navbar-links">
+                <a href="../" data-i18n="nav.home">Home</a>
+                <a href="./" data-i18n="nav.wiki">Wiki</a>
+                <a href="https://pollo-assistance.web.app" class="wiki-cta" data-i18n="nav.open_app">Open app</a>
+                <select id="wikiLangSwitch" onchange="if(window.PolloI18n)window.PolloI18n.setLang(this.value)" style="background:white; border:1px solid #ddd; border-radius:6px; padding:4px 8px; font-size:12px; font-weight:600; cursor:pointer; margin-left:8px;">
+                    <option value="en">🇬🇧 EN</option>
+                    <option value="es">🇪🇸 ES</option>
+                </select>
+                <div id="wikiUserWidget" style="display:none; align-items:center; gap:8px; margin-left:10px;">
+                    <img id="wikiUserAvatar" src="logo.png" alt="" style="width:30px; height:30px; border-radius:50%; object-fit:cover;">
+                    <span id="wikiUserName" style="font-size:13px; font-weight:600; max-width:120px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"></span>
+                    <button id="wikiLogoutBtn" style="background:none; border:1px solid #ddd; border-radius:6px; padding:3px 8px; cursor:pointer; font-size:11px;" title="Log out">↩</button>
+                </div>
+                <button id="wikiLoginBtn" onclick="wikiOpenLogin()" style="background:linear-gradient(135deg,#FF9800,#F57C00); color:white; border:none; padding:6px 14px; border-radius:8px; cursor:pointer; font-size:13px; font-weight:600; margin-left:8px;" data-i18n="common.login">Log in</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="wiki-layout">
+
+        <aside class="wiki-sidebar">
+            <h3>General</h3>
+            <ul>
+                <li><a href="./">Home</a></li>
+                <li><a href="pollo-assistance.html">Pollo Assistance</a></li>
+                <li><a href="primeros-pasos.html">Getting started</a></li>
+            </ul>
+            <h3>Modules</h3>
+            <ul>
+                <li><a href="pollo-study.html">Pollo STUDY</a></li>
+                <li><a href="pollo-code.html">Pollo CODE</a></li>
+                <li><a href="pollo-files.html">Pollo FILES</a></li>
+                <li><a href="pollo-go.html">Pollo GO</a></li>
+            </ul>
+            <h3>Platform</h3>
+            <ul>
+                <li><a href="modelos-ia.html">AI Models</a></li>
+                <li><a href="precios.html" class="active">Pricing and Premium</a></li>
+                <li><a href="auraeon.html">AuraEON</a></li>
+            </ul>
+            <h3>Help</h3>
+            <ul>
+                <li><a href="preguntas-frecuentes.html">FAQ</a></li>
+            </ul>
+        </aside>
+
+        <main class="wiki-content">
+            <h1>Pricing and Premium</h1>
+            <p class="wiki-subtitle">One-time payment, lifetime access, no subscriptions.</p>
+
+            <h2>Pricing model</h2>
+            <p>Pollo Assistance uses a different pricing model from most AI platforms. Instead of charging a monthly subscription, it offers a <strong>one-time payment of $25</strong> that unlocks all features permanently. No renewals, no recurring charges, no surprises.</p>
+
+            <p>There is also a fully functional <strong>free plan</strong> that lets you try the platform with no commitment.</p>
+
+            <h2>Free Plan</h2>
+            <p>The free plan is available to all users who create an account. It includes:</p>
+            <ul>
+                <li><strong>20 messages every 6 hours:</strong> A limit that resets automatically. When messages run out, a real-time countdown appears.</li>
+                <li><strong>2 MB storage:</strong> Space to save files in <a href="pollo-files.html">Pollo FILES</a>.</li>
+                <li><strong>Palos and Luces models:</strong> Access to the two free AI models (see <a href="modelos-ia.html">AI Models</a>).</li>
+                <li><strong>AI Chat:</strong> All basic chat features, including image generation, web search and voice.</li>
+                <li><strong>Pollo STUDY and CODE:</strong> Basic access to the study and programming modules.</li>
+            </ul>
+
+            <div class="wiki-note">
+                <p><strong>No credit card required:</strong> The free plan requires no payment information. You just need to create an account with email or Google.</p>
+            </div>
+
+            <h2>Premium Plan</h2>
+            <table class="wiki-info-table">
+                <tr><th>Price</th><td><strong>$25</strong> (one-time payment)</td></tr>
+                <tr><th>Duration</th><td>Lifetime (no expiration)</td></tr>
+                <tr><th>Subscription</th><td>No. It's a one-time payment.</td></tr>
+                <tr><th>Renewal</th><td>Not required</td></tr>
+            </table>
+
+            <p>The premium plan unlocks all advanced features of the platform:</p>
+            <ul>
+                <li><strong>Unlimited messages:</strong> No usage limits. Use the AI as much as you want.</li>
+                <li><strong>10 MB storage:</strong> 5 times more space for files.</li>
+                <li><strong>Summum model:</strong> Access to the most powerful model, with 2000 tokens per response (see <a href="modelos-ia.html">AI Models</a>).</li>
+                <li><strong>Full integration:</strong> The AI can search all your files, chats and saved code to give more complete responses.</li>
+                <li><strong>Edit from chat:</strong> Ask the AI to edit your FILES or CODE files directly from the conversation.</li>
+                <li><strong>Deep document analysis:</strong> Advanced processing of PDFs and long documents.</li>
+                <li><strong>Todas las funciones desbloqueadas:</strong> Acceso completo a todos los modulos y herramientas actuales y futuras.</li>
+            </ul>
+
+            <h2>Plan comparison</h2>
+            <table class="wiki-compare-table">
+                <tr>
+                    <th>Feature</th>
+                    <th>Free</th>
+                    <th>Premium ($25)</th>
+                </tr>
+                <tr>
+                    <td>Messages</td>
+                    <td>20 every 6 hours</td>
+                    <td>Unlimited</td>
+                </tr>
+                <tr>
+                    <td>Storage</td>
+                    <td>2 MB</td>
+                    <td>10 MB</td>
+                </tr>
+                <tr>
+                    <td>AI Models</td>
+                    <td>Palos and Luces</td>
+                    <td>Palos, Luces and Summum</td>
+                </tr>
+                <tr>
+                    <td>AI Chat</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Image generation</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Web search</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Voice (input and output)</td>
+                    <td>Yes</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Full integration</td>
+                    <td>No</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>File editing from chat</td>
+                    <td>No</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Summum model</td>
+                    <td>No</td>
+                    <td>Yes</td>
+                </tr>
+                <tr>
+                    <td>Cost</td>
+                    <td>$0</td>
+                    <td>$25 (once)</td>
+                </tr>
+            </table>
+
+            <h2>Gift cards</h2>
+            <p>Pollo Assistance also offers a <strong>gift card system</strong> to obtain premium. If someone gives you a card, you can redeem the code inside the app to activate your premium account instantly.</p>
+
+            <h2>How to get Premium</h2>
+            <ol>
+                <li>Go to <a href="https://pollo-assistance.web.app">pollo-assistance.web.app</a>.</li>
+                <li>Log in to your account.</li>
+                <li>Go to the Premium section from the menu.</li>
+                <li>Make the one-time payment of $25.</li>
+                <li>Your account updates automatically and you have lifetime access.</li>
+            </ol>
+
+            <div class="wiki-highlight">
+                <h4>Why a one-time payment</h4>
+                <p>Pollo Assistance believes in a fair pricing model. Monthly subscriptions add up over time and penalize loyal users. With a one-time payment, you know exactly what you pay and don't have to worry about cancelling anything.</p>
+            </div>
+        </main>
+    </div>
+
+    <footer class="wiki-footer">
+        &copy; 2024-2026 Pollo Assistance Studios. All rights reserved.
+    </footer>
+
+
+    <!-- Login modal -->
+    <div id="wikiLoginModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:white; padding:32px; border-radius:18px; max-width:380px; width:90%%;">
+            <div style="text-align:center; margin-bottom:20px;">
+                <img src="logo.png" style="width:60px; height:60px; border-radius:14px;">
+                <h2 style="font-size:22px; color:#1a1a2e; margin:10px 0 0;" data-i18n="common.login">Log in</h2>
+            </div>
+            <input type="email" id="wikiEmail" placeholder="Email" style="width:100%%; padding:12px 14px; border:1px solid #ddd; border-radius:10px; font-size:14px; margin-bottom:10px;">
+            <input type="password" id="wikiPassword" placeholder="Password" style="width:100%%; padding:12px 14px; border:1px solid #ddd; border-radius:10px; font-size:14px; margin-bottom:14px;">
+            <button onclick="wikiDoLogin()" style="width:100%%; background:linear-gradient(135deg,#FF9800,#F57C00); color:white; border:none; padding:12px; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer; margin-bottom:8px;" data-i18n="common.login">Log in</button>
+            <button onclick="wikiDoSignup()" style="width:100%%; background:white; color:#FF9800; border:1px solid #FF9800; padding:12px; border-radius:10px; font-size:14px; font-weight:600; cursor:pointer; margin-bottom:8px;" data-i18n="common.signup">Sign up</button>
+            <button onclick="document.getElementById('wikiLoginModal').style.display='none'" style="width:100%%; background:none; border:none; color:#999; padding:8px; cursor:pointer;" data-i18n="common.close">Close</button>
+            <p id="wikiLoginError" style="color:#f44336; font-size:13px; text-align:center; margin-top:8px; min-height:18px;"></p>
+        </div>
+    </div>
+    <script>
+        document.addEventListener('DOMContentLoaded', function() {
+            var sel = document.getElementById('wikiLangSwitch');
+            if (sel && window.PolloI18n) sel.value = window.PolloI18n.getLang();
+        });
+    </script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script>
+    (function(){
+        const cfg={apiKey:'AIzaSyAF-Cnq56kTOZ8ltRfi2lmJNyaeronW0Zw',authDomain:'pollo-assistance.firebaseapp.com',projectId:'pollo-assistance',storageBucket:'pollo-assistance.firebasestorage.app',messagingSenderId:'823252162365',appId:'1:823252162365:web:abc123def456'};
+        if(!firebase.apps.length)firebase.initializeApp(cfg);
+        const auth=firebase.auth(),db=firebase.firestore();
+        window.wikiOpenLogin=function(){document.getElementById('wikiLoginModal').style.display='flex';};
+        window.wikiDoLogin=function(){var e=document.getElementById('wikiEmail').value,p=document.getElementById('wikiPassword').value;auth.signInWithEmailAndPassword(e,p).then(function(){document.getElementById('wikiLoginModal').style.display='none';}).catch(function(err){document.getElementById('wikiLoginError').textContent=err.message;});};
+        window.wikiDoSignup=function(){var e=document.getElementById('wikiEmail').value,p=document.getElementById('wikiPassword').value;auth.createUserWithEmailAndPassword(e,p).then(function(u){if(u.user)u.user.sendEmailVerification();document.getElementById('wikiLoginModal').style.display='none';}).catch(function(err){document.getElementById('wikiLoginError').textContent=err.message;});};
+        var lb=document.getElementById('wikiLogoutBtn');if(lb)lb.onclick=function(){auth.signOut();};
+        auth.onAuthStateChanged(async function(user){
+            var w=document.getElementById('wikiUserWidget'),b=document.getElementById('wikiLoginBtn');
+            if(user){w.style.display='flex';b.style.display='none';var dn=user.email,av=user.photoURL||'logo.png';
+            try{var doc=await db.collection('users').doc(user.uid).get();if(doc.exists){var d=doc.data();if(d.displayName)dn=d.displayName;if(d.avatarUrl)av=d.avatarUrl;}}catch(e){}
+            document.getElementById('wikiUserName').textContent=dn;
+            if(av&&av!=='logo.png'){document.getElementById('wikiUserAvatar').src=av;}
+            else{var l=(dn||'P').charAt(0).toUpperCase();document.getElementById('wikiUserAvatar').src='data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="#FF9800"/><text x="32" y="42" font-family="Arial" font-size="32" font-weight="bold" fill="white" text-anchor="middle">'+l+'</text></svg>');}
+            }else{w.style.display='none';b.style.display='';}
+        });
+    })();
+    </script>
+</body>
+</html>
