@@ -40,17 +40,11 @@
                 <a href="#funciones">Features</a>
                 <a href="#modulos">Modules</a>
                 <a href="#precios">Pricing</a>
-                <a href="#empezar">Get started</a>
-                <a href="wiki/">Wiki</a>
-                <div class="nav-dropdown">
-                    <button class="nav-dropdown-toggle">More Tools <span class="arrow">▾</span></button>
-                    <div class="nav-dropdown-menu">
-                        <a href="https://auraeon.es" target="_blank" rel="noopener" class="nav-dropdown-item">
-                            <span class="nav-dropdown-item-name"><span class="tool-emoji">🌱</span> AuraEON</span>
-                            <span class="tool-tag">Edu</span>
-                        </a>
-                    </div>
-                </div>
+                <a href="#empezar" data-i18n="nav.get_started">Get started</a>
+                <a href="wiki/" data-i18n="nav.wiki">Wiki</a>
+                <a href="https://auraeon.es" target="_blank" rel="noopener" class="nav-auraeon-link">
+                    <span class="tool-emoji">🌱</span> AuraEON
+                </a>
             </div>
             <a href="https://pollo-assistance.web.app" class="nav-cta" data-i18n="nav.open_app">Open app</a>
             <div id="ghUserWidget" style="display:none; align-items:center; gap:10px; margin-left:10px;">
@@ -304,6 +298,18 @@
                     <img src="logo.png" alt="Pollo Assistance" class="footer-logo">
                     <h3>Pollo Assistance</h3>
                     <p>Independent AI ecosystem.<br>One-time payment, no subscriptions.</p>
+                    <div class="footer-social footer-social-brand">
+                        <a href="https://youtube.com/@polloassistance" target="_blank" rel="noopener" aria-label="YouTube" class="footer-social-icon">
+                            <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
+                            </svg>
+                        </a>
+                        <a href="https://x.com/polloassistance" target="_blank" rel="noopener" aria-label="X" class="footer-social-icon">
+                            <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
+                                <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
+                            </svg>
+                        </a>
+                    </div>
                 </div>
                 <div class="footer-links">
                     <h4>Product</h4>
@@ -326,19 +332,7 @@
                 </div>
             </div>
             <div class="footer-bottom">
-                <div class="footer-social">
-                    <a href="https://youtube.com/@polloassistance" target="_blank" rel="noopener" aria-label="YouTube" class="footer-social-icon">
-                        <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M23.498 6.186a3.016 3.016 0 0 0-2.122-2.136C19.505 3.545 12 3.545 12 3.545s-7.505 0-9.377.505A3.017 3.017 0 0 0 .502 6.186C0 8.07 0 12 0 12s0 3.93.502 5.814a3.016 3.016 0 0 0 2.122 2.136c1.871.505 9.376.505 9.376.505s7.505 0 9.377-.505a3.015 3.015 0 0 0 2.122-2.136C24 15.93 24 12 24 12s0-3.93-.502-5.814zM9.545 15.568V8.432L15.818 12l-6.273 3.568z"/>
-                        </svg>
-                    </a>
-                    <a href="https://x.com/polloassistance" target="_blank" rel="noopener" aria-label="X" class="footer-social-icon">
-                        <svg width="18" height="18" viewBox="0 0 24 24" fill="currentColor">
-                            <path d="M18.244 2.25h3.308l-7.227 8.26 8.502 11.24H16.17l-5.214-6.817L4.99 21.75H1.68l7.73-8.835L1.254 2.25H8.08l4.713 6.231zm-1.161 17.52h1.833L7.084 4.126H5.117z"/>
-                        </svg>
-                    </a>
-                </div>
-                <p>&copy; 2024-2026 Pollo Assistance Studios. All rights reserved.</p>
+                <p data-i18n="footer.copyright">&copy; 2024-2026 Pollo Assistance Studios. All rights reserved.</p>
             </div>
         </div>
     </footer>
