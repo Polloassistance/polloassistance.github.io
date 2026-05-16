@@ -1,0 +1,338 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>AuraEON - Wiki de Pollo Assistance</title>
+    <meta name="description" content="AuraEON — Wiki de Pollo Assistance">
+    <meta name="author" content="Pollo Assistance Studios">
+    <link rel="icon" type="image/png" href="../logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../wiki.css">
+    <style>
+        /* ============= F.7 — Bloques visuales reutilizables ============= */
+        .hero-banner {
+            background: linear-gradient(135deg, #fff7e6 0%, #ffe6cc 100%);
+            border-left: 4px solid #FF9800;
+            border-radius: 12px;
+            padding: 22px 24px;
+            margin: 18px 0 28px;
+        }
+        .hero-banner h2 { margin: 0 0 8px; font-size: 18px; color: #1a1a2e; }
+        .hero-banner p { margin: 0; color: #555; font-size: 14px; line-height: 1.6; }
+        .status-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white;
+            font-size: 11px;
+            font-weight: 700;
+            padding: 3px 10px;
+            border-radius: 11px;
+            letter-spacing: 0.5px;
+            margin-left: 10px;
+            vertical-align: middle;
+        }
+        .status-badge.beta { background: linear-gradient(135deg, #2196F3, #1565C0); }
+        .status-badge.premium { background: linear-gradient(135deg, #FFD54F, #F57C00); color: #1a1a2e; }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px;
+            margin: 20px 0;
+        }
+        .feature-card {
+            background: #fafafa;
+            border: 1px solid #e8e8e8;
+            border-radius: 10px;
+            padding: 16px 18px;
+            transition: all 0.18s;
+        }
+        .feature-card:hover {
+            border-color: #FF9800;
+            box-shadow: 0 4px 14px rgba(255,152,0,0.12);
+            transform: translateY(-1px);
+        }
+        .feature-card .fc-icon {
+            font-size: 22px;
+            margin-bottom: 8px;
+            display: block;
+        }
+        .feature-card h4 {
+            margin: 0 0 6px;
+            font-size: 14px;
+            color: #1a1a2e;
+            font-weight: 700;
+        }
+        .feature-card p {
+            margin: 0;
+            font-size: 13px;
+            color: #666;
+            line-height: 1.5;
+        }
+
+        .compare-table {
+            width: 100%;
+            border-collapse: collapse;
+            margin: 18px 0;
+            background: white;
+            border: 1px solid #e8e8e8;
+            border-radius: 10px;
+            overflow: hidden;
+        }
+        .compare-table th, .compare-table td {
+            padding: 10px 14px;
+            text-align: left;
+            border-bottom: 1px solid #f0f0f0;
+            font-size: 13px;
+        }
+        .compare-table th {
+            background: #fafafa;
+            color: #1a1a2e;
+            font-weight: 700;
+            font-size: 12px;
+            text-transform: uppercase;
+            letter-spacing: 0.4px;
+        }
+        .compare-table td:first-child { font-weight: 600; color: #1a1a2e; }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .check { color: #4CAF50; font-weight: 700; }
+        .cross { color: #ccc; }
+
+        .callout {
+            border-left: 4px solid #2196F3;
+            background: #E3F2FD;
+            padding: 12px 16px;
+            border-radius: 6px;
+            margin: 16px 0;
+            font-size: 13px;
+            color: #1565C0;
+            line-height: 1.55;
+        }
+        .callout.tip { border-color: #4CAF50; background: #E8F5E9; color: #2E7D32; }
+        .callout.warning { border-color: #FF9800; background: #FFF3E0; color: #E65100; }
+        .callout.danger { border-color: #f44336; background: #FFEBEE; color: #C62828; }
+        .callout strong { display: inline; }
+
+        .price-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px;
+            margin: 20px 0;
+        }
+        .price-card {
+            background: white;
+            border: 2px solid #e8e8e8;
+            border-radius: 14px;
+            padding: 22px 18px;
+            text-align: center;
+            transition: all 0.18s;
+            position: relative;
+        }
+        .price-card.featured {
+            border-color: #FF9800;
+            box-shadow: 0 6px 20px rgba(255,152,0,0.15);
+        }
+        .price-card.featured::before {
+            content: '★';
+            position: absolute;
+            top: -12px; right: 16px;
+            background: linear-gradient(135deg, #FFD54F, #F57C00);
+            color: white;
+            font-size: 14px;
+            padding: 4px 10px;
+            border-radius: 12px;
+            font-weight: 700;
+        }
+        .price-card .pc-name { font-size: 14px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.6px; }
+        .price-card .pc-amount { font-size: 32px; font-weight: 800; color: #1a1a2e; margin: 6px 0 4px; }
+        .price-card .pc-note { font-size: 12px; color: #888; margin-bottom: 14px; }
+        .price-card ul { list-style: none; padding: 0; margin: 0; text-align: left; }
+        .price-card ul li { font-size: 13px; color: #555; padding: 5px 0; border-bottom: 1px dashed #f0f0f0; }
+        .price-card ul li:last-child { border-bottom: none; }
+        .price-card ul li::before { content: '✓'; color: #4CAF50; font-weight: 700; margin-right: 6px; }
+
+        .mono { font-family: 'JetBrains Mono', 'Cascadia Code', ui-monospace, monospace; }
+
+        .tier-card {
+            background: white;
+            border: 1px solid #e8e8e8;
+            border-radius: 12px;
+            padding: 16px 20px;
+            margin: 10px 0;
+            border-left: 4px solid #FF9800;
+        }
+        .tier-card.luces { border-left-color: #2196F3; }
+        .tier-card.summum { border-left-color: #FFD54F; }
+        .tier-card h4 { margin: 0 0 4px; font-size: 16px; color: #1a1a2e; }
+        .tier-card .tier-desc { font-size: 13px; color: #555; margin-bottom: 8px; }
+        .tier-card .tier-pool {
+            display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px;
+        }
+        .tier-card .tier-pool span {
+            background: #f5f5f5;
+            border: 1px solid #e0e0e0;
+            color: #555;
+            font-size: 11px;
+            padding: 2px 8px;
+            border-radius: 4px;
+            font-family: ui-monospace, monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="wiki-navbar">
+        <div class="wiki-navbar-inner">
+            <div class="wiki-navbar-brand">
+                <a href="../../"><img src="../logo.png" alt="" style="width:24px;height:24px;border-radius:5px;vertical-align:middle;margin-right:6px;">Pollo Assistance</a>
+                <span class="wiki-label">Wiki</span>
+            </div>
+            <div class="wiki-navbar-links">
+                <a href="../../">Inicio</a>
+                <a href="./">Wiki</a>
+                <a href="https://pollo-assistance.web.app" class="wiki-cta">Abrir app</a>
+                <select id="wikiLangSwitch" onchange="switchWikiLang(this.value)" style="background:white; border:1px solid #ddd; border-radius:6px; padding:4px 8px; font-size:12px; font-weight:600; cursor:pointer; margin-left:8px;">
+                    <option value="en">🇬🇧 EN</option>
+                    <option value="es">🇪🇸 ES</option>
+                </select>
+                <div id="wikiUserWidget" style="display:none; align-items:center; gap:8px; margin-left:10px;">
+                    <img id="wikiUserAvatar" src="../logo.png" alt="" style="width:30px; height:30px; border-radius:50%; object-fit:cover;">
+                    <span id="wikiUserName" style="font-size:13px; font-weight:600; max-width:120px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"></span>
+                    <button id="wikiLogoutBtn" style="background:none; border:1px solid #ddd; border-radius:6px; padding:3px 8px; cursor:pointer; font-size:11px;" title="Cerrar sesión">↩</button>
+                </div>
+                <button id="wikiLoginBtn" onclick="wikiOpenLogin()" style="background:linear-gradient(135deg,#FF9800,#F57C00); color:white; border:none; padding:6px 14px; border-radius:8px; cursor:pointer; font-size:13px; font-weight:600; margin-left:8px;">Iniciar sesión</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="wiki-layout">
+
+        <aside class="wiki-sidebar">
+            <h3>General</h3>
+            <ul>
+                <li><a href="./">Inicio</a></li>
+                <li><a href="pollo-assistance.html">Pollo Assistance</a></li>
+                <li><a href="primeros-pasos.html">Primeros pasos</a></li>
+            </ul>
+            <h3>Módulos</h3>
+            <ul>
+                <li><a href="pollo-study.html">Pollo STUDY</a></li>
+                <li><a href="pollo-code.html">Pollo CODE</a></li>
+                <li><a href="pollo-files.html">Pollo FILES</a></li>
+                <li><a href="pollo-go.html">Pollo GO</a></li>
+                <li><a href="extensiones.html">Extensiones</a></li>
+            </ul>
+            <h3>Plataforma</h3>
+            <ul>
+                <li><a href="modelos-ia.html">Modelos de IA</a></li>
+                <li><a href="precios.html">Precios y Premium</a></li>
+                <li><a href="auraeon.html" class="active">AuraEON</a></li>
+            </ul>
+            <h3>Ayuda</h3>
+            <ul>
+                <li><a href="preguntas-frecuentes.html">Preguntas frecuentes</a></li>
+            </ul>
+        </aside>
+
+        <main class="wiki-content">
+<h1>AuraEON</h1>
+<p class="wiki-subtitle">Proyecto educativo integrado con Pollo Assistance. Para colegios, universidades y comunidades académicas.</p>
+
+<table class="wiki-info-table">
+    <tr><th>Dominio independiente</th><td><a href="https://auraeon.es">auraeon.es</a></td></tr>
+    <tr><th>Tipo</th><td>Plataforma educativa</td></tr>
+    <tr><th>Precios</th><td>Programa especial para instituciones (descuentos por volumen)</td></tr>
+</table>
+
+<h2>¿Qué es AuraEON?</h2>
+<p>AuraEON es una plataforma educativa que usa Pollo Assistance por debajo, adaptada al contexto escolar. Los estudiantes acceden a una versión controlada de la IA, con:</p>
+<ul>
+    <li>Filtros de contenido apropiados para la edad.</li>
+    <li>Panel de profesor para asignar ejercicios y revisar respuestas.</li>
+    <li>Integración con sistemas de gestión escolar (Google Classroom, Microsoft Teams).</li>
+    <li>Herramientas específicas de aprendizaje (lecciones interactivas, corrección automática).</li>
+</ul>
+
+<h2>Para instituciones</h2>
+<p>Colegios, institutos y universidades pueden contratar AuraEON con:</p>
+<ul>
+    <li><strong>Licencia institucional personalizada</strong>: número de usuarios, almacenamiento interno, soporte dedicado.</li>
+    <li><strong>Branding</strong>: la plataforma puede llevar el nombre y logo de la institución.</li>
+    <li><strong>Descuentos por volumen</strong>: los precios bajan significativamente a partir de 100+ usuarios.</li>
+</ul>
+
+<h2>Cómo contactar con AuraEON</h2>
+<p>El equipo de AuraEON opera desde <a href="https://auraeon.es">auraeon.es</a>. Desde ahí puedes solicitar una demo institucional gratuita.</p>
+
+<div class="callout">
+    <strong>Nota:</strong> Aunque AuraEON tiene marca y dominio propio, técnicamente está construido sobre Pollo Assistance. Las mejoras de Pollo (nuevos modelos de IA, features) llegan automáticamente a AuraEON.
+</div>
+
+        </main>
+    </div>
+
+    <footer class="wiki-footer">
+        © 2024-2026 Pollo Assistance Studios. Todos los derechos reservados.
+    </footer>
+
+    <div id="wikiLoginModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:white; padding:32px; border-radius:18px; max-width:380px; width:90%;">
+            <div style="text-align:center; margin-bottom:20px;">
+                <img src="../logo.png" style="width:60px; height:60px; border-radius:14px;">
+                <h2 style="font-size:22px; color:#1a1a2e; margin:10px 0 0;">Iniciar sesión</h2>
+            </div>
+            <input type="email" id="wikiEmail" placeholder="Correo" style="width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:10px; font-size:14px; margin-bottom:10px;">
+            <input type="password" id="wikiPassword" placeholder="Contraseña" style="width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:10px; font-size:14px; margin-bottom:14px;">
+            <button onclick="wikiDoLogin()" style="width:100%; background:linear-gradient(135deg,#FF9800,#F57C00); color:white; border:none; padding:12px; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer; margin-bottom:8px;">Iniciar sesión</button>
+            <button onclick="wikiDoSignup()" style="width:100%; background:white; color:#FF9800; border:1px solid #FF9800; padding:12px; border-radius:10px; font-size:14px; font-weight:600; cursor:pointer; margin-bottom:8px;">Registrarse</button>
+            <button onclick="document.getElementById('wikiLoginModal').style.display='none'" style="width:100%; background:none; border:none; color:#999; padding:8px; cursor:pointer;">Cerrar</button>
+            <p id="wikiLoginError" style="color:#f44336; font-size:13px; text-align:center; margin-top:8px; min-height:18px;"></p>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script>
+    (function(){
+        var cfg={apiKey:'AIzaSyAF-Cnq56kTOZ8ltRfi2lmJNyaeronW0Zw',authDomain:'pollo-assistance.firebaseapp.com',projectId:'pollo-assistance',storageBucket:'pollo-assistance.firebasestorage.app',messagingSenderId:'823252162365',appId:'1:823252162365:web:abc123def456'};
+        if(!firebase.apps.length)firebase.initializeApp(cfg);
+        var auth=firebase.auth(),db=firebase.firestore();
+        window.wikiOpenLogin=function(){document.getElementById('wikiLoginModal').style.display='flex';};
+        window.wikiDoLogin=function(){var e=document.getElementById('wikiEmail').value,p=document.getElementById('wikiPassword').value;auth.signInWithEmailAndPassword(e,p).then(function(){document.getElementById('wikiLoginModal').style.display='none';}).catch(function(err){document.getElementById('wikiLoginError').textContent=err.message;});};
+        window.wikiDoSignup=function(){var e=document.getElementById('wikiEmail').value,p=document.getElementById('wikiPassword').value;auth.createUserWithEmailAndPassword(e,p).then(function(u){if(u.user)u.user.sendEmailVerification();document.getElementById('wikiLoginModal').style.display='none';}).catch(function(err){document.getElementById('wikiLoginError').textContent=err.message;});};
+        var lb=document.getElementById('wikiLogoutBtn');if(lb)lb.onclick=function(){auth.signOut();};
+        auth.onAuthStateChanged(async function(user){
+            var w=document.getElementById('wikiUserWidget'),b=document.getElementById('wikiLoginBtn');
+            if(user){w.style.display='flex';b.style.display='none';var dn=user.email,av=user.photoURL||'../logo.png';
+            try{var doc=await db.collection('users').doc(user.uid).get();if(doc.exists){var d=doc.data();if(d.displayName)dn=d.displayName;if(d.avatarUrl)av=d.avatarUrl;}}catch(e){}
+            document.getElementById('wikiUserName').textContent=dn;
+            if(av&&av.indexOf('logo.png')<0){document.getElementById('wikiUserAvatar').src=av;}
+            else{var l=(dn||'P').charAt(0).toUpperCase();document.getElementById('wikiUserAvatar').src='data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="#FF9800"/><text x="32" y="42" font-family="Arial" font-size="32" font-weight="bold" fill="white" text-anchor="middle">'+l+'</text></svg>');}
+            }else{w.style.display='none';b.style.display='';}
+        });
+    })();
+    </script>
+    <script>
+    (function () {
+        var path = location.pathname;
+        var m = path.match(/\/wiki\/(en|es)\//);
+        var cur = m ? m[1] : 'en';
+        document.addEventListener('DOMContentLoaded', function () {
+            var sel = document.getElementById('wikiLangSwitch');
+            if (sel) sel.value = cur;
+        });
+        window.switchWikiLang = function (target) {
+            if (target !== 'en' && target !== 'es') return;
+            if (target === cur) return;
+            try { localStorage.setItem('wiki_lang', target); } catch (e) {}
+            var newPath = path.replace(/\/wiki\/(en|es)\//, '/wiki/' + target + '/');
+            location.href = newPath + (location.search || '') + (location.hash || '');
+        };
+    })();
+    </script>
+</body>
+</html>
