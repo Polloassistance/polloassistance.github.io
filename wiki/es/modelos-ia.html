@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Modelos de IA - Wiki Pollo Assistance</title>
+    <meta name="description" content="Pollo Assistance offers three AI tiers: Palos, Luces and Summum. Each tier has a brain orchestrator that picks the best AI for every message.">
+    <meta name="author" content="Pollo Assistance Studios">
+    <link rel="icon" type="image/png" href="../logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../wiki.css">
+</head>
+<body>
+
+    <nav class="wiki-navbar">
+        <div class="wiki-navbar-inner">
+            <div class="wiki-navbar-brand">
+                <a href="../../"><img src="../logo.png" alt="" style="width:24px;height:24px;border-radius:5px;vertical-align:middle;margin-right:6px;">Pollo Assistance</a>
+                <span class="wiki-label">Wiki</span>
+            </div>
+            <div class="wiki-navbar-links">
+                <a href="../../" data-i18n="nav.home">Inicio</a>
+                <a href="./" data-i18n="nav.wiki">Wiki</a>
+                <a href="https://pollo-assistance.web.app" class="wiki-cta" data-i18n="nav.open_app">Abrir app</a>
+                <select id="wikiLangSwitch" onchange="switchWikiLang(this.value)" style="background:white; border:1px solid #ddd; border-radius:6px; padding:4px 8px; font-size:12px; font-weight:600; cursor:pointer; margin-left:8px;">
+                    <option value="en">🇬🇧 EN</option>
+                    <option value="es">🇪🇸 ES</option>
+                </select>
+                <div id="wikiUserWidget" style="display:none; align-items:center; gap:8px; margin-left:10px;">
+                    <img id="wikiUserAvatar" src="../logo.png" alt="" style="width:30px; height:30px; border-radius:50%; object-fit:cover;">
+                    <span id="wikiUserNombre" style="font-size:13px; font-weight:600; max-width:120px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"></span>
+                    <button id="wikiLogoutBtn" style="background:none; border:1px solid #ddd; border-radius:6px; padding:3px 8px; cursor:pointer; font-size:11px;" title="Cerrar sesión">↩</button>
+                </div>
+                <button id="wikiLoginBtn" onclick="wikiOpenLogin()" style="background:linear-gradient(135deg,#FF9800,#F57C00); color:white; border:none; padding:6px 14px; border-radius:8px; cursor:pointer; font-size:13px; font-weight:600; margin-left:8px;" data-i18n="common.login">Iniciar sesión</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="wiki-layout">
+
+        <aside class="wiki-sidebar">
+            <h3>General</h3>
+            <ul>
+                <li><a href="./">Inicio</a></li>
+                <li><a href="pollo-assistance.html">Pollo Assistance</a></li>
+                <li><a href="primeros-pasos.html">Primeros pasos</a></li>
+                <li><a href="historial.html">Historial de fases</a></li>
+            </ul>
+            <h3>Módulos</h3>
+            <ul>
+                <li><a href="pollo-study.html">Pollo STUDY</a></li>
+                <li><a href="pollo-code.html">Pollo CODE</a></li>
+                <li><a href="pollo-files.html">Pollo FILES</a></li>
+                <li><a href="pollo-go.html">Pollo GO</a></li>
+            </ul>
+            <h3>Plataforma</h3>
+            <ul>
+                <li><a href="modelos-ia.html" class="active">Modelos de IA</a></li>
+                <li><a href="precios.html">Precios y Premium</a></li>
+                <li><a href="auraeon.html">AuraEON</a></li>
+            </ul>
+            <h3>Ayuda</h3>
+            <ul>
+                <li><a href="preguntas-frecuentes.html">Preguntas frecuentes</a></li>
+            </ul>
+        </aside>
+
+        <main class="wiki-content">
+            <h1>Modelos de IA</h1>
+            <p class="wiki-subtitle">Los tres niveles de IA de Pollo Assistance and the multi-AI brain system.</p>
+
+            <h2>Cómo funciona: el Cerebro Orquestador</h2>
+            <p>Pollo Assistance uses a <strong>multi-AI architecture</strong>. Instead of being locked to a single model, each tier (Palos, Luces, Summum) has a <strong>brain orchestrator</strong> — an AI that analyzes every message you send and decides which AI from its pool is best suited to answer it.</p>
+
+            <p>The brain also decides automatically when to:</p>
+            <ul>
+                <li><strong>Buscar the web</strong> — when it needs up-to-date information, it performs a live search and shows a <em>Sources</em> button with the pages consulted.</li>
+                <li><strong>Draw an interactive diagram</strong> — complex explanations are rendered as interactive mind maps inside the chat.</li>
+                <li><strong>Activar think mode</strong> — for difficult tasks, the brain shows a collapsible panel with its internal reasoning before the response (Luces and Summum only).</li>
+                <li><strong>Open a chess game</strong> — when you ask to play chess, a playable board appears inline in the chat.</li>
+                <li><strong>Generate imágenes</strong> — the brain can create imágenes from text descriptions using Pollinations AI.</li>
+            </ul>
+
+            <div class="wiki-note">
+                <p><strong>Important:</strong> Once you send the first message in a chat, the tier is locked for that conversation. If you want to switch tiers, create a new chat.</p>
+            </div>
+
+            <h2>IAs disponibles en el Pool</h2>
+            <p>The brain orchestrator picks from the following AI models depending on what each message needs:</p>
+
+            <table class="wiki-compare-table">
+                <tr>
+                    <th>AI Model</th>
+                    <th>Proveedor</th>
+                    <th>Parámetros</th>
+                    <th>Velocidad</th>
+                    <th>Mejor para</th>
+                </tr>
+                <tr>
+                    <td><strong>Llama 3.1 8B</strong></td>
+                    <td>Meta</td>
+                    <td>8B</td>
+                    <td>Muy rápido</td>
+                    <td>Quick chat, translations, simple questions</td>
+                </tr>
+                <tr>
+                    <td><strong>Llama 3.3 70B</strong></td>
+                    <td>Meta</td>
+                    <td>70B</td>
+                    <td>Rápido</td>
+                    <td>Code, analysis, math, reasoning, creative writing</td>
+                </tr>
+                <tr>
+                    <td><strong>Llama 4 Scout</strong></td>
+                    <td>Meta</td>
+                    <td>17B (16 experts)</td>
+                    <td>Rápido</td>
+                    <td>Vision (image understanding), multilingual, code, reasoning</td>
+                </tr>
+                <tr>
+                    <td><strong>Qwen 3 32B</strong></td>
+                    <td>Alibaba</td>
+                    <td>32B</td>
+                    <td>Medio</td>
+                    <td>Code, math, science, multilingual, reasoning</td>
+                </tr>
+                <tr>
+                    <td><strong>GPT OSS 20B</strong></td>
+                    <td>OpenAI</td>
+                    <td>20B</td>
+                    <td>Medio</td>
+                    <td>General chat, creative writing, analysis</td>
+                </tr>
+                <tr>
+                    <td><strong>GPT OSS 120B</strong></td>
+                    <td>OpenAI</td>
+                    <td>120B</td>
+                    <td>Más lento</td>
+                    <td>Deep analysis, complex reasoning, science, code</td>
+                </tr>
+                <tr>
+                    <td><strong>Kimi K2</strong></td>
+                    <td>Moonshot</td>
+                    <td>Grande</td>
+                    <td>Más lento</td>
+                    <td>Deep analysis, complex reasoning, math, science</td>
+                </tr>
+            </table>
+
+            <p>All models run through the <strong>Groq</strong> infrastructure, which provides very low response times thanks to its specialized hardware (LPU — Idioma Processing Unit).</p>
+
+            <h2>Image AI</h2>
+            <p>In addition to text models, all tiers have access to:</p>
+            <ul>
+                <li><strong>Pollinations AI</strong> — generates imágenes from text descriptions (text-to-image).</li>
+                <li><strong>Llama 4 Scout (Vision)</strong> — analyzes imágenes you upload and answers questions about them.</li>
+            </ul>
+
+            <hr style="margin:32px 0; border:none; border-top:1px solid #e5e7eb;">
+
+            <h2>Pollo Palos v1.0</h2>
+            <table class="wiki-info-table">
+                <tr><th>Modelo cerebro</th><td>Llama 3.1 8B</td></tr>
+                <tr><th>Pool de IAs</th><td>Llama 3.1 8B</td></tr>
+                <tr><th>Disponibilidad</th><td>Gratuito</td></tr>
+                <tr><th>Máx. tokens</th><td>~600 por respuesta</td></tr>
+                <tr><th>Transmisión</th><td>No</td></tr>
+                <tr><th>Funciones</th><td>Chat, voz</td></tr>
+                <tr><th>Mejor para</th><td>Respuestas rápidas y preguntas simples</td></tr>
+            </table>
+            <p><strong>Pollo Palos</strong> is the lightest and fastest tier. Its brain and pool consist of a single fast model (Llama 3.1 8B with 8 billion parameters), delivering near-instant responses. Ideal for short questions, quick translations, simple calculations, or anything that doesn't require deep analysis.</p>
+            <p>Because it uses a smaller model, responses are more concise and it may struggle with very complex tasks. It's the perfect choice when you need something fast and to the point.</p>
+
+            <h2>Pollo Luces v1.0</h2>
+            <table class="wiki-info-table">
+                <tr><th>Modelo cerebro</th><td>Llama 3.3 70B</td></tr>
+                <tr><th>Pool de IAs</th><td>Llama 8B, Llama 70B, Llama 4 Scout, Qwen 3 32B, GPT OSS 20B</td></tr>
+                <tr><th>Disponibilidad</th><td>Gratuito</td></tr>
+                <tr><th>Máx. tokens</th><td>Up to 2,000 por respuesta (depends on AI selected)</td></tr>
+                <tr><th>Transmisión</th><td>Sí (progressive response)</td></tr>
+                <tr><th>Funciones</th><td>Chat, voz, imágenes, code, chess</td></tr>
+                <tr><th>Mejor para</th><td>Uso diario, conversaciones normales</td></tr>
+            </table>
+            <p><strong>Pollo Luces</strong> is the recommended tier para uso diario. Its brain (Llama 3.3 70B) analyzes each message and picks the best AI from a pool of 5 models. Need a quick answer? The brain routes to the fast 8B model. Writing code? It picks Qwen or Llama 70B. Analyzing an image? Llama 4 Scout takes over.</p>
+            <p>It supports <strong>streaming</strong> (the response appears word by word), <strong>think mode</strong> (shows internal reasoning for hard tasks), <strong>búsqueda web</strong>, <strong>diagram generation</strong>, and <strong>generación de imágenes</strong>. The best option for most everyday uses.</p>
+
+            <h2>Pollo Summum v1.0</h2>
+            <table class="wiki-info-table">
+                <tr><th>Modelo cerebro</th><td>Llama 3.3 70B</td></tr>
+                <tr><th>Pool de IAs</th><td>Llama 8B, Llama 70B, Llama 4 Scout, Qwen 3 32B, GPT OSS 20B, GPT OSS 120B, Kimi K2</td></tr>
+                <tr><th>Disponibilidad</th><td>Solo Premium</td></tr>
+                <tr><th>Máx. tokens</th><td>Up to 2,500 por respuesta (depends on AI selected)</td></tr>
+                <tr><th>Transmisión</th><td>Sí (progressive response)</td></tr>
+                <tr><th>Funciones</th><td>Chat, voz, imágenes, code, chess, file analysis, chat memory</td></tr>
+                <tr><th>Mejor para</th><td>Análisis profundo, tareas complejas</td></tr>
+            </table>
+            <p><strong>Pollo Summum</strong> is the most powerful tier, exclusive to premium users. It has access to <strong>all 7 AI models</strong> in the pool, including the heavyweight GPT OSS 120B and Kimi K2 — the most capable models for deep reasoning, science, and complex problem-solving.</p>
+            <p>Summum also unlocks exclusive features: <strong>file/análisis de documentos</strong> (Pollo FILES integration) and <strong>chat memory</strong> (the AI remembers context from previous conversations). It reviews its own approach on every single message, ensuring maximum quality.</p>
+
+            <h2>Comparación de niveles</h2>
+            <table class="wiki-compare-table">
+                <tr>
+                    <th>Feature</th>
+                    <th>Palos</th>
+                    <th>Luces</th>
+                    <th>Summum</th>
+                </tr>
+                <tr>
+                    <td>Modelo cerebro</td>
+                    <td>Llama 3.1 8B</td>
+                    <td>Llama 3.3 70B</td>
+                    <td>Llama 3.3 70B</td>
+                </tr>
+                <tr>
+                    <td>Tamaño del pool</td>
+                    <td>1 AI</td>
+                    <td>5 AIs</td>
+                    <td>7 AIs (all)</td>
+                </tr>
+                <tr>
+                    <td>Máx. tokens/response</td>
+                    <td>~600</td>
+                    <td>Up to 2,000</td>
+                    <td>Up to 2,500</td>
+                </tr>
+                <tr>
+                    <td>Transmisión</td>
+                    <td>No</td>
+                    <td>Sí</td>
+                    <td>Sí</td>
+                </tr>
+                <tr>
+                    <td>Velocidad</td>
+                    <td>Muy rápido</td>
+                    <td>Rápido</td>
+                    <td>Rápido</td>
+                </tr>
+                <tr>
+                    <td>Modo pensar</td>
+                    <td>No</td>
+                    <td>Sí</td>
+                    <td>Sí</td>
+                </tr>
+                <tr>
+                    <td>Búsqueda web</td>
+                    <td>No</td>
+                    <td>Sí</td>
+                    <td>Sí</td>
+                </tr>
+                <tr>
+                    <td>Generación de imágenes</td>
+                    <td>No</td>
+                    <td>Sí</td>
+                    <td>Sí</td>
+                </tr>
+                <tr>
+                    <td>Visión (análisis de imágenes)</td>
+                    <td>No</td>
+                    <td>Sí</td>
+                    <td>Sí</td>
+                </tr>
+                <tr>
+                    <td>Ajedrez</td>
+                    <td>No</td>
+                    <td>Sí</td>
+                    <td>Sí</td>
+                </tr>
+                <tr>
+                    <td>Análisis de archivos</td>
+                    <td>No</td>
+                    <td>No</td>
+                    <td>Sí</td>
+                </tr>
+                <tr>
+                    <td>Memoria de chat</td>
+                    <td>No</td>
+                    <td>No</td>
+                    <td>Sí</td>
+                </tr>
+                <tr>
+                    <td>Disponibilidad</td>
+                    <td>Gratuito</td>
+                    <td>Gratuito</td>
+                    <td>Premium</td>
+                </tr>
+            </table>
+
+            <div class="wiki-highlight">
+                <h4>Cuál elegir</h4>
+                <p><strong>Palos</strong> si necesitas algo rápido y simple. <strong>Luces</strong> para uso diario — it's la opción recomendada with access to 5 AIs and all core features. <strong>Summum</strong> cuando necesitas profundidad y potencia máxima, with access to all 7 AIs plus exclusive features like file analysis and chat memory (requiere premium).</p>
+            </div>
+        </main>
+    </div>
+
+    <footer class="wiki-footer">
+        &copy; 2024-2026 Pollo Assistance Studios. Todos los derechos reservados.
+    </footer>
+
+    <!-- Login modal -->
+    <div id="wikiLoginModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:white; padding:32px; border-radius:18px; max-width:380px; width:90%;">
+            <div style="text-align:center; margin-bottom:20px;">
+                <img src="../logo.png" style="width:60px; height:60px; border-radius:14px;">
+                <h2 style="font-size:22px; color:#1a1a2e; margin:10px 0 0;" data-i18n="common.login">Iniciar sesión</h2>
+            </div>
+            <input type="email" id="wikiCorreo electrónico" placeholder="Correo electrónico" style="width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:10px; font-size:14px; margin-bottom:10px;">
+            <input type="password" id="wikiContraseña" placeholder="Contraseña" style="width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:10px; font-size:14px; margin-bottom:14px;">
+            <button onclick="wikiDoLogin()" style="width:100%; background:linear-gradient(135deg,#FF9800,#F57C00); color:white; border:none; padding:12px; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer; margin-bottom:8px;" data-i18n="common.login">Iniciar sesión</button>
+            <button onclick="wikiDoSignup()" style="width:100%; background:white; color:#FF9800; border:1px solid #FF9800; padding:12px; border-radius:10px; font-size:14px; font-weight:600; cursor:pointer; margin-bottom:8px;" data-i18n="common.signup">Registrarse</button>
+            <button onclick="document.getElementById('wikiLoginModal').style.display='none'" style="width:100%; background:none; border:none; color:#999; padding:8px; cursor:pointer;" data-i18n="common.close">Cerrar</button>
+            <p id="wikiLoginError" style="color:#f44336; font-size:13px; text-align:center; margin-top:8px; min-height:18px;"></p>
+        </div>
+    </div>
+
+    
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script>
+    (function(){
+        const firebaseConfig = {
+            apiKey: "AIzaSyAF-Cnq56kTOZ8ltRfi2lmJNyaeronW0Zw",
+            authDomain: "pollo-assistance.firebaseapp.com",
+            projectId: "pollo-assistance",
+            storageBucket: "pollo-assistance.firebasestorage.app",
+            messagingEnviarerId: "823252162365",
+            appId: "1:823252162365:web:abc123def456"
+        };
+        if (!firebase.apps.length) firebase.initializeApp(firebaseConfig);
+        const auth = firebase.auth();
+        const db = firebase.firestore();
+
+        window.wikiOpenLogin = function(){ document.getElementById('wikiLoginModal').style.display='flex'; };
+        window.wikiDoLogin = function(){
+            const e = document.getElementById('wikiCorreo electrónico').value;
+            const p = document.getElementById('wikiContraseña').value;
+            auth.signInWithCorreo electrónicoAndContraseña(e, p)
+                .then(()=>document.getElementById('wikiLoginModal').style.display='none')
+                .catch(err => document.getElementById('wikiLoginError').textContent = err.message);
+        };
+        window.wikiDoSignup = function(){
+            const e = document.getElementById('wikiCorreo electrónico').value;
+            const p = document.getElementById('wikiContraseña').value;
+            auth.createUserWithCorreo electrónicoAndContraseña(e, p).then(u=>{
+                if (u.user) u.user.sendCorreo electrónicoVerification();
+                document.getElementById('wikiLoginModal').style.display='none';
+            }).catch(err => document.getElementById('wikiLoginError').textContent = err.message);
+        };
+        document.getElementById('wikiLogoutBtn').onclick = function(){ auth.signOut(); };
+
+        auth.onAuthStateChanged(async function(user){
+            const widget = document.getElementById('wikiUserWidget');
+            const loginBtn = document.getElementById('wikiLoginBtn');
+            if (user) {
+                widget.style.display = 'flex';
+                loginBtn.style.display = 'none';
+                let displayNombre = user.email;
+                let avatarUrl = user.photoURL || 'logo.png';
+                let userLang = null;
+                try {
+                    const doc = await db.collection('users').doc(user.uid).get();
+                    if (doc.exists) {
+                        const d = doc.data();
+                        if (d.displayNombre) displayNombre = d.displayNombre;
+                        if (d.avatarUrl) avatarUrl = d.avatarUrl;
+                        if (d.settings && d.settings.language) userLang = d.settings.language;
+                    }
+                } catch(e){}
+                document.getElementById('wikiUserNombre').textContent = displayNombre;
+                if (avatarUrl && avatarUrl !== 'logo.png') {
+                    document.getElementById('wikiUserAvatar').src = avatarUrl;
+                } else {
+                    const letter = (displayNombre || 'P').charAt(0).toUpperCase();
+                    document.getElementById('wikiUserAvatar').src =
+                        'data:image/svg+xml;utf8,' + encodeURIComponent(
+                            '<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="#FF9800"/><text x="32" y="42" font-family="Arial,sans-serif" font-size="32" font-weight="bold" fill="white" text-anchor="middle">'+letter+'</text></svg>'
+                        );
+                }
+                if (userLang && window.PolloI18n) window.PolloI18n.setLang(userLang);
+            } else {
+                widget.style.display = 'none';
+                loginBtn.style.display = '';
+            }
+        });
+    })();
+    </script>
+</body>
+</html>

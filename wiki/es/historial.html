@@ -1,0 +1,336 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Historial de fases - Wiki de Pollo Assistance</title>
+    <meta name="description" content="Pollo Assistance development history. Fase A a Fase F. Changelog of features added over time.">
+    <meta name="author" content="Pollo Assistance Studios">
+    <link rel="icon" type="image/png" href="../logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../wiki.css">
+    <style>
+        /* Timeline visual estilo "git log" para el changelog */
+        .phase-timeline {
+            position: relative;
+            padding-left: 36px;
+            margin: 32px 0;
+        }
+        .phase-timeline::before {
+            content: '';
+            position: absolute;
+            left: 12px;
+            top: 8px;
+            bottom: 8px;
+            width: 2px;
+            background: linear-gradient(180deg, #FF9800 0%, #F57C00 50%, #E65100 100%);
+            border-radius: 1px;
+        }
+        .phase-entry {
+            position: relative;
+            margin-bottom: 36px;
+            padding: 16px 18px;
+            background: #fafafa;
+            border: 1px solid #e8e8e8;
+            border-radius: 10px;
+        }
+        .phase-entry::before {
+            content: '';
+            position: absolute;
+            left: -30px;
+            top: 22px;
+            width: 14px;
+            height: 14px;
+            border-radius: 50%;
+            background: white;
+            border: 3px solid #FF9800;
+            box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.18);
+        }
+        .phase-entry.current::before {
+            background: #FF9800;
+            border-color: #fff;
+            box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.55);
+            animation: phasePulse 2s infinite;
+        }
+        @keyframes phasePulse {
+            0%, 100% { box-shadow: 0 0 0 3px rgba(255, 152, 0, 0.55); }
+            50%      { box-shadow: 0 0 0 7px rgba(255, 152, 0, 0); }
+        }
+        .phase-tag {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+            color: white;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 3px 8px;
+            border-radius: 10px;
+            margin-right: 8px;
+            letter-spacing: 0.4px;
+        }
+        .phase-entry h3 {
+            display: flex;
+            align-items: center;
+            font-size: 17px;
+            margin: 0 0 4px;
+            color: #1a1a2e;
+        }
+        .phase-date {
+            color: #888;
+            font-size: 12px;
+            margin-bottom: 10px;
+        }
+        .phase-entry ul {
+            margin: 8px 0 0 18px;
+            padding: 0;
+        }
+        .phase-entry ul li {
+            margin: 4px 0;
+            color: #555;
+            font-size: 14px;
+            line-height: 1.55;
+        }
+        .phase-entry ul li strong { color: #1a1a2e; }
+        .phase-entry .phase-sub {
+            margin-top: 12px;
+            padding-top: 10px;
+            border-top: 1px dashed #ddd;
+            font-size: 13px;
+        }
+        .phase-entry .phase-sub-tag {
+            display: inline-block;
+            background: rgba(255, 152, 0, 0.12);
+            color: #E65100;
+            font-size: 10px;
+            font-weight: 700;
+            padding: 2px 7px;
+            border-radius: 4px;
+            margin-right: 6px;
+            font-family: ui-monospace, monospace;
+        }
+    </style>
+</head>
+<body>
+
+    <nav class="wiki-navbar">
+        <div class="wiki-navbar-inner">
+            <div class="wiki-navbar-brand">
+                <a href="../../"><img src="../logo.png" alt="" style="width:24px;height:24px;border-radius:5px;vertical-align:middle;margin-right:6px;">Pollo Assistance</a>
+                <span class="wiki-label">Wiki</span>
+            </div>
+            <div class="wiki-navbar-links">
+                <a href="../../" data-i18n="nav.home">Inicio</a>
+                <a href="./" data-i18n="nav.wiki">Wiki</a>
+                <a href="https://pollo-assistance.web.app" class="wiki-cta" data-i18n="nav.open_app">Abrir app</a>
+                <select id="wikiLangSwitch" onchange="switchWikiLang(this.value)" style="background:white; border:1px solid #ddd; border-radius:6px; padding:4px 8px; font-size:12px; font-weight:600; cursor:pointer; margin-left:8px;">
+                    <option value="en">🇬🇧 EN</option>
+                    <option value="es">🇪🇸 ES</option>
+                </select>
+                <div id="wikiUserWidget" style="display:none; align-items:center; gap:8px; margin-left:10px;">
+                    <img id="wikiUserAvatar" src="../logo.png" alt="" style="width:30px; height:30px; border-radius:50%; object-fit:cover;">
+                    <span id="wikiUserNombre" style="font-size:13px; font-weight:600; max-width:120px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"></span>
+                    <button id="wikiLogoutBtn" style="background:none; border:1px solid #ddd; border-radius:6px; padding:3px 8px; cursor:pointer; font-size:11px;" title="Cerrar sesión">↩</button>
+                </div>
+                <button id="wikiLoginBtn" onclick="wikiOpenLogin()" style="background:linear-gradient(135deg,#FF9800,#F57C00); color:white; border:none; padding:6px 14px; border-radius:8px; cursor:pointer; font-size:13px; font-weight:600; margin-left:8px;" data-i18n="common.login">Iniciar sesión</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="wiki-layout">
+
+        <aside class="wiki-sidebar">
+            <h3 data-i18n="wiki.section.general">General</h3>
+            <ul>
+                <li><a href="./" data-i18n="wiki.nav.home">Inicio</a></li>
+                <li><a href="pollo-assistance.html">Pollo Assistance</a></li>
+                <li><a href="primeros-pasos.html" data-i18n="wiki.nav.getting_started">Primeros pasos</a></li>
+                <li><a href="historial.html" class="active" data-i18n="wiki.nav.history">Historial de fases</a></li>
+            </ul>
+            <h3 data-i18n="wiki.section.modules">Módulos</h3>
+            <ul>
+                <li><a href="pollo-study.html">Pollo STUDY</a></li>
+                <li><a href="pollo-code.html">Pollo CODE</a></li>
+                <li><a href="pollo-files.html">Pollo FILES</a></li>
+                <li><a href="pollo-go.html">Pollo GO</a></li>
+            </ul>
+            <h3 data-i18n="wiki.section.platform">Plataforma</h3>
+            <ul>
+                <li><a href="modelos-ia.html" data-i18n="wiki.nav.ai_models">Modelos de IA</a></li>
+                <li><a href="precios.html" data-i18n="wiki.nav.pricing">Precios y Premium</a></li>
+                <li><a href="auraeon.html">AuraEON</a></li>
+            </ul>
+            <h3 data-i18n="wiki.section.help">Ayuda</h3>
+            <ul>
+                <li><a href="preguntas-frecuentes.html" data-i18n="wiki.nav.faq">Preguntas frecuentes</a></li>
+            </ul>
+        </aside>
+
+        <main class="wiki-content">
+            <h1 data-i18n="history.title">Historial de fases</h1>
+            <p class="wiki-subtitle" data-i18n="history.subtitle">La evolución de Pollo Assistance, fase por fase. Del chat inicial al ecosistema developer completo.</p>
+
+            <p data-i18n="history.intro">Esta página documenta los hitos añadidos a Pollo Assistance a lo largo del tiempo. Cada "fase" agrupa un conjunto coherente de funcionalidades lanzadas juntas. La fase más reciente se resalta en naranja arriba.</p>
+
+            <div class="phase-timeline">
+
+                <!-- ========================= FASE F (CURRENT) ========================= -->
+                <div class="phase-entry current">
+                    <h3><span class="phase-tag">F</span><span data-i18n="history.f.title">Pollo CODE — ecosistema developer</span></h3>
+                    <div class="phase-date" data-i18n="history.f.date">2026 · actual</div>
+                    <p data-i18n="history.f.desc">Full rewrite of the development experience: a separate page like Claude Code/Codex, GitHub and Google Drive connections, file system tools, live preview with screenshot, voz, multimodal file uploads. The AI works <em>inside</em> the user's own repo or folder, never on Pollo's servers.</p>
+                    <ul>
+                        <li><strong data-i18n="history.f.tiers_t">3 tiers de CODE</strong> <span data-i18n="history.f.tiers_d">— Palos / Luces / Summum, sharing the same Pool de IAs as normal chat.</span></li>
+                        <li><strong data-i18n="history.f.gh_t">OAuth Device Flow de GitHub</strong> <span data-i18n="history.f.gh_d">— escritura directa a repos con retry ante sha race.</span></li>
+                        <li><strong data-i18n="history.f.drive_t">Integración Google Drive</strong> <span data-i18n="history.f.drive_d">— trabaja en cualquier carpeta; auto-reconexión si el token caduca (~1h).</span></li>
+                        <li><strong data-i18n="history.f.tools_t">Tools fs_*</strong> <span data-i18n="history.f.tools_d">— listDir, readFile, writeFile, deleteFile. Modal de permisos en modo "ask".</span></li>
+                        <li><strong data-i18n="history.f.preview_t">Visor en vivo</strong> <span data-i18n="history.f.preview_d">— iframe sandbox con pestañas, captura de console, screenshot, handle de resize.</span></li>
+                        <li><strong data-i18n="history.f.voz_t">Voz (STT + TTS)</strong> <span data-i18n="history.f.voz_d">— API nativa del navegador, sin coste Whisper.</span></li>
+                        <li><strong data-i18n="history.f.upload_t">Subida multimodal</strong> <span data-i18n="history.f.upload_d">— drag imágenes/code into the chat, the brain routes to a vision-capable AI if needed.</span></li>
+                        <li><strong data-i18n="history.f.split_t">Revenue split para extensiones</strong> <span data-i18n="history.f.split_d">— devs FREE 35%, devs Premium 80%.</span></li>
+                    </ul>
+
+                    <div class="phase-sub">
+                        <strong data-i18n="history.f.sub_title">Subfases internas:</strong>
+                        <ul style="margin-top:6px">
+                            <li><span class="phase-sub-tag">F.5.0</span><span data-i18n="history.f.5_0">UI desde cero en <code>/code.html</code></span></li>
+                            <li><span class="phase-sub-tag">F.5.1</span><span data-i18n="history.f.5_1">Device Flow de GitHub + wrapper REST API</span></li>
+                            <li><span class="phase-sub-tag">F.5.2</span><span data-i18n="history.f.5_2">OAuth Google Drive + persistencia de chat source-aware</span></li>
+                            <li><span class="phase-sub-tag">F.5.3</span><span data-i18n="history.f.5_3">Specialist real con tools, proxy al cerebro normal</span></li>
+                            <li><span class="phase-sub-tag">F.5.4</span><span data-i18n="history.f.5_4">Visor en vivo, html2canvas, captura de console, subida de archivos</span></li>
+                            <li><span class="phase-sub-tag">F.5.5</span><span data-i18n="history.f.5_5">Editor de extensiones con badge de revenue + cargar desde Files</span></li>
+                            <li><span class="phase-sub-tag">F.5.6</span><span data-i18n="history.f.5_6">Sanity check + sistema de strikes + headers de plan de coste</span></li>
+                            <li><span class="phase-sub-tag">F.6</span><span data-i18n="history.f.6">Whisper-less voz (Web Speech API STT + TTS per message)</span></li>
+                            <li><span class="phase-sub-tag">F.7</span><span data-i18n="history.f.7">Historial wiki + traducciones EN/ES completas (esta página)</span></li>
+                        </ul>
+                    </div>
+                </div>
+
+                <!-- ========================= FASE E ========================= -->
+                <div class="phase-entry">
+                    <h3><span class="phase-tag">E</span><span data-i18n="history.e.title">Pollo FILES — análisis de documentos</span></h3>
+                    <div class="phase-date" data-i18n="history.e.date">2025 · Q4</div>
+                    <p data-i18n="history.e.desc">Filesystem por usuario almacenado 100% en Firestore (sin Cloud Storage). La IA puede leer, editar y referenciar documentos del usuario directamente desde el chat. Cuotas por tier: Palos 0, Luces 2MB, Summum 10MB.</p>
+                    <ul>
+                        <li data-i18n="history.e.li1">Filesystem nativo dentro de Pollo Assistance.</li>
+                        <li data-i18n="history.e.li2">Contadores atómicos por usuario y por chat (transacciones Firestore).</li>
+                        <li data-i18n="history.e.li3">Explorador web de archivos con visor + subida.</li>
+                        <li data-i18n="history.e.li4">Cuotas de escritura por tier; Palos no tiene filesystem.</li>
+                    </ul>
+                </div>
+
+                <!-- ========================= FASE D ========================= -->
+                <div class="phase-entry">
+                    <h3><span class="phase-tag">D</span><span data-i18n="history.d.title">Compartir + compresión de chats</span></h3>
+                    <div class="phase-date" data-i18n="history.d.date">2025 · Q3</div>
+                    <p data-i18n="history.d.desc">Chats compartidos con enlace público (solo lectura). Cuando una conversación se alarga, se auto-comprimen los turnos antiguos en un resumen para que la IA mantenga el hilo sin romper el contexto.</p>
+                    <ul>
+                        <li data-i18n="history.d.li1">Compartir chats públicos con botón "Compartir" tipo Google Docs.</li>
+                        <li data-i18n="history.d.li2">Compresión automática de mensajes viejos a resumen.</li>
+                        <li data-i18n="history.d.li3">Reacciones y feedback (thumbs up/down) en respuestas IA.</li>
+                    </ul>
+                </div>
+
+                <!-- ========================= FASE C ========================= -->
+                <div class="phase-entry">
+                    <h3><span class="phase-tag">C</span><span data-i18n="history.c.title">Sistema de tiers + cerebro selector</span></h3>
+                    <div class="phase-date" data-i18n="history.c.date">2025 · Q2</div>
+                    <p data-i18n="history.c.desc">Nace la identidad de Pollo: Palos, Luces y Summum. Cada tier tiene un modelo "cerebro" asociado que elige, de forma dinámica, qué IA del pool responde a cada mensaje del usuario según el tipo de tarea.</p>
+                    <ul>
+                        <li data-i18n="history.c.li1"><strong>Palos</strong>: rápido y directo. Pool: Llama 3.1 8B + Laguna XS2.</li>
+                        <li data-i18n="history.c.li2"><strong>Luces</strong>: equilibrado. Pool: Llama 3.3 70B + Qwen, Llama 4 Scout, GPT-OSS-20B, etc.</li>
+                        <li data-i18n="history.c.li3"><strong>Summum</strong>: max power. Pool: Mistral Grande, DeepSeek R1, Gemini, Kimi K2, etc.</li>
+                        <li data-i18n="history.c.li4">Cerebro con chain de fallbacks: si el principal falla, baja al secundario, al terciario, después al heurístico.</li>
+                        <li data-i18n="history.c.li5">Toast "X está al mando": indicador visible de qué IA contestó.</li>
+                    </ul>
+                </div>
+
+                <!-- ========================= FASE B ========================= -->
+                <div class="phase-entry">
+                    <h3><span class="phase-tag">B</span><span data-i18n="history.b.title">Auth + proxy en Cloudflare Worker</span></h3>
+                    <div class="phase-date" data-i18n="history.b.date">2025 · Q1</div>
+                    <p data-i18n="history.b.desc">Cuentas de usuario vía Firebase Auth. Todas las llamadas a IA pasan por un Cloudflare Worker (<code>pollo-luces-proxy</code>) que añade la API key server-side — las claves nunca llegan al navegador. Conteo de créditos por usuario.</p>
+                    <ul>
+                        <li data-i18n="history.b.li1">Correo electrónico + Google authentication.</li>
+                        <li data-i18n="history.b.li2">Sistema de débito por tokens con límites diarios y mensuales.</li>
+                        <li data-i18n="history.b.li3">Cloudflare Worker como proxy con chain de fallback entre providers.</li>
+                        <li data-i18n="history.b.li4">Panel de admin para monitorización de usuarios y créditos.</li>
+                    </ul>
+                </div>
+
+                <!-- ========================= FASE A ========================= -->
+                <div class="phase-entry">
+                    <h3><span class="phase-tag">A</span><span data-i18n="history.a.title">Initial release — chat, voz and imágenes</span></h3>
+                    <div class="phase-date" data-i18n="history.a.date">2024</div>
+                    <p data-i18n="history.a.desc">First version of Pollo Assistance: basic chat con IA with text-to-speech, voz-to-text and generación de imágenes. Cute mascot, "rotating ai logo" effect, single welcome interface.</p>
+                    <ul>
+                        <li data-i18n="history.a.li1">chat con IA with multimodal input (text + image).</li>
+                        <li data-i18n="history.a.li2">Voz (TTS) and voz-to-text (STT) integrated.</li>
+                        <li data-i18n="history.a.li3">Generación de imágenes via Pollinations.</li>
+                        <li data-i18n="history.a.li4">Historial de chats guardado en Firestore.</li>
+                    </ul>
+                </div>
+
+            </div>
+
+            <h2 data-i18n="history.next_title">Qué viene después</h2>
+            <p data-i18n="history.next_intro">Tras F.7, Pollo Assistance es feature-complete para la v1. Mejoras futuras previstas:</p>
+            <ul>
+                <li data-i18n="history.next_1"><strong>Fase G</strong>: dominio <code>polloassistance.com</code> end-to-end (Auth domains, OpenGraph, sitemap, SEO completo).</li>
+                <li data-i18n="history.next_2"><strong>Marketplace público de extensiones</strong>: donde los devs publiquen y los usuarios instalen extensiones comunitarias.</li>
+                <li data-i18n="history.next_3"><strong>API programable</strong>: apps externas podrán llamar a Pollo Assistance vía token de API.</li>
+            </ul>
+
+            <div class="wiki-highlight">
+                <h4 data-i18n="history.highlight_title">Un ecosistema construido pieza a pieza</h4>
+                <p data-i18n="history.highlight_desc">Each phase added a specific capability without breaking the previous ones. The architecture (Firebase Hosting + Firestore + Cloudflare Workers, no Cloud Storage, sin suscripciones mensuales) has stayed the same since Phase B.</p>
+            </div>
+        </main>
+    </div>
+
+    <footer class="wiki-footer">
+        &copy; 2024-2026 Pollo Assistance Studios. Todos los derechos reservados.
+    </footer>
+
+    <!-- Login modal -->
+    <div id="wikiLoginModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:white; padding:32px; border-radius:18px; max-width:380px; width:90%;">
+            <div style="text-align:center; margin-bottom:20px;">
+                <img src="../logo.png" style="width:60px; height:60px; border-radius:14px;">
+                <h2 style="font-size:22px; color:#1a1a2e; margin:10px 0 0;" data-i18n="common.login">Iniciar sesión</h2>
+            </div>
+            <input type="email" id="wikiCorreo electrónico" placeholder="Correo electrónico" style="width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:10px; font-size:14px; margin-bottom:10px;">
+            <input type="password" id="wikiContraseña" placeholder="Contraseña" style="width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:10px; font-size:14px; margin-bottom:14px;">
+            <button onclick="wikiDoLogin()" style="width:100%; background:linear-gradient(135deg,#FF9800,#F57C00); color:white; border:none; padding:12px; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer; margin-bottom:8px;" data-i18n="common.login">Iniciar sesión</button>
+            <button onclick="wikiDoSignup()" style="width:100%; background:white; color:#FF9800; border:1px solid #FF9800; padding:12px; border-radius:10px; font-size:14px; font-weight:600; cursor:pointer; margin-bottom:8px;" data-i18n="common.signup">Registrarse</button>
+            <button onclick="document.getElementById('wikiLoginModal').style.display='none'" style="width:100%; background:none; border:none; color:#999; padding:8px; cursor:pointer;" data-i18n="common.close">Cerrar</button>
+            <p id="wikiLoginError" style="color:#f44336; font-size:13px; text-align:center; margin-top:8px; min-height:18px;"></p>
+        </div>
+    </div>
+
+    
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script>
+    (function(){
+        const cfg={apiKey:'AIzaSyAF-Cnq56kTOZ8ltRfi2lmJNyaeronW0Zw',authDomain:'pollo-assistance.firebaseapp.com',projectId:'pollo-assistance',storageBucket:'pollo-assistance.firebasestorage.app',messagingEnviarerId:'823252162365',appId:'1:823252162365:web:abc123def456'};
+        if(!firebase.apps.length)firebase.initializeApp(cfg);
+        const auth=firebase.auth(),db=firebase.firestore();
+        window.wikiOpenLogin=function(){document.getElementById('wikiLoginModal').style.display='flex';};
+        window.wikiDoLogin=function(){var e=document.getElementById('wikiCorreo electrónico').value,p=document.getElementById('wikiContraseña').value;auth.signInWithCorreo electrónicoAndContraseña(e,p).then(function(){document.getElementById('wikiLoginModal').style.display='none';}).catch(function(err){document.getElementById('wikiLoginError').textContent=err.message;});};
+        window.wikiDoSignup=function(){var e=document.getElementById('wikiCorreo electrónico').value,p=document.getElementById('wikiContraseña').value;auth.createUserWithCorreo electrónicoAndContraseña(e,p).then(function(u){if(u.user)u.user.sendCorreo electrónicoVerification();document.getElementById('wikiLoginModal').style.display='none';}).catch(function(err){document.getElementById('wikiLoginError').textContent=err.message;});};
+        var lb=document.getElementById('wikiLogoutBtn');if(lb)lb.onclick=function(){auth.signOut();};
+        auth.onAuthStateChanged(async function(user){
+            var w=document.getElementById('wikiUserWidget'),b=document.getElementById('wikiLoginBtn');
+            if(user){w.style.display='flex';b.style.display='none';var dn=user.email,av=user.photoURL||'logo.png';
+            try{var doc=await db.collection('users').doc(user.uid).get();if(doc.exists){var d=doc.data();if(d.displayNombre)dn=d.displayNombre;if(d.avatarUrl)av=d.avatarUrl;}}catch(e){}
+            document.getElementById('wikiUserNombre').textContent=dn;
+            if(av&&av!=='logo.png'){document.getElementById('wikiUserAvatar').src=av;}
+            else{var l=(dn||'P').charAt(0).toUpperCase();document.getElementById('wikiUserAvatar').src='data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="#FF9800"/><text x="32" y="42" font-family="Arial" font-size="32" font-weight="bold" fill="white" text-anchor="middle">'+l+'</text></svg>');}
+            }else{w.style.display='none';b.style.display='';}
+        });
+    })();
+    </script>
+</body>
+</html>
