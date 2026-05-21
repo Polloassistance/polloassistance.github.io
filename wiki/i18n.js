@@ -1,0 +1,1124 @@
+/* ============================================================
+   POLLO ASSISTANCE - i18n SYSTEM (auto-detect + auto-translate)
+   - Detects browser language on first visit (es-* => Spanish, else English)
+   - Stores user choice in localStorage 'pollo_lang'
+   - Translates [data-i18n] / [data-i18n-placeholder] / [data-i18n-title]
+   - ALSO does a bulk text replacement (ES <-> EN) on the page so pages
+     without explicit data-i18n are still translated.
+   ============================================================ */
+(function () {
+    'use strict';
+
+    // ---------------- KEY-BASED TRANSLATIONS ----------------
+    const TRANSLATIONS = {
+        en: {
+            'app.name': 'Pollo Assistance',
+            'app.tagline': 'All-in-one AI assistant',
+            'common.back': '← Back',
+            'common.save': 'Save changes',
+            'common.cancel': 'Cancel',
+            'common.delete': 'Delete',
+            'common.loading': 'Loading...',
+            'common.saved': 'Changes saved',
+            'common.error': 'An error occurred',
+            'common.continue': 'Continue',
+            'common.close': 'Close',
+            'common.send': 'Send',
+            'common.search': 'Search',
+            'common.new_chat': 'New chat',
+            'common.settings': 'Settings',
+            'common.logout': 'Log out',
+            'common.login': 'Log in',
+            'common.signup': 'Sign up',
+            'common.email': 'Email',
+            'common.password': 'Password',
+            'common.username': 'Username',
+            'common.free': 'FREE',
+            'common.premium': 'PREMIUM',
+            'common.maintenance': 'Under maintenance',
+
+            'nav.home': 'Home',
+            'nav.wiki': 'Wiki',
+            'nav.open_app': 'Open app',
+            'nav.features': 'Features',
+            'nav.modules': 'Modules',
+            'nav.pricing': 'Pricing',
+            'nav.start': 'Get started',
+
+            'settings.title': 'Settings',
+            'settings.profile': 'Profile',
+            'settings.change_photo': 'Change photo',
+            'settings.username': 'Username',
+            'settings.username_desc': 'How Pollo Assistance addresses you',
+            'settings.ai_prefs': 'AI Preferences',
+            'settings.default_model': 'Default model',
+            'settings.default_model_desc': 'Model selected when creating a new chat',
+            'settings.chat_memory': 'Remember previous chats',
+            'settings.chat_memory_desc': 'AI looks at your previous chats for relevant context',
+            'settings.tts': 'Read aloud',
+            'settings.tts_desc': 'AI reads its responses automatically',
+            'settings.custom_instructions': 'Custom instructions',
+            'settings.custom_instructions_desc': 'Tell the AI how you want it to respond (tone, language, level of detail, etc.)',
+            'settings.appearance': 'Appearance',
+            'settings.theme': 'Theme',
+            'settings.theme_desc': 'Visual look of the application',
+            'settings.theme_default': 'Default',
+            'settings.theme_dark': 'Dark',
+            'settings.theme_light': 'Light',
+            'settings.theme_orange': 'Orange',
+            'settings.text_size': 'Text size',
+            'settings.text_size_desc': 'Size of text in chat messages',
+            'settings.size_small': 'Small',
+            'settings.size_medium': 'Normal',
+            'settings.size_large': 'Large',
+            'settings.language': 'Language',
+            'settings.language_desc': 'Interface language',
+            'settings.lang_en': 'English',
+            'settings.lang_es': 'Spanish',
+            'settings.privacy': 'Privacy',
+            'settings.moderation': 'Content moderation',
+            'settings.moderation_desc': 'Filter inappropriate content before sending it to the AI',
+            'settings.account': 'Account',
+            'settings.current_plan': 'Current plan',
+            'settings.upgrade': 'Upgrade plan',
+            'settings.free_plan_desc': 'Free plan - 20 messages every 6 hours',
+            'settings.premium_plan_desc': 'Premium plan - Unlimited messages, lifetime',
+            'settings.clear_cache': 'Clear cache',
+            'settings.clear_cache_desc': 'Reset local storage space',
+            'settings.logout_desc': 'Sign out on this device',
+
+            'premium.title': 'Pollo Assistance Premium',
+            'premium.maintenance_title': 'Payments temporarily unavailable',
+            'premium.maintenance_desc': 'Card payments are under maintenance. You can still redeem gift cards below.',
+
+            'chat.placeholder': 'Send a message to Pollo...',
+            'chat.thinking': 'Pollo Assistance is thinking...',
+            'chat.searching': 'Searching...',
+            'chat.sources': 'Sources',
+            'chat.regenerate': 'Regenerate',
+            'chat.copy': 'Copy',
+
+            'toast.saved': 'Changes saved successfully',
+            'toast.error_save': 'Error saving changes',
+            'toast.cache_cleared': 'Cache cleared successfully',
+
+            // Welcome screen
+            'welcome.storage_tip': 'Upgrade to Premium for 10 MB',
+            'welcome.new_chat_desc': 'Start a conversation with Pollo Assistance',
+            'welcome.my_chats': 'My chats',
+            'welcome.my_chats_desc': 'Open your previous conversations',
+            'welcome.gift_card': 'Gift card',
+            'welcome.gift_card_desc': 'Redeem a code to get premium',
+            'welcome.get_premium': 'Get Premium',
+            'welcome.get_premium_desc': 'Unlimited messages for $25, one-time payment',
+            'welcome.modules': 'Modules',
+            'welcome.mod_study': 'Academic assistant',
+            'welcome.mod_code': 'Code editor',
+            'welcome.mod_files': 'Document analysis',
+            'welcome.mod_ext_name': 'Extensions',
+            'welcome.mod_ext': 'Extend features',
+            'welcome.footer_copy': '© 2024-2026 Pollo Assistance Studios · One-time payment, no subscriptions.',
+            'welcome.official_web': 'Official website',
+            'welcome.exit': 'Log out',
+            'welcome.level': 'Level:',
+
+            // Panel (in-app settings)
+            'panel.title': '⚙️ Options',
+            'panel.theme_title': '🎨 Visual theme',
+            'panel.theme_desc': 'Change the interface appearance',
+            'panel.theme_default': 'Purple (Default)',
+            'panel.theme_dark': 'Dark',
+            'panel.theme_light': 'Light',
+            'panel.theme_orange': 'Chicken Orange',
+            'panel.memory_title': '🧠 Previous chat memory',
+            'panel.memory_desc': 'Allow Pollo to remember previous conversations',
+            'panel.memory_note': '✅ FREE - "chats" collection only',
+            'panel.integration_title': '🔗 Full tool integration',
+            'panel.integration_desc': 'Pollo can edit FILES, CODE, GO and access all your collections',
+            'panel.integration_note_premium': '⭐ PREMIUM - Unlock all capabilities',
+            'panel.integration_note_enabled': '✅ PREMIUM - Feature enabled',
+            'panel.upgrade_btn': '⭐ Upgrade to Premium - $25',
+            'panel.more_settings': 'More settings →',
+
+            // Limit modal
+            'limit.title': '🐔 Message limit reached',
+            'limit.desc_html': 'Free users can send up to 20 messages every 6 hours.',
+            'limit.timer_label': '⏰ You can chat again in:',
+            'limit.premium_title': '⭐ Upgrade to Premium',
+            'limit.feature1': '✅ Unlimited messages',
+            'limit.feature2': '✅ No time restrictions',
+            'limit.feature3': '✅ 10 MB storage',
+            'limit.feature4': '✅ Access to all extensions',
+            'limit.feature5': '✅ Pollo Assistance CODE',
+            'limit.upgrade_btn': '🏆 Get Premium - $25',
+            'limit.footer': 'One-time payment. No subscriptions. Lifetime access.',
+
+            // Chess
+            'chess.analyzing': 'Analyzing game...',
+
+            // Files module
+            'files.title': 'Pollo FILES',
+            'files.upload_text': 'Drag files here or click to select',
+            'files.upload_hint': 'Supports: Images, PDFs, Text, Code, PowerPoint (max 10 MB total)',
+            'files.no_files': 'No files here yet. Upload one!',
+            'files.new_folder': '📁 New Folder',
+            'files.upload_file': '📤 Upload File',
+            'files.my_files': 'My Files',
+            'files.open': 'Open',
+            'files.delete': 'Delete',
+            'files.save': '💾 Save',
+            'files.export': '📥 Export',
+            'files.close': '✕ Close',
+            'files.gen_image': 'Generate Image with AI',
+            'files.gen_image_desc': 'Describe what you want and Pollo creates it for you',
+            'files.gen_image_btn': 'Generate Image',
+            'files.save_to_files': 'Save to my files',
+            'files.folder_name': 'Folder name:',
+            'files.move_to': 'Move to folder:',
+            'files.storage': 'Storage',
+
+            // Study module
+            'study.title': 'Pollo STUDY',
+            'study.subtitle': 'Smart Study System',
+            'study.your_files': 'Your study files',
+            'study.upload_text': 'Upload your files',
+            'study.upload_hint': 'PDFs, images, text, Word, PowerPoint',
+            'study.no_files': 'No files yet',
+            'study.tools_title': 'Study Tools',
+            'study.gen_summary': '📝 Generate Summary',
+            'study.gen_scheme': '📊 Create Scheme',
+            'study.gen_quiz': '❓ Practice Quiz',
+            'study.gen_flashcards': '🃏 Flashcards',
+            'study.gen_report': '📋 Full Report',
+            'study.ask_placeholder': 'Ask about your files...',
+            'study.analyzing': 'Analyzing your files...',
+            'study.quiz_title': '❓ Practice Quiz',
+            'study.scheme_title': '📊 Scheme / Diagram',
+            'study.view_scheme': '📊 View expanded scheme',
+            'study.start_quiz': 'Start Quiz',
+            'study.result': 'Result:',
+            'study.upload_first': 'Upload files first to use study tools.',
+
+            // Code editor
+            'code.title': 'Pollo CODE',
+            'code.new_file': 'New File',
+            'code.new_folder': 'New Folder',
+            'code.upload': 'Upload',
+            'code.publish': 'Publish Extension',
+            'code.save_files': 'Save to Files',
+            'code.terminal': 'Terminal',
+            'code.output': 'Output',
+            'code.problems': 'Problems',
+            'code.run': 'Run',
+            'code.manual': 'Manual',
+
+            // Extensions
+            'ext.title': 'Extensions',
+            'ext.store': 'Store',
+            'ext.my_extensions': 'My Extensions',
+            'ext.install': 'Install',
+            'ext.installed': 'Installed',
+            'ext.activate': 'Activate',
+            'ext.deactivate': 'Deactivate',
+            'ext.uninstall': 'Uninstall',
+            'ext.featured': 'Featured',
+            'ext.categories': 'Categories',
+            'ext.all': 'All',
+            'ext.search': 'Search extensions...',
+
+            // Admin
+            'admin.title': 'Admin Panel',
+            'admin.dashboard': 'Dashboard',
+            'admin.pending': 'Pending',
+            'admin.approved': 'Approved',
+            'admin.live_monitor': 'Live Monitor',
+            'admin.developers': 'Developers',
+            'admin.gift_cards': 'Gift Cards',
+            'admin.users': 'Users',
+            'admin.intercept': 'Intercept',
+
+            // Moderator
+            'mod.intervention': 'Moderator Intervention',
+            'mod.message': 'A moderator has sent you a message',
+
+            // ============= Wiki — sections, nav, cards (F.7) =============
+            'wiki.section.general': 'General',
+            'wiki.section.modules': 'Modules',
+            'wiki.section.platform': 'Platform',
+            'wiki.section.help': 'Help',
+            'wiki.nav.home': 'Home',
+            'wiki.nav.getting_started': 'Getting started',
+            'wiki.nav.history': 'Phase history',
+            'wiki.nav.ai_models': 'AI Models',
+            'wiki.nav.pricing': 'Pricing and Premium',
+            'wiki.nav.faq': 'FAQ',
+
+            // ============= Phase history page (F.7) =============
+            'history.title': 'Phase history',
+            'history.card_desc': "Pollo Assistance's evolution from its first version to today. Full changelog.",
+            'history.subtitle': "Pollo Assistance's evolution, milestone by milestone. From the initial chat to the full developer ecosystem.",
+            'history.intro': 'This page documents the milestones added to Pollo Assistance over time. Each block groups a coherent set of features released together. The most recent block is highlighted in orange at the top.',
+            'history.next_title': "What's coming next",
+            'history.next_intro': 'Pollo Assistance v1 is feature-complete. Future improvements expected:',
+            'history.next_1': '<strong>Own end-to-end domain</strong>: <code>polloassistance.com</code> with Auth domains, OpenGraph, sitemap and full SEO.',
+            'history.next_2': '<strong>Public extension marketplace</strong>: where devs publish and users install community extensions.',
+            'history.next_3': '<strong>Programmable API</strong>: external apps will be able to call Pollo Assistance via API token.',
+            'history.highlight_title': 'An ecosystem built piece by piece',
+            'history.highlight_desc': 'Each milestone added a specific capability without breaking the previous ones. The architecture (Firebase Hosting + Firestore + Cloudflare Workers, no Cloud Storage, no monthly subscriptions) has stayed the same since the early days.',
+
+            // Phase F (current)
+            'history.f.title': 'Pollo CODE — developer ecosystem',
+            'history.f.date': '2026 · current',
+            'history.f.desc': "Full rewrite of the development experience: a separate page like Claude Code/Codex, GitHub and Google Drive connections, file system tools, live preview with screenshot, voice, multimodal file uploads. The AI works <em>inside</em> the user's own repo or folder, never on Pollo's servers.",
+            'history.f.tiers_t': '3 CODE tiers',
+            'history.f.tiers_d': '— Palos / Luces / Summum, sharing the same AI pool as normal chat.',
+            'history.f.gh_t': 'GitHub OAuth Device Flow',
+            'history.f.gh_d': '— direct write to repos with retry on sha race.',
+            'history.f.drive_t': 'Google Drive integration',
+            'history.f.drive_d': '— work on any folder; auto-reconnect if token expires (~1h).',
+            'history.f.tools_t': 'fs_* tools',
+            'history.f.tools_d': '— listDir, readFile, writeFile, deleteFile. Permission modal in "ask" mode.',
+            'history.f.preview_t': 'Live viewer',
+            'history.f.preview_d': '— iframe sandbox with tabs, console capture, screenshot, resize handle.',
+            'history.f.voice_t': 'Voice (STT + TTS)',
+            'history.f.voice_d': '— native browser API, no Whisper costs.',
+            'history.f.upload_t': 'Multimodal uploads',
+            'history.f.upload_d': '— drag images/code into the chat, the brain routes to a vision-capable AI if needed.',
+            'history.f.split_t': 'Revenue split for extensions',
+            'history.f.split_d': '— FREE devs 35%, Premium devs 80%.',
+            'history.f.sub_title': 'Internal sub-phases:',
+            'history.f.5_0': 'UI from scratch in <code>/code.html</code>',
+            'history.f.5_1': 'GitHub Device Flow + REST API wrapper',
+            'history.f.5_2': 'Google Drive OAuth + source-aware chat persistence',
+            'history.f.5_3': 'Real specialist with tools, normal-brain proxy',
+            'history.f.5_4': 'Live viewer, html2canvas, console capture, file uploads',
+            'history.f.5_5': 'Extension editor with revenue badge + load from Files',
+            'history.f.5_6': 'Sanity check + strike system + cost plan headers',
+            'history.f.6': 'Whisper-less voice (Web Speech API STT + TTS per message)',
+            'history.f.7': 'Wiki history + complete EN/ES translations (this page)',
+
+            // Phase E
+            'history.e.title': 'Pollo FILES — document analysis',
+            'history.e.date': '2025 · Q4',
+            'history.e.desc': 'Per-user file system stored 100% in Firestore (no Cloud Storage). The AI can read, edit and reference user documents directly from the chat. Tier quotas: Palos 0, Luces 2MB, Summum 10MB.',
+            'history.e.li1': 'Native file system in Pollo Assistance.',
+            'history.e.li2': 'Atomic counters per user and per chat (Firestore transactions).',
+            'history.e.li3': 'Web-based file explorer with viewer + upload.',
+            'history.e.li4': 'Per-tier write quotas; Palos has no file system.',
+
+            // Phase D
+            'history.d.title': 'Sharing + chat compression',
+            'history.d.date': '2025 · Q3',
+            'history.d.desc': 'Shared chats with public link (read-only). When a conversation gets too long, it auto-compresses the old turns into a summary so the AI keeps the thread without breaking context.',
+            'history.d.li1': 'Public chat sharing with Google Docs-style "Share" button.',
+            'history.d.li2': 'Automatic compression of old messages into summary.',
+            'history.d.li3': 'Reactions and feedback (thumbs up/down) on AI responses.',
+
+            // Phase C
+            'history.c.title': 'Tier system + brain selector',
+            'history.c.date': '2025 · Q2',
+            'history.c.desc': "Pollo's identity is born: Palos, Luces and Summum. Each tier has an associated \"brain\" model that chooses, dynamically, which AI from the pool answers each user message based on the type of task.",
+            'history.c.li1': '<strong>Palos</strong>: fast and direct. Pool: Llama 3.1 8B + Laguna XS2.',
+            'history.c.li2': '<strong>Luces</strong>: balanced. Pool: Llama 3.3 70B + Qwen, Llama 4 Scout, GPT-OSS-20B, etc.',
+            'history.c.li3': '<strong>Summum</strong>: max power. Pool: Mistral Large, DeepSeek R1, Gemini, Kimi K2, etc.',
+            'history.c.li4': 'Brain with fallback chain: if main brain fails, falls to secondary, tertiary, then heuristic.',
+            'history.c.li5': '"X is in charge" toast: visible indicator of which AI answered.',
+
+            // Phase B
+            'history.b.title': 'Auth + Cloudflare Worker proxy',
+            'history.b.date': '2025 · Q1',
+            'history.b.desc': 'User accounts via Firebase Auth. All AI calls go through a Cloudflare Worker (<code>pollo-luces-proxy</code>) that adds the API key server-side — keys never reach the browser. Per-user credit metering.',
+            'history.b.li1': 'Email + Google authentication.',
+            'history.b.li2': 'Token-based debit system with daily and monthly limits.',
+            'history.b.li3': 'Cloudflare Worker as proxy with provider fallback chain.',
+            'history.b.li4': 'Admin panel for monitoring users and credits.',
+
+            // Phase A
+            'history.a.title': 'Initial release — chat, voice and images',
+            'history.a.date': '2024',
+            'history.a.desc': 'First version of Pollo Assistance: basic AI chat with text-to-speech, voice-to-text and image generation. Cute mascot, "rotating ai logo" effect, single welcome interface.',
+            'history.a.li1': 'AI chat with multimodal input (text + image).',
+            'history.a.li2': 'Voice (TTS) and voice-to-text (STT) integrated.',
+            'history.a.li3': 'Image generation via Pollinations.',
+            'history.a.li4': 'Chat history saved in Firestore.'
+        },
+        es: {
+            'app.name': 'Pollo Assistance',
+            'app.tagline': 'Tu asistente IA todo en uno',
+            'common.back': '← Volver',
+            'common.save': 'Guardar cambios',
+            'common.cancel': 'Cancelar',
+            'common.delete': 'Borrar',
+            'common.loading': 'Cargando...',
+            'common.saved': 'Cambios guardados',
+            'common.error': 'Ha ocurrido un error',
+            'common.continue': 'Continuar',
+            'common.close': 'Cerrar',
+            'common.send': 'Enviar',
+            'common.search': 'Buscar',
+            'common.new_chat': 'Nuevo chat',
+            'common.settings': 'Configuración',
+            'common.logout': 'Cerrar sesión',
+            'common.login': 'Iniciar sesión',
+            'common.signup': 'Registrarse',
+            'common.email': 'Correo',
+            'common.password': 'Contraseña',
+            'common.username': 'Nombre de usuario',
+            'common.free': 'GRATIS',
+            'common.premium': 'PREMIUM',
+            'common.maintenance': 'En mantenimiento',
+
+            'nav.home': 'Inicio',
+            'nav.wiki': 'Wiki',
+            'nav.open_app': 'Abrir app',
+            'nav.features': 'Funciones',
+            'nav.modules': 'Módulos',
+            'nav.pricing': 'Precios',
+            'nav.start': 'Empezar',
+
+            'settings.title': 'Configuración',
+            'settings.profile': 'Perfil',
+            'settings.change_photo': 'Cambiar foto',
+            'settings.username': 'Nombre de usuario',
+            'settings.username_desc': 'Cómo te llama Pollo Assistance',
+            'settings.ai_prefs': 'Preferencias de IA',
+            'settings.default_model': 'Modelo predeterminado',
+            'settings.default_model_desc': 'Modelo que se selecciona al crear un chat nuevo',
+            'settings.chat_memory': 'Recordar chats anteriores',
+            'settings.chat_memory_desc': 'La IA busca en tus chats anteriores para darte contexto relevante',
+            'settings.tts': 'Lectura en voz alta',
+            'settings.tts_desc': 'La IA lee sus respuestas automáticamente',
+            'settings.custom_instructions': 'Instrucciones personalizadas',
+            'settings.custom_instructions_desc': 'Dale instrucciones a la IA sobre cómo quieres que te responda (tono, idioma, nivel de detalle, etc.)',
+            'settings.appearance': 'Apariencia',
+            'settings.theme': 'Tema',
+            'settings.theme_desc': 'Aspecto visual de la aplicación',
+            'settings.theme_default': 'Predeterminado',
+            'settings.theme_dark': 'Oscuro',
+            'settings.theme_light': 'Claro',
+            'settings.theme_orange': 'Naranja',
+            'settings.text_size': 'Tamaño de texto',
+            'settings.text_size_desc': 'Tamaño del texto en los mensajes del chat',
+            'settings.size_small': 'Pequeño',
+            'settings.size_medium': 'Normal',
+            'settings.size_large': 'Grande',
+            'settings.language': 'Idioma',
+            'settings.language_desc': 'Idioma de la interfaz',
+            'settings.lang_en': 'Inglés',
+            'settings.lang_es': 'Español',
+            'settings.privacy': 'Privacidad',
+            'settings.moderation': 'Moderación de contenido',
+            'settings.moderation_desc': 'Filtra contenido inapropiado antes de enviarlo a la IA',
+            'settings.account': 'Cuenta',
+            'settings.current_plan': 'Plan actual',
+            'settings.upgrade': 'Mejorar plan',
+            'settings.free_plan_desc': 'Plan gratuito - 20 mensajes cada 6 horas',
+            'settings.premium_plan_desc': 'Plan premium - Mensajes ilimitados, de por vida',
+            'settings.clear_cache': 'Borrar caché',
+            'settings.clear_cache_desc': 'Reinicia el espacio de almacenamiento local',
+            'settings.logout_desc': 'Cierra tu sesión en este dispositivo',
+
+            'premium.title': 'Pollo Assistance Premium',
+            'premium.maintenance_title': 'Pagos temporalmente no disponibles',
+            'premium.maintenance_desc': 'El pago con tarjeta está en mantenimiento. Aún puedes canjear tarjetas regalo abajo.',
+
+            'chat.placeholder': 'Envía un mensaje a Pollo...',
+            'chat.thinking': 'Pollo Assistance está pensando...',
+            'chat.searching': 'Buscando...',
+            'chat.sources': 'Fuentes',
+            'chat.regenerate': 'Regenerar',
+            'chat.copy': 'Copiar',
+
+            'toast.saved': 'Cambios guardados correctamente',
+            'toast.error_save': 'Error al guardar los cambios',
+            'toast.cache_cleared': 'Caché borrada correctamente',
+
+            // Welcome screen
+            'welcome.storage_tip': 'Actualiza a Premium para obtener 10 MB',
+            'welcome.new_chat_desc': 'Empieza una conversación con Pollo Assistance',
+            'welcome.my_chats': 'Mis chats',
+            'welcome.my_chats_desc': 'Abre tus conversaciones anteriores',
+            'welcome.gift_card': 'Tarjeta regalo',
+            'welcome.gift_card_desc': 'Canjea un código para obtener premium',
+            'welcome.get_premium': 'Obtener Premium',
+            'welcome.get_premium_desc': 'Mensajes ilimitados por $25, pago único',
+            'welcome.modules': 'Módulos',
+            'welcome.mod_study': 'Asistente académico',
+            'welcome.mod_code': 'Editor de código',
+            'welcome.mod_files': 'Análisis de documentos',
+            'welcome.mod_ext_name': 'Extensiones',
+            'welcome.mod_ext': 'Ampliar funciones',
+            'welcome.footer_copy': '© 2024-2026 Pollo Assistance Studios · Pago único, sin suscripciones.',
+            'welcome.official_web': 'Web oficial',
+            'welcome.exit': 'Salir',
+            'welcome.level': 'Nivel:',
+
+            // Panel (in-app settings)
+            'panel.title': '⚙️ Opciones',
+            'panel.theme_title': '🎨 Tema visual',
+            'panel.theme_desc': 'Cambia la apariencia de la interfaz',
+            'panel.theme_default': 'Morado (Predeterminado)',
+            'panel.theme_dark': 'Oscuro',
+            'panel.theme_light': 'Claro',
+            'panel.theme_orange': 'Naranja Pollo',
+            'panel.memory_title': '🧠 Memoria de chats anteriores',
+            'panel.memory_desc': 'Permite a Pollo recordar conversaciones anteriores',
+            'panel.memory_note': '✅ GRATIS - Solo colección "chats"',
+            'panel.integration_title': '🔗 Integración completa de herramientas',
+            'panel.integration_desc': 'Pollo puede editar ARCHIVOS, CÓDIGO, GO y acceder a todas tus colecciones',
+            'panel.integration_note_premium': '⭐ PREMIUM - Desbloquea todas las capacidades',
+            'panel.integration_note_enabled': '✅ PREMIUM - Función activada',
+            'panel.upgrade_btn': '⭐ Mejorar a Premium - $25',
+            'panel.more_settings': 'Más opciones →',
+
+            // Limit modal
+            'limit.title': '🐔 Límite de mensajes alcanzado',
+            'limit.desc_html': 'Los usuarios gratuitos pueden enviar hasta 20 mensajes cada 6 horas.',
+            'limit.timer_label': '⏰ Podrás chatear de nuevo en:',
+            'limit.premium_title': '⭐ Mejora a Premium',
+            'limit.feature1': '✅ Mensajes ilimitados',
+            'limit.feature2': '✅ Sin restricciones de tiempo',
+            'limit.feature3': '✅ 10 MB de almacenamiento',
+            'limit.feature4': '✅ Acceso a todas las extensiones',
+            'limit.feature5': '✅ Pollo Assistance CODE',
+            'limit.upgrade_btn': '🏆 Obtener Premium - $25',
+            'limit.footer': 'Pago único. Sin suscripciones. Acceso de por vida.',
+
+            // Chess
+            'chess.analyzing': 'Analizando partida...',
+
+            // Files module
+            'files.title': 'Pollo FILES',
+            'files.upload_text': 'Arrastra archivos aquí o haz clic para seleccionar',
+            'files.upload_hint': 'Soporta: Imágenes, PDFs, Texto, Código, PowerPoint (max 10 MB total)',
+            'files.no_files': 'No tienes archivos aquí. ¡Sube uno!',
+            'files.new_folder': '📁 Nueva Carpeta',
+            'files.upload_file': '📤 Subir Archivo',
+            'files.my_files': 'Mis Archivos',
+            'files.open': 'Abrir',
+            'files.delete': 'Borrar',
+            'files.save': '💾 Guardar',
+            'files.export': '📥 Exportar',
+            'files.close': '✕ Cerrar',
+            'files.gen_image': 'Generar Imagen con IA',
+            'files.gen_image_desc': 'Describe lo que quieres y Pollo lo crea para ti',
+            'files.gen_image_btn': 'Generar Imagen',
+            'files.save_to_files': 'Guardar en mis archivos',
+            'files.folder_name': 'Nombre de la carpeta:',
+            'files.move_to': 'Mover a carpeta:',
+            'files.storage': 'Almacenamiento',
+
+            // Study module
+            'study.title': 'Pollo STUDY',
+            'study.subtitle': 'Sistema de Estudio Inteligente',
+            'study.your_files': 'Tus archivos de estudio',
+            'study.upload_text': 'Sube tus archivos',
+            'study.upload_hint': 'PDFs, imágenes, texto, Word, PowerPoint',
+            'study.no_files': 'Aún no hay archivos',
+            'study.tools_title': 'Herramientas de estudio',
+            'study.gen_summary': '📝 Generar Resumen',
+            'study.gen_scheme': '📊 Crear Esquema',
+            'study.gen_quiz': '❓ Quiz de Práctica',
+            'study.gen_flashcards': '🃏 Flashcards',
+            'study.gen_report': '📋 Informe Completo',
+            'study.ask_placeholder': 'Pregunta sobre tus archivos...',
+            'study.analyzing': 'Analizando tus archivos...',
+            'study.quiz_title': '❓ Quiz de Práctica',
+            'study.scheme_title': '📊 Esquema / Diagrama',
+            'study.view_scheme': '📊 Ver esquema expandido',
+            'study.start_quiz': 'Iniciar Quiz',
+            'study.result': 'Resultado:',
+            'study.upload_first': 'Sube archivos primero para usar las herramientas de estudio.',
+
+            // Code editor
+            'code.title': 'Pollo CODE',
+            'code.new_file': 'Nuevo Archivo',
+            'code.new_folder': 'Nueva Carpeta',
+            'code.upload': 'Subir',
+            'code.publish': 'Publicar Extensión',
+            'code.save_files': 'Guardar en Files',
+            'code.terminal': 'Terminal',
+            'code.output': 'Salida',
+            'code.problems': 'Problemas',
+            'code.run': 'Ejecutar',
+            'code.manual': 'Manual',
+
+            // Extensions
+            'ext.title': 'Extensiones',
+            'ext.store': 'Tienda',
+            'ext.my_extensions': 'Mis Extensiones',
+            'ext.install': 'Instalar',
+            'ext.installed': 'Instalada',
+            'ext.activate': 'Activar',
+            'ext.deactivate': 'Desactivar',
+            'ext.uninstall': 'Desinstalar',
+            'ext.featured': 'Destacadas',
+            'ext.categories': 'Categorías',
+            'ext.all': 'Todas',
+            'ext.search': 'Buscar extensiones...',
+
+            // Admin
+            'admin.title': 'Panel de Administración',
+            'admin.dashboard': 'Dashboard',
+            'admin.pending': 'Pendientes',
+            'admin.approved': 'Aprobadas',
+            'admin.live_monitor': 'Monitor en Vivo',
+            'admin.developers': 'Desarrolladores',
+            'admin.gift_cards': 'Tarjetas Regalo',
+            'admin.users': 'Usuarios',
+            'admin.intercept': 'Interceptar',
+
+            // Moderator
+            'mod.intervention': 'Intervención del Moderador',
+            'mod.message': 'Un moderador te ha enviado un mensaje',
+
+            // ============= Wiki — secciones, nav, cards (F.7) =============
+            'wiki.section.general': 'General',
+            'wiki.section.modules': 'Módulos',
+            'wiki.section.platform': 'Plataforma',
+            'wiki.section.help': 'Ayuda',
+            'wiki.nav.home': 'Inicio',
+            'wiki.nav.getting_started': 'Primeros pasos',
+            'wiki.nav.history': 'Historial de fases',
+            'wiki.nav.ai_models': 'Modelos de IA',
+            'wiki.nav.pricing': 'Precios y Premium',
+            'wiki.nav.faq': 'Preguntas frecuentes',
+
+            // ============= Página de historial de fases (F.7) =============
+            'history.title': 'Historial de fases',
+            'history.card_desc': 'La evolución de Pollo Assistance desde su primera versión hasta hoy. Changelog completo.',
+            'history.subtitle': 'La evolución de Pollo Assistance, etapa por etapa. Del chat inicial al ecosistema developer completo.',
+            'history.intro': 'Esta página documenta los hitos añadidos a Pollo Assistance a lo largo del tiempo. Cada bloque agrupa un conjunto coherente de funcionalidades lanzadas juntas. El bloque más reciente se resalta en naranja arriba.',
+            'history.next_title': 'Qué viene después',
+            'history.next_intro': 'Pollo Assistance v1 es feature-complete. Mejoras futuras previstas:',
+            'history.next_1': '<strong>Dominio propio end-to-end</strong>: <code>polloassistance.com</code> con Auth domains, OpenGraph, sitemap y SEO completo.',
+            'history.next_2': '<strong>Marketplace público de extensiones</strong>: donde los devs publiquen y los usuarios instalen extensiones comunitarias.',
+            'history.next_3': '<strong>API programable</strong>: apps externas podrán llamar a Pollo Assistance vía token de API.',
+            'history.highlight_title': 'Un ecosistema construido pieza a pieza',
+            'history.highlight_desc': 'Cada etapa añadió una capacidad concreta sin romper las anteriores. La arquitectura (Firebase Hosting + Firestore + Cloudflare Workers, sin Cloud Storage, sin suscripciones mensuales) se ha mantenido igual desde los primeros pasos.',
+
+            // Fase F (actual)
+            'history.f.title': 'Pollo CODE — ecosistema developer',
+            'history.f.date': '2026 · actual',
+            'history.f.desc': 'Reescritura completa de la experiencia de desarrollo: página separada tipo Claude Code/Codex, conexiones con GitHub y Google Drive, herramientas de filesystem, visor en vivo con screenshot, voz, subida multimodal de archivos. La IA trabaja <em>dentro</em> del propio repo o carpeta del usuario, nunca en servidores de Pollo.',
+            'history.f.tiers_t': '3 tiers de CODE',
+            'history.f.tiers_d': '— Palos / Luces / Summum, compartiendo el mismo pool de IAs que el chat normal.',
+            'history.f.gh_t': 'OAuth Device Flow de GitHub',
+            'history.f.gh_d': '— escritura directa a repos con retry ante sha race.',
+            'history.f.drive_t': 'Integración Google Drive',
+            'history.f.drive_d': '— trabaja en cualquier carpeta; auto-reconexión si el token caduca (~1h).',
+            'history.f.tools_t': 'Tools fs_*',
+            'history.f.tools_d': '— listDir, readFile, writeFile, deleteFile. Modal de permisos en modo "ask".',
+            'history.f.preview_t': 'Visor en vivo',
+            'history.f.preview_d': '— iframe sandbox con pestañas, captura de console, screenshot, handle de resize.',
+            'history.f.voice_t': 'Voz (STT + TTS)',
+            'history.f.voice_d': '— API nativa del navegador, sin coste Whisper.',
+            'history.f.upload_t': 'Subida multimodal',
+            'history.f.upload_d': '— arrastra imágenes/código al chat, el cerebro enruta a una IA con vision si hace falta.',
+            'history.f.split_t': 'Revenue split para extensiones',
+            'history.f.split_d': '— devs FREE 35%, devs Premium 80%.',
+            'history.f.sub_title': 'Subfases internas:',
+            'history.f.5_0': 'UI desde cero en <code>/code.html</code>',
+            'history.f.5_1': 'Device Flow de GitHub + wrapper REST API',
+            'history.f.5_2': 'OAuth Google Drive + persistencia de chat source-aware',
+            'history.f.5_3': 'Specialist real con tools, proxy al cerebro normal',
+            'history.f.5_4': 'Visor en vivo, html2canvas, captura de console, subida de archivos',
+            'history.f.5_5': 'Editor de extensiones con badge de revenue + cargar desde Files',
+            'history.f.5_6': 'Sanity check + sistema de strikes + headers de plan de coste',
+            'history.f.6': 'Voz sin Whisper (Web Speech API STT + TTS por mensaje)',
+            'history.f.7': 'Historial wiki + traducciones EN/ES completas (esta página)',
+
+            // Fase E
+            'history.e.title': 'Pollo FILES — análisis de documentos',
+            'history.e.date': '2025 · Q4',
+            'history.e.desc': 'Filesystem por usuario almacenado 100% en Firestore (sin Cloud Storage). La IA puede leer, editar y referenciar documentos del usuario directamente desde el chat. Cuotas por tier: Palos 0, Luces 2MB, Summum 10MB.',
+            'history.e.li1': 'Filesystem nativo dentro de Pollo Assistance.',
+            'history.e.li2': 'Contadores atómicos por usuario y por chat (transacciones Firestore).',
+            'history.e.li3': 'Explorador web de archivos con visor + subida.',
+            'history.e.li4': 'Cuotas de escritura por tier; Palos no tiene filesystem.',
+
+            // Fase D
+            'history.d.title': 'Compartir + compresión de chats',
+            'history.d.date': '2025 · Q3',
+            'history.d.desc': 'Chats compartidos con enlace público (solo lectura). Cuando una conversación se alarga, se auto-comprimen los turnos antiguos en un resumen para que la IA mantenga el hilo sin romper el contexto.',
+            'history.d.li1': 'Compartir chats públicos con botón "Compartir" tipo Google Docs.',
+            'history.d.li2': 'Compresión automática de mensajes viejos a resumen.',
+            'history.d.li3': 'Reacciones y feedback (thumbs up/down) en respuestas IA.',
+
+            // Fase C
+            'history.c.title': 'Sistema de tiers + cerebro selector',
+            'history.c.date': '2025 · Q2',
+            'history.c.desc': 'Nace la identidad de Pollo: Palos, Luces y Summum. Cada tier tiene un modelo "cerebro" asociado que elige, de forma dinámica, qué IA del pool responde a cada mensaje del usuario según el tipo de tarea.',
+            'history.c.li1': '<strong>Palos</strong>: rápido y directo. Pool: Llama 3.1 8B + Laguna XS2.',
+            'history.c.li2': '<strong>Luces</strong>: equilibrado. Pool: Llama 3.3 70B + Qwen, Llama 4 Scout, GPT-OSS-20B, etc.',
+            'history.c.li3': '<strong>Summum</strong>: máximo poder. Pool: Mistral Large, DeepSeek R1, Gemini, Kimi K2, etc.',
+            'history.c.li4': 'Cerebro con chain de fallbacks: si el principal falla, baja al secundario, al terciario, después al heurístico.',
+            'history.c.li5': 'Toast "X está al mando": indicador visible de qué IA contestó.',
+
+            // Fase B
+            'history.b.title': 'Auth + proxy en Cloudflare Worker',
+            'history.b.date': '2025 · Q1',
+            'history.b.desc': 'Cuentas de usuario vía Firebase Auth. Todas las llamadas a IA pasan por un Cloudflare Worker (<code>pollo-luces-proxy</code>) que añade la API key server-side — las claves nunca llegan al navegador. Conteo de créditos por usuario.',
+            'history.b.li1': 'Autenticación con email + Google.',
+            'history.b.li2': 'Sistema de débito por tokens con límites diarios y mensuales.',
+            'history.b.li3': 'Cloudflare Worker como proxy con chain de fallback entre providers.',
+            'history.b.li4': 'Panel de admin para monitorización de usuarios y créditos.',
+
+            // Fase A
+            'history.a.title': 'Lanzamiento inicial — chat, voz e imágenes',
+            'history.a.date': '2024',
+            'history.a.desc': 'Primera versión de Pollo Assistance: chat IA básico con texto a voz, voz a texto y generación de imágenes. Mascota mona, efecto "rotating ai logo", interfaz única de bienvenida.',
+            'history.a.li1': 'Chat IA con input multimodal (texto + imagen).',
+            'history.a.li2': 'Voz (TTS) y voz a texto (STT) integradas.',
+            'history.a.li3': 'Generación de imágenes vía Pollinations.',
+            'history.a.li4': 'Historial de chats guardado en Firestore.'
+        }
+    };
+
+    // ---------------- BULK PHRASE DICTIONARY (ES <-> EN) ----------------
+    // Used to auto-translate text in pages without explicit data-i18n.
+    // Order matters: longer phrases first to avoid partial overlaps.
+    const PHRASES_ES_EN = [
+        // Navigation
+        ['Abrir app', 'Open app'],
+        ['Empezar gratis', 'Start free'],
+        ['Más herramientas', 'More Tools'],
+        ['Mas herramientas', 'More Tools'],
+        ['Descubrir más', 'Discover more'],
+        ['Descubrir mas', 'Discover more'],
+        ['Funciones', 'Features'],
+        ['Módulos', 'Modules'],
+        ['Modulos', 'Modules'],
+        ['Precios', 'Pricing'],
+        ['Empezar', 'Get started'],
+        ['Inicio', 'Home'],
+
+        // Hero / landing
+        ['Ecosistema de IA todo en uno', 'All-in-one AI ecosystem'],
+        ['Tu asistente inteligente.', 'Your smart assistant.'],
+        ['Un solo pago. Para siempre.', 'One payment. Forever.'],
+        ['Chat con IA, generación de imágenes, herramientas de estudio, editor de código', 'AI chat, image generation, study tools, code editor'],
+        ['Chat con IA, generacion de imagenes, herramientas de estudio, editor de codigo', 'AI chat, image generation, study tools, code editor'],
+        ['y mucho más. Todo en una sola plataforma, sin suscripciones.', 'and much more. All on one platform, no subscriptions.'],
+        ['y mucho mas. Todo en una sola plataforma, sin suscripciones.', 'and much more. All on one platform, no subscriptions.'],
+        ['20 mensajes gratis cada 6 horas. Sin tarjeta de crédito.', '20 free messages every 6 hours. No credit card required.'],
+        ['20 mensajes gratis cada 6 horas. Sin tarjeta de credito.', '20 free messages every 6 hours. No credit card required.'],
+        ['Todo lo que necesitas en un solo lugar', 'Everything you need in one place'],
+        ['Pollo Assistance reúne las herramientas de IA más útiles en una plataforma unificada.', 'Pollo Assistance brings together the most useful AI tools on a unified platform.'],
+        ['Pollo Assistance reune las herramientas de IA mas utiles en una plataforma unificada.', 'Pollo Assistance brings together the most useful AI tools on a unified platform.'],
+
+        // Wiki home page
+        ['Bienvenido a la wiki oficial de', 'Welcome to the official'],
+        ['wiki. Aquí encontrarás toda la información sobre la plataforma, sus módulos, cómo empezar y respuestas a las preguntas más frecuentes.', 'wiki. Here you will find all the information about the platform, its modules, how to get started, and answers to the most frequently asked questions.'],
+        ['wiki. Aqui encontraras toda la informacion sobre la plataforma, sus modulos, como empezar y respuestas a las preguntas mas frecuentes.', 'wiki. Here you will find all the information about the platform, its modules, how to get started, and answers to the most frequently asked questions.'],
+        ['¿Qué es Pollo Assistance?', 'What is Pollo Assistance'],
+        ['Que es Pollo Assistance', 'What is Pollo Assistance'],
+        ['Un ecosistema de inteligencia artificial todo en uno que incluye chat, generación de imágenes, herramientas de estudio, editor de código, análisis de documentos y más. Con un modelo de pago único de $25 y sin suscripciones mensuales.', 'An all-in-one artificial intelligence ecosystem that includes chat, image generation, study tools, code editor, document analysis and more. With a one-time payment model of $25 and no monthly subscriptions.'],
+        ['Un ecosistema de inteligencia artificial todo en uno que incluye chat, generacion de imagenes, herramientas de estudio, editor de codigo, analisis de documentos y mas. Con un modelo de pago unico de $25 y sin suscripciones mensuales.', 'An all-in-one artificial intelligence ecosystem that includes chat, image generation, study tools, code editor, document analysis and more. With a one-time payment model of $25 and no monthly subscriptions.'],
+        ['El asistente principal: chat IA, imágenes, voz, búsqueda web y más.', 'The main assistant: AI chat, images, voice, web search and more.'],
+        ['El asistente principal: chat IA, imagenes, voz, busqueda web y mas.', 'The main assistant: AI chat, images, voice, web search and more.'],
+        ['Asistente académico para resúmenes, exámenes y diagramas interactivos.', 'Academic assistant for summaries, exams and interactive diagrams.'],
+        ['Asistente academico para resumenes, examenes y diagramas interactivos.', 'Academic assistant for summaries, exams and interactive diagrams.'],
+        ['Entorno de programación con generación, depuración y ejecución de código.', 'Programming environment with code generation, debugging and execution.'],
+        ['Entorno de programacion con generacion, depuracion y ejecucion de codigo.', 'Programming environment with code generation, debugging and execution.'],
+        ['Análisis profundo de documentos y PDFs con inteligencia artificial.', 'Deep document and PDF analysis with artificial intelligence.'],
+        ['Analisis profundo de documentos y PDFs con inteligencia artificial.', 'Deep document and PDF analysis with artificial intelligence.'],
+        ['Utilidades rápidas y navegación inteligente dentro de la plataforma.', 'Quick utilities and smart navigation within the platform.'],
+        ['Utilidades rapidas y navegacion inteligente dentro de la plataforma.', 'Quick utilities and smart navigation within the platform.'],
+        ['Proyecto educativo para centros escolares integrado con Pollo Assistance.', 'Educational project for schools integrated with Pollo Assistance.'],
+        ['Guías', 'Guides'],
+        ['Guias', 'Guides'],
+        ['Primeros pasos', 'Getting Started'],
+        ['Cómo crear tu cuenta, verificar el email y empezar a usar la plataforma.', 'How to create your account, verify email and start using the platform.'],
+        ['Como crear tu cuenta, verificar el email y empezar a usar la plataforma.', 'How to create your account, verify email and start using the platform.'],
+        ['Modelos de IA', 'AI Models'],
+        ['Diferencias entre Palos, Luces y Summum. Cuál elegir y cuándo.', 'Differences between Palos, Luces and Summum. Which to choose and when.'],
+        ['Diferencias entre Palos, Luces y Summum. Cual elegir y cuando.', 'Differences between Palos, Luces and Summum. Which to choose and when.'],
+        ['Precios y Premium', 'Pricing and Premium'],
+        ['Plan gratuito vs premium. Qué incluye el pago único de $25.', "Free vs premium plan. What's included in the $25 one-time payment."],
+        ['Plan gratuito vs premium. Que incluye el pago unico de $25.', "Free vs premium plan. What's included in the $25 one-time payment."],
+        ['Preguntas frecuentes', 'FAQ'],
+        ['Respuestas a las preguntas más comunes sobre la plataforma.', 'Answers to the most common questions about the platform.'],
+        ['Respuestas a las preguntas mas comunes sobre la plataforma.', 'Answers to the most common questions about the platform.'],
+
+        // Wiki sidebar / sections
+        ['General', 'General'],
+        ['Módulos', 'Modules'],
+        ['Modulos', 'Modules'],
+        ['Plataforma', 'Platform'],
+        ['Ayuda', 'Help'],
+
+        // Generic
+        ['Iniciar sesión', 'Log in'],
+        ['Iniciar sesion', 'Log in'],
+        ['Cerrar sesión', 'Log out'],
+        ['Cerrar sesion', 'Log out'],
+        ['Registrarse', 'Sign up'],
+        ['Cancelar', 'Cancel'],
+        ['Cerrar', 'Close'],
+        ['Guardar cambios', 'Save changes'],
+        ['Guardar', 'Save'],
+        ['Borrar', 'Delete'],
+        ['Continuar', 'Continue'],
+        ['Cargando...', 'Loading...'],
+        ['Volver', 'Back'],
+        ['Configuración', 'Settings'],
+        ['Configuracion', 'Settings'],
+        ['Buscar', 'Search'],
+        ['Enviar', 'Send'],
+        ['Nuevo chat', 'New chat'],
+        ['Mensaje', 'Message'],
+        ['Correo electrónico', 'Email'],
+        ['Correo electronico', 'Email'],
+        ['Correo', 'Email'],
+        ['Contraseña', 'Password'],
+        ['Nombre de usuario', 'Username'],
+        ['Nombre', 'Name'],
+        ['Pago único, sin suscripciones', 'One-time payment, no subscriptions'],
+        ['Pago unico, sin suscripciones', 'One-time payment, no subscriptions'],
+        ['Todos los derechos reservados.', 'All rights reserved.'],
+        ['Preguntas frecuentes', 'FAQ'],
+
+        // Wiki - structure
+        ['Documentación oficial de Pollo Assistance', 'Official Pollo Assistance documentation'],
+        ['Documentacion oficial de Pollo Assistance', 'Official Pollo Assistance documentation'],
+        ['Bienvenido a la Wiki', 'Welcome to the Wiki'],
+        ['General', 'General'],
+        ['Plataforma', 'Platform'],
+        ['Ayuda', 'Help'],
+        ['Modelos de IA', 'AI Models'],
+        ['Precios y Premium', 'Pricing and Premium'],
+        ['Primeros pasos', 'Getting started'],
+        ['Respuestas a las dudas más comunes sobre la plataforma.', 'Answers to the most common questions about the platform.'],
+        ['Respuestas a las dudas mas comunes sobre la plataforma.', 'Answers to the most common questions about the platform.'],
+
+        // Wiki sidebar & headings
+        ['Módulos', 'Modules'],
+        ['Preguntas frecuentes', 'FAQ'],
+
+        // Wiki index
+        ['Wiki de Pollo Assistance', 'Pollo Assistance Wiki'],
+        ['Documentación oficial del ecosistema de inteligencia artificial.', 'Official documentation of the artificial intelligence ecosystem.'],
+        ['Bienvenido a la wiki oficial de', 'Welcome to the official'],
+        ['Aquí encontrarás toda la información sobre la plataforma', 'Here you will find all the information about the platform'],
+        ['Qué es Pollo Assistance', 'What is Pollo Assistance'],
+        ['Un ecosistema de inteligencia artificial todo en uno', 'An all-in-one artificial intelligence ecosystem'],
+        ['generación de imágenes', 'image generation'],
+        ['herramientas de estudio', 'study tools'],
+        ['editor de código', 'code editor'],
+        ['análisis de documentos', 'document analysis'],
+        ['pago único', 'one-time payment'],
+        ['sin suscripciones mensuales', 'no monthly subscriptions'],
+        ['El asistente principal', 'The main assistant'],
+        ['chat con IA', 'AI chat'],
+        ['búsqueda web', 'web search'],
+        ['imágenes', 'images'],
+        ['voz', 'voice'],
+        ['Asistente académico para estudiantes', 'Academic assistant for students'],
+        ['Entorno de programación con IA', 'AI-powered programming environment'],
+        ['Análisis de documentos y PDFs', 'Document and PDF analysis'],
+        ['Utilidades rápidas y navegación inteligente', 'Quick utilities and smart navigation'],
+        ['Todos los derechos reservados', 'All rights reserved'],
+
+        // Wiki modelos-ia
+        ['Los tres niveles de IA de Pollo Assistance', 'The three AI tiers of Pollo Assistance'],
+        ['Cómo funciona: el Cerebro Orquestador', 'How it works: the Brain Orchestrator'],
+        ['IAs disponibles en el Pool', 'Available AIs in the Pool'],
+        ['Cerebro orquestador', 'Brain orchestrator'],
+        ['Modelo cerebro', 'Brain model'],
+        ['Pool de IAs', 'AI pool'],
+        ['Disponibilidad', 'Availability'],
+        ['Máx. tokens', 'Max tokens'],
+        ['por respuesta', 'per response'],
+        ['Transmisión', 'Streaming'],
+        ['Características', 'Features'],
+        ['Mejor para', 'Best for'],
+        ['Respuestas rápidas y preguntas simples', 'Quick responses and simple questions'],
+        ['Uso diario, conversaciones normales', 'Daily use, normal conversations'],
+        ['Análisis profundo, tareas complejas', 'Deep analysis, complex tasks'],
+        ['Comparación de niveles', 'Tier Comparison'],
+        ['Tamaño del pool', 'AI pool size'],
+        ['Modo pensar', 'Think mode'],
+        ['Búsqueda web', 'Web search'],
+        ['Generación de imágenes', 'Image generation'],
+        ['Visión (análisis de imágenes)', 'Vision (image analysis)'],
+        ['Ajedrez', 'Chess'],
+        ['Análisis de archivos', 'File analysis'],
+        ['Memoria de chat', 'Chat memory'],
+        ['Cuál elegir', 'Which one to choose'],
+        ['si necesitas algo rápido y simple', 'if you need something fast and simple'],
+        ['para uso diario', 'for daily use'],
+        ['la opción recomendada', 'the recommended option'],
+        ['cuando necesitas profundidad y potencia máxima', 'when you need maximum depth and power'],
+        ['requiere premium', 'requires premium'],
+        ['Solo Premium', 'Premium only'],
+        ['Gratuito', 'Free'],
+        ['Gratis', 'Free'],
+        ['Sí', 'Yes'],
+        ['No', 'No'],
+        ['Muy rápido', 'Very fast'],
+        ['Rápido', 'Fast'],
+        ['Más lento', 'Slower'],
+        ['Medio', 'Medium'],
+        ['Velocidad', 'Speed'],
+        ['Proveedor', 'Provider'],
+        ['Parámetros', 'Parameters'],
+
+        // Wiki pollo-assistance
+        ['Tipo', 'Type'],
+        ['Desarrollador', 'Developer'],
+        ['Idioma principal', 'Main language'],
+        ['Estado', 'Status'],
+        ['Activo', 'Active'],
+        ['Sitio web oficial', 'Official website'],
+        ['Asistente de inteligencia artificial', 'Artificial intelligence assistant'],
+        ['Funciones principales', 'Main features'],
+        ['Chat IA', 'AI Chat'],
+        ['Generación de imágenes', 'Image generation'],
+        ['Análisis de imágenes', 'Image analysis'],
+        ['Búsqueda web', 'Web search'],
+        ['Voz', 'Voice'],
+        ['Análisis de ajedrez', 'Chess analysis'],
+        ['Diagramas interactivos', 'Interactive diagrams'],
+        ['Memoria de chats', 'Chat memory'],
+        ['Módulos del ecosistema', 'Ecosystem modules'],
+        ['Plataformas disponibles', 'Available platforms'],
+        ['Tecnología', 'Technology'],
+        ['Integración con AuraEON', 'Integration with AuraEON'],
+
+        // Common wiki phrases
+        ['Todos los derechos reservados.', 'All rights reserved.'],
+
+        // Settings
+        ['Perfil', 'Profile'],
+        ['Tema', 'Theme'],
+        ['Idioma', 'Language'],
+        ['Apariencia', 'Appearance'],
+        ['Privacidad', 'Privacy'],
+        ['Cuenta', 'Account'],
+        ['Plan actual', 'Current plan'],
+        ['Mejorar plan', 'Upgrade plan'],
+        ['Borrar caché', 'Clear cache'],
+        ['Borrar cache', 'Clear cache'],
+        ['Predeterminado', 'Default'],
+        ['Oscuro', 'Dark'],
+        ['Claro', 'Light'],
+        ['Naranja', 'Orange'],
+        ['Pequeño', 'Small'],
+        ['Pequeno', 'Small'],
+        ['Grande', 'Large'],
+        ['Inglés', 'English'],
+        ['Ingles', 'English'],
+        ['Español', 'Spanish'],
+        ['Espanol', 'Spanish'],
+
+        // Files module
+        ['Mis Archivos', 'My Files'],
+        ['Nueva Carpeta', 'New Folder'],
+        ['Subir Archivo', 'Upload File'],
+        ['Generar Imagen con IA', 'Generate Image with AI'],
+        ['Guardar en mis archivos', 'Save to my files'],
+        ['Arrastra archivos aquí o haz clic para seleccionar', 'Drag files here or click to select'],
+        ['Nombre de la carpeta', 'Folder name'],
+        ['Mover a carpeta', 'Move to folder'],
+        ['Archivo exportado correctamente', 'File exported successfully'],
+        ['Imagen guardada correctamente', 'Image saved successfully'],
+
+        // Study module
+        ['Tus archivos de estudio', 'Your study files'],
+        ['Sube tus archivos', 'Upload your files'],
+        ['Herramientas de estudio', 'Study tools'],
+        ['Generar Resumen', 'Generate Summary'],
+        ['Crear Esquema', 'Create Scheme'],
+        ['Quiz de Práctica', 'Practice Quiz'],
+        ['Informe Completo', 'Full Report'],
+        ['Pregunta sobre tus archivos', 'Ask about your files'],
+        ['Analizando tus archivos', 'Analyzing your files'],
+        ['Ver esquema expandido', 'View expanded scheme'],
+        ['Iniciar Quiz', 'Start Quiz'],
+        ['Resultado', 'Result'],
+        ['Sube archivos primero', 'Upload files first'],
+
+        // Code editor
+        ['Nuevo Archivo', 'New File'],
+        ['Publicar Extensión', 'Publish Extension'],
+        ['Publicar Extension', 'Publish Extension'],
+        ['Guardar en Files', 'Save to Files'],
+        ['Ejecutar', 'Run'],
+
+        // Extensions
+        ['Tienda', 'Store'],
+        ['Mis Extensiones', 'My Extensions'],
+        ['Instalar', 'Install'],
+        ['Instalada', 'Installed'],
+        ['Activar', 'Activate'],
+        ['Desactivar', 'Deactivate'],
+        ['Desinstalar', 'Uninstall'],
+        ['Destacadas', 'Featured'],
+        ['Categorías', 'Categories'],
+        ['Buscar extensiones', 'Search extensions'],
+
+        // Admin
+        ['Panel de Administración', 'Admin Panel'],
+        ['Pendientes', 'Pending'],
+        ['Aprobadas', 'Approved'],
+        ['Monitor en Vivo', 'Live Monitor'],
+        ['Desarrolladores', 'Developers'],
+        ['Tarjetas Regalo', 'Gift Cards'],
+        ['Usuarios', 'Users'],
+        ['Interceptar', 'Intercept'],
+
+        // Moderator
+        ['Intervención del Moderador', 'Moderator Intervention'],
+        ['Un moderador te ha enviado un mensaje', 'A moderator has sent you a message']
+    ];
+
+    // EN -> ES (used when switching from default English to Spanish for elements
+    // that don't have data-i18n). We invert the dictionary.
+    const PHRASES_EN_ES = PHRASES_ES_EN.map(function (p) { return [p[1], p[0]]; });
+
+    // ---------------- LANGUAGE DETECTION ----------------
+    const STORAGE_KEY = 'pollo_lang';
+
+    function detectLang() {
+        // 1. Stored choice wins
+        try {
+            const stored = localStorage.getItem(STORAGE_KEY);
+            if (stored && TRANSLATIONS[stored]) return stored;
+        } catch (e) {}
+        // 2. Browser language: es-* => Spanish, else English
+        try {
+            const nav = (navigator.language || navigator.userLanguage || 'en').toLowerCase();
+            if (nav.indexOf('es') === 0) return 'es';
+        } catch (e) {}
+        // 3. Default English
+        return 'en';
+    }
+
+    let currentLang = detectLang();
+    // Persist the auto-detected choice so settings.html shows the right value
+    try {
+        if (!localStorage.getItem(STORAGE_KEY)) localStorage.setItem(STORAGE_KEY, currentLang);
+    } catch (e) {}
+
+    // ---------------- KEY TRANSLATION ----------------
+    function t(key, fallback) {
+        const dict = TRANSLATIONS[currentLang] || TRANSLATIONS.en;
+        if (dict[key] != null) return dict[key];
+        if (TRANSLATIONS.en[key] != null) return TRANSLATIONS.en[key];
+        return fallback != null ? fallback : key;
+    }
+
+    function applyKeyTranslations(root) {
+        root = root || document;
+        root.querySelectorAll('[data-i18n]').forEach(function (el) {
+            const key = el.getAttribute('data-i18n');
+            const val = t(key);
+            if (val != null) el.textContent = val;
+        });
+        root.querySelectorAll('[data-i18n-placeholder]').forEach(function (el) {
+            const key = el.getAttribute('data-i18n-placeholder');
+            const val = t(key);
+            if (val != null) el.setAttribute('placeholder', val);
+        });
+        root.querySelectorAll('[data-i18n-title]').forEach(function (el) {
+            const key = el.getAttribute('data-i18n-title');
+            const val = t(key);
+            if (val != null) el.setAttribute('title', val);
+        });
+        root.querySelectorAll('[data-i18n-value]').forEach(function (el) {
+            const key = el.getAttribute('data-i18n-value');
+            const val = t(key);
+            if (val != null) el.value = val;
+        });
+    }
+
+    // ---------------- BULK PHRASE TRANSLATION ----------------
+    // Walks all visible text nodes and replaces phrases by dictionary.
+    // Skipped tags: SCRIPT, STYLE, NOSCRIPT, CODE, PRE, TEXTAREA, INPUT
+    // Only runs once per page load to avoid feedback loops.
+    const SKIP_TAGS = { SCRIPT:1, STYLE:1, NOSCRIPT:1, CODE:1, PRE:1, TEXTAREA:1, INPUT:1, IFRAME:1 };
+
+    function bulkTranslate(direction) {
+        // direction: 'to_en' or 'to_es'
+        const phrases = direction === 'to_en' ? PHRASES_ES_EN : PHRASES_EN_ES;
+        if (!document.body) return;
+        const walker = document.createTreeWalker(document.body, NodeFilter.SHOW_TEXT, {
+            acceptNode: function (node) {
+                if (!node.nodeValue || !node.nodeValue.trim()) return NodeFilter.FILTER_REJECT;
+                let p = node.parentNode;
+                while (p && p.nodeType === 1) {
+                    if (SKIP_TAGS[p.tagName]) return NodeFilter.FILTER_REJECT;
+                    if (p.hasAttribute && p.hasAttribute('data-i18n-skip')) return NodeFilter.FILTER_REJECT;
+                    p = p.parentNode;
+                }
+                return NodeFilter.FILTER_ACCEPT;
+            }
+        });
+        const nodes = [];
+        let n;
+        while ((n = walker.nextNode())) nodes.push(n);
+        nodes.forEach(function (node) {
+            let txt = node.nodeValue;
+            for (let i = 0; i < phrases.length; i++) {
+                const from = phrases[i][0], to = phrases[i][1];
+                if (txt.indexOf(from) !== -1) {
+                    txt = txt.split(from).join(to);
+                }
+            }
+            if (txt !== node.nodeValue) node.nodeValue = txt;
+        });
+
+        // Also translate placeholders / titles / alt that don't have data-i18n
+        const attrs = ['placeholder', 'title', 'aria-label'];
+        document.querySelectorAll('[' + attrs.join('],[') + ']').forEach(function (el) {
+            attrs.forEach(function (a) {
+                if (!el.hasAttribute(a)) return;
+                let v = el.getAttribute(a);
+                let changed = false;
+                for (let i = 0; i < phrases.length; i++) {
+                    if (v.indexOf(phrases[i][0]) !== -1) { v = v.split(phrases[i][0]).join(phrases[i][1]); changed = true; }
+                }
+                if (changed) el.setAttribute(a, v);
+            });
+        });
+    }
+
+    let bulkAppliedFor = null;
+    function applyTranslations(root) {
+        applyKeyTranslations(root);
+        // Bulk translate only once per language load
+        if (bulkAppliedFor !== currentLang) {
+            bulkTranslate(currentLang === 'en' ? 'to_en' : 'to_es');
+            bulkAppliedFor = currentLang;
+        }
+        try { document.documentElement.lang = currentLang; } catch (e) {}
+    }
+
+    function setLang(lang) {
+        if (!TRANSLATIONS[lang]) lang = 'en';
+        if (lang === currentLang) return;
+        // Switching language at runtime requires reload to undo bulk replacements
+        // (otherwise we'd need to track every replacement). Persist + reload.
+        try { localStorage.setItem(STORAGE_KEY, lang); } catch (e) {}
+        currentLang = lang;
+        try { location.reload(); } catch (e) { applyTranslations(); }
+    }
+
+    function getLang() { return currentLang; }
+
+    // Auto-apply on DOM ready
+    if (document.readyState === 'loading') {
+        document.addEventListener('DOMContentLoaded', function () { applyTranslations(); });
+    } else {
+        applyTranslations();
+    }
+
+    window.PolloI18n = {
+        t: t,
+        setLang: setLang,
+        getLang: getLang,
+        apply: applyTranslations,
+        translations: TRANSLATIONS
+    };
+})();
