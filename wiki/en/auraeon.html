@@ -241,98 +241,6 @@
     <p>AuraEON is an educational version of Pollo Assistance designed for schools, institutes and universities. It uses the same AI engine under the hood (with all 20+ models and the brain selector) but adapted to the school context: content filters appropriate to age, teacher panel, integration with student management systems and class-specific tools. <strong>Free for institutions</strong>, fully managed from <a href="https://auraeon.es">auraeon.es</a>.</p>
 </div>
 
-<h2>What AuraEON offers you (whatever your role)</h2>
-<p>These features are available to <strong>any AuraEON user</strong> — independent teacher, student, counselor or an institution. You don't need to be an institution to use them.</p>
-
-<h3>🛠 AURA with tools</h3>
-<p>AURA <strong>doesn't just talk: it acts</strong>. It has a <em>function calling</em> system that lets it execute real tasks from within the conversation. When you ask for something (suggest a dynamic, mediate a conflict, create an exercise…), AURA invokes the relevant tool, executes it, and summarizes the result for you in natural language.</p>
-
-<div class="callout education">
-    <strong>Example:</strong> <em>"AURA, give me a cohesion dynamic for 14-year-olds, 30 min, and then set up a reflection exercise"</em> → AURA calls <code>sugerir_dinamica</code> and <code>crear_ejercicio</code> automatically in the same turn.
-</div>
-
-<div class="feature-grid">
-    <div class="feature-card">
-        <span class="fc-icon">🧠</span>
-        <h4>crear_sociograma</h4>
-        <p>Prepares a classroom sociogram (affinity, collaboration, leadership, rejection) with the question you set.</p>
-    </div>
-    <div class="feature-card">
-        <span class="fc-icon">🔄</span>
-        <h4>actualizar_sociograma</h4>
-        <p>Adds, removes or changes the type of a relationship between two students.</p>
-    </div>
-    <div class="feature-card">
-        <span class="fc-icon">🎯</span>
-        <h4>sugerir_dinamica</h4>
-        <p>Bank of 12+ activities (cohesion, emotions, mediation, self-esteem, communication, inclusion, rules) filterable by age and duration. Also available in quick chat.</p>
-    </div>
-    <div class="feature-card">
-        <span class="fc-icon">🤝</span>
-        <h4>plan_mediacion</h4>
-        <p>Structured 3-5 step plan to mediate a conflict. If urgency is high, recommends escalating. Also available in quick chat.</p>
-    </div>
-    <div class="feature-card">
-        <span class="fc-icon">📝</span>
-        <h4>crear_ejercicio</h4>
-        <p>Creates and assigns exercises: short text, long reflection, multiple choice or 1-5 rating.</p>
-    </div>
-    <div class="feature-card">
-        <span class="fc-icon">📢</span>
-        <h4>enviar_anuncio</h4>
-        <p>Publishes an announcement on the classroom forum with priority (normal/important/urgent).</p>
-    </div>
-    <div class="feature-card">
-        <span class="fc-icon">📊</span>
-        <h4>analizar_clima</h4>
-        <p>Numeric + textual analysis of the classroom climate from the sociogram. Score 0-10.</p>
-    </div>
-    <div class="feature-card">
-        <span class="fc-icon">📜</span>
-        <h4>consultar / actualizar_normas</h4>
-        <p>Reads or rewrites the classroom rules. Only the owning teacher can modify.</p>
-    </div>
-</div>
-
-<div class="callout warning">
-    <strong>Important:</strong> AURA uses these tools only when your intent is clear. Tools that mutate data (sociogram, exercises, announcements…) <strong>only work if you're the owning teacher</strong>. In quick chat AURA only exposes tools that don't need a classroom (suggest dynamic, mediation plan).
-</div>
-
-<h3>📝 Teacher ↔ student exercises system</h3>
-<p>Each classroom has an <strong>Exercises</strong> tab where the teacher (or AURA, via tools) creates tasks that students complete in the platform itself. Four supported types:</p>
-
-<table class="compare-table">
-    <thead>
-        <tr><th>Type</th><th>For what</th><th>How the student answers</th></tr>
-    </thead>
-    <tbody>
-        <tr><td><strong>📝 Text</strong></td><td>Short answer (1-3 lines)</td><td>Small text box</td></tr>
-        <tr><td><strong>💭 Reflection</strong></td><td>Long, reflective answer</td><td>Large textarea</td></tr>
-        <tr><td><strong>☑ Multichoice</strong></td><td>Closed options</td><td>Radio buttons</td></tr>
-        <tr><td><strong>⭐ Rating 1-5</strong></td><td>Numeric assessment</td><td>5 clickable buttons</td></tr>
-    </tbody>
-</table>
-
-<p>The teacher reviews each submission, leaves brief feedback and puts a 0-10 score. Students see their pending, completed and reviewed exercises.</p>
-
-<div class="callout tip">
-    <strong>Real use case:</strong> at the end of each week, AURA can automatically create a "rating" exercise so students rate how they felt 1-5. The teacher gets the aggregate and can act before bad climate escalates.
-</div>
-
-<h3>🎨 Classroom customization</h3>
-<p>Each classroom can have its own visual identity:</p>
-<ul>
-    <li><strong>Theme color</strong> — accent color applied to classroom details.</li>
-    <li><strong>Logo</strong> — identifying image (URL).</li>
-    <li><strong>Motto</strong> — short phrase that defines the group's spirit.</li>
-    <li><strong>Educational level, subject, language</strong> — so AURA adapts its responses to the right context.</li>
-    <li><strong>Student permissions</strong> — what they can do (post on forum, message peers, see sociogram, see other submissions).</li>
-    <li><strong>Coexistence rules</strong> — editable list (max 20). AURA consults and, on teacher request, updates them.</li>
-</ul>
-<p>When AURA builds responses for the classroom, <strong>it takes saved rules into account</strong> and cites them when relevant for solving a conflict or explaining a behavior.</p>
-
-<hr style="margin: 32px 0; border: none; border-top: 1px solid #e0e0e0;">
-
 <h2>Two ways to use AuraEON</h2>
 
 <h3 style="color:#1565C0">🏢 Standard AuraEON — for individuals</h3>
@@ -394,7 +302,90 @@
     <li><strong>Restricted models</strong>: deactivated models that aren't suitable for school environment.</li>
 </ul>
 
-<!-- (Tools, exercises and customization sections moved above, before "Two ways to use AuraEON", to show they are available to ALL users, not only institutions.) -->
+<h2>🛠 AURA Tools (Function calling) <span class="status-badge education">F.8</span></h2>
+<p>From F.8 on, AURA <strong>doesn't just talk: it acts</strong>. It has a <em>function calling</em> system that lets it execute real tasks in your classroom from within the conversation. When you ask for something (create an exercise, build a sociogram, mediate a conflict…), AURA invokes the relevant tool, executes it, and summarizes the result for you in natural language.</p>
+
+<div class="callout education">
+    <strong>Example:</strong> <em>"AURA, build an affinity sociogram for 2A and then set up a reflection exercise on how they've felt this week"</em> → AURA calls <code>crear_sociograma</code> and <code>crear_ejercicio</code> automatically in the same turn.
+</div>
+
+<div class="feature-grid">
+    <div class="feature-card">
+        <span class="fc-icon">🧠</span>
+        <h4>crear_sociograma</h4>
+        <p>Prepares a classroom sociogram (affinity, collaboration, leadership, rejection) with the question you set.</p>
+    </div>
+    <div class="feature-card">
+        <span class="fc-icon">🔄</span>
+        <h4>actualizar_sociograma</h4>
+        <p>Adds, removes or changes the type of a relationship between two students. Replaces the old inline system.</p>
+    </div>
+    <div class="feature-card">
+        <span class="fc-icon">🎯</span>
+        <h4>sugerir_dinamica</h4>
+        <p>Searches the bank of 12+ activities (cohesion, emotions, mediation, self-esteem, communication, inclusion, rules) by age and duration.</p>
+    </div>
+    <div class="feature-card">
+        <span class="fc-icon">🤝</span>
+        <h4>plan_mediacion</h4>
+        <p>Structured 3-5 step plan to mediate a conflict. If urgency is high, recommends escalating to school leadership.</p>
+    </div>
+    <div class="feature-card">
+        <span class="fc-icon">📝</span>
+        <h4>crear_ejercicio</h4>
+        <p>Creates and assigns exercises to the class: short text, long reflection, multiple choice or 1-5 rating. With configurable deadline.</p>
+    </div>
+    <div class="feature-card">
+        <span class="fc-icon">📢</span>
+        <h4>enviar_anuncio</h4>
+        <p>Publishes an announcement on the classroom forum with priority (normal/important/urgent).</p>
+    </div>
+    <div class="feature-card">
+        <span class="fc-icon">📊</span>
+        <h4>analizar_clima</h4>
+        <p>Numeric + textual analysis of the classroom climate from the sociogram. Score 0-10 with interpretation.</p>
+    </div>
+    <div class="feature-card">
+        <span class="fc-icon">📜</span>
+        <h4>consultar / actualizar_normas</h4>
+        <p>Reads or rewrites the classroom rules. Only the owning teacher can modify.</p>
+    </div>
+</div>
+
+<div class="callout warning">
+    <strong>Important:</strong> AURA uses these tools only when your intent is clear. If it's not, it asks first. Tools that mutate data (create sociogram, exercises, announcements…) <strong>only work if you're the owning teacher of the classroom</strong>.
+</div>
+
+<h2>📝 Teacher ↔ student exercises system <span class="status-badge education">F.8</span></h2>
+<p>Each classroom has an <strong>Exercises</strong> tab where the teacher (or AURA, via tools) creates tasks that students complete in the platform itself. Four supported types:</p>
+
+<table class="compare-table">
+    <thead>
+        <tr><th>Type</th><th>For what</th><th>How the student answers</th></tr>
+    </thead>
+    <tbody>
+        <tr><td><strong>📝 Text</strong></td><td>Short answer (1-3 lines)</td><td>Small text box</td></tr>
+        <tr><td><strong>💭 Reflection</strong></td><td>Long, reflective answer</td><td>Large textarea</td></tr>
+        <tr><td><strong>☑ Multichoice</strong></td><td>Closed options</td><td>Radio buttons</td></tr>
+        <tr><td><strong>⭐ Rating 1-5</strong></td><td>Numeric assessment</td><td>5 clickable buttons</td></tr>
+    </tbody>
+</table>
+
+<p>The teacher can review each submission, leave brief feedback and put a 0-10 score. Students see their pending, completed and reviewed exercises from their panel.</p>
+
+<div class="callout tip">
+    <strong>Real use case:</strong> at the end of each week, AURA can automatically create a "rating" exercise so students rate how they felt 1-5. The teacher gets the aggregate and can act before bad climate escalates.
+</div>
+
+<h2>🎨 Classroom customization <span class="status-badge education">F.8</span></h2>
+<p>Each classroom can have its own visual identity:</p>
+<ul>
+    <li><strong>Theme color</strong> — accent color applied to classroom details.</li>
+    <li><strong>Logo</strong> — identifying image (URL).</li>
+    <li><strong>Motto</strong> — short phrase that defines the group's spirit.</li>
+    <li><strong>Rules</strong> — editable list (max 20). AURA can consult and, if the teacher asks, update them.</li>
+</ul>
+<p>This isn't just aesthetic: when AURA builds responses for the classroom, <strong>it takes saved rules into account</strong> and cites them when relevant for solving a conflict or explaining a behavior.</p>
 
 <h2 style="margin-top:32px">Are you a school? Contact AuraEON</h2>
 <p>If you represent an educational institution and you'd like to use AuraEON, the fastest path is the dedicated page for schools where you'll find the video, downloadable brochures and the request form (we reply within 48 business hours):</p>

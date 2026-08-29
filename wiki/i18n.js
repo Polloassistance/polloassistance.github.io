@@ -255,16 +255,16 @@
 
             // ============= Phase history page (F.7) =============
             'history.title': 'Phase history',
-            'history.card_desc': "Pollo Assistance's evolution from its first version to today. Full changelog.",
-            'history.subtitle': "Pollo Assistance's evolution, milestone by milestone. From the initial chat to the full developer ecosystem.",
-            'history.intro': 'This page documents the milestones added to Pollo Assistance over time. Each block groups a coherent set of features released together. The most recent block is highlighted in orange at the top.',
+            'history.card_desc': "Pollo Assistance's evolution from Phase A to Phase F. Full changelog.",
+            'history.subtitle': "Pollo Assistance's evolution, phase by phase. From the initial chat to the full developer ecosystem.",
+            'history.intro': 'This page documents the milestones added to Pollo Assistance over time. Each "phase" groups a coherent set of features released together. The most recent phase is highlighted in orange at the top.',
             'history.next_title': "What's coming next",
-            'history.next_intro': 'Pollo Assistance v1 is feature-complete. Future improvements expected:',
-            'history.next_1': '<strong>Own end-to-end domain</strong>: <code>polloassistance.com</code> with Auth domains, OpenGraph, sitemap and full SEO.',
+            'history.next_intro': 'After F.7, Pollo Assistance is feature-complete for v1. Future improvements expected:',
+            'history.next_1': '<strong>Phase G</strong>: end-to-end <code>polloassistance.com</code> domain (Auth domains, OpenGraph, sitemap, full SEO).',
             'history.next_2': '<strong>Public extension marketplace</strong>: where devs publish and users install community extensions.',
             'history.next_3': '<strong>Programmable API</strong>: external apps will be able to call Pollo Assistance via API token.',
             'history.highlight_title': 'An ecosystem built piece by piece',
-            'history.highlight_desc': 'Each milestone added a specific capability without breaking the previous ones. The architecture (Firebase Hosting + Firestore + Cloudflare Workers, no Cloud Storage, no monthly subscriptions) has stayed the same since the early days.',
+            'history.highlight_desc': 'Each phase added a specific capability without breaking the previous ones. The architecture (Firebase Hosting + Firestore + Cloudflare Workers, no Cloud Storage, no monthly subscriptions) has stayed the same since Phase B.',
 
             // Phase F (current)
             'history.f.title': 'Pollo CODE — developer ecosystem',
@@ -586,16 +586,16 @@
 
             // ============= Página de historial de fases (F.7) =============
             'history.title': 'Historial de fases',
-            'history.card_desc': 'La evolución de Pollo Assistance desde su primera versión hasta hoy. Changelog completo.',
-            'history.subtitle': 'La evolución de Pollo Assistance, etapa por etapa. Del chat inicial al ecosistema developer completo.',
-            'history.intro': 'Esta página documenta los hitos añadidos a Pollo Assistance a lo largo del tiempo. Cada bloque agrupa un conjunto coherente de funcionalidades lanzadas juntas. El bloque más reciente se resalta en naranja arriba.',
+            'history.card_desc': 'La evolución de Pollo Assistance desde la Fase A hasta la Fase F. Changelog completo.',
+            'history.subtitle': 'La evolución de Pollo Assistance, fase por fase. Del chat inicial al ecosistema developer completo.',
+            'history.intro': 'Esta página documenta los hitos añadidos a Pollo Assistance a lo largo del tiempo. Cada "fase" agrupa un conjunto coherente de funcionalidades lanzadas juntas. La fase más reciente se resalta en naranja arriba.',
             'history.next_title': 'Qué viene después',
-            'history.next_intro': 'Pollo Assistance v1 es feature-complete. Mejoras futuras previstas:',
-            'history.next_1': '<strong>Dominio propio end-to-end</strong>: <code>polloassistance.com</code> con Auth domains, OpenGraph, sitemap y SEO completo.',
+            'history.next_intro': 'Tras F.7, Pollo Assistance es feature-complete para la v1. Mejoras futuras previstas:',
+            'history.next_1': '<strong>Fase G</strong>: dominio <code>polloassistance.com</code> end-to-end (Auth domains, OpenGraph, sitemap, SEO completo).',
             'history.next_2': '<strong>Marketplace público de extensiones</strong>: donde los devs publiquen y los usuarios instalen extensiones comunitarias.',
             'history.next_3': '<strong>API programable</strong>: apps externas podrán llamar a Pollo Assistance vía token de API.',
             'history.highlight_title': 'Un ecosistema construido pieza a pieza',
-            'history.highlight_desc': 'Cada etapa añadió una capacidad concreta sin romper las anteriores. La arquitectura (Firebase Hosting + Firestore + Cloudflare Workers, sin Cloud Storage, sin suscripciones mensuales) se ha mantenido igual desde los primeros pasos.',
+            'history.highlight_desc': 'Cada fase añadió una capacidad concreta sin romper las anteriores. La arquitectura (Firebase Hosting + Firestore + Cloudflare Workers, sin Cloud Storage, sin suscripciones mensuales) se ha mantenido igual desde la fase B.',
 
             // Fase F (actual)
             'history.f.title': 'Pollo CODE — ecosistema developer',

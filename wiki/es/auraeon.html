@@ -241,98 +241,6 @@
     <p>AuraEON es una versión educativa de Pollo Assistance diseñada para colegios, institutos y universidades. Usa el mismo motor de IA por debajo (con todos los 20+ modelos y el cerebro selector) pero adaptado al contexto escolar: filtros de contenido apropiados a la edad, panel del profesor, integración con sistemas de gestión escolar y herramientas específicas de clase. <strong>Gratis para instituciones</strong>, gestionado íntegramente desde <a href="https://auraeon.es">auraeon.es</a>.</p>
 </div>
 
-<h2>Lo que AuraEON te ofrece (sea cual sea tu rol)</h2>
-<p>Estas son las funcionalidades disponibles para <strong>cualquier usuario de AuraEON</strong> — sea profesor particular, alumno, orientador o un centro educativo. No hace falta ser institución para usarlas.</p>
-
-<h3>🛠 AURA con herramientas (Tools)</h3>
-<p>AURA <strong>no solo conversa: actúa</strong>. Cuenta con un sistema de <em>function calling</em> que le permite ejecutar tareas reales desde la misma conversación. Cuando le pides algo (sugerir una dinámica, mediar un conflicto, crear un ejercicio…), AURA invoca la herramienta correspondiente, la ejecuta y te resume el resultado en lenguaje natural.</p>
-
-<div class="callout education">
-    <strong>Ejemplo:</strong> <em>"AURA, dame una dinámica de cohesión para 14 años de 30 min y luego ponles un ejercicio de reflexión"</em> → AURA llama a <code>sugerir_dinamica</code> y a <code>crear_ejercicio</code> automáticamente, ambas en el mismo turno.
-</div>
-
-<div class="feature-grid">
-    <div class="feature-card">
-        <span class="fc-icon">🧠</span>
-        <h4>crear_sociograma</h4>
-        <p>Prepara un sociograma del aula (afinidad, colaboración, liderazgo, rechazo) con la pregunta que tú decidas.</p>
-    </div>
-    <div class="feature-card">
-        <span class="fc-icon">🔄</span>
-        <h4>actualizar_sociograma</h4>
-        <p>Añade, quita o cambia el tipo de relación entre dos alumnos del sociograma.</p>
-    </div>
-    <div class="feature-card">
-        <span class="fc-icon">🎯</span>
-        <h4>sugerir_dinamica</h4>
-        <p>Banco de +12 dinámicas (cohesión, emociones, mediación, autoestima, comunicación, inclusión, normas) filtrable por edad y duración. Disponible también en chat rápido.</p>
-    </div>
-    <div class="feature-card">
-        <span class="fc-icon">🤝</span>
-        <h4>plan_mediacion</h4>
-        <p>Plan estructurado en 3-5 pasos para mediar un conflicto. Si la urgencia es alta, recomienda escalar. Disponible también en chat rápido.</p>
-    </div>
-    <div class="feature-card">
-        <span class="fc-icon">📝</span>
-        <h4>crear_ejercicio</h4>
-        <p>Crea y asigna ejercicios a la clase: respuesta corta, reflexión larga, opciones múltiples o valoración 1-5.</p>
-    </div>
-    <div class="feature-card">
-        <span class="fc-icon">📢</span>
-        <h4>enviar_anuncio</h4>
-        <p>Publica un anuncio en el foro del aula con prioridad (normal/importante/urgente).</p>
-    </div>
-    <div class="feature-card">
-        <span class="fc-icon">📊</span>
-        <h4>analizar_clima</h4>
-        <p>Análisis numérico + textual del clima del aula a partir del sociograma. Score de 0-10.</p>
-    </div>
-    <div class="feature-card">
-        <span class="fc-icon">📜</span>
-        <h4>consultar / actualizar_normas</h4>
-        <p>Lee o reescribe las normas de convivencia del aula. Solo el profesor dueño puede modificarlas.</p>
-    </div>
-</div>
-
-<div class="callout warning">
-    <strong>Importante:</strong> AURA usa estas tools solo cuando tu intención es clara. Las tools que mutan datos (sociograma, ejercicios, anuncios…) <strong>solo funcionan si eres el profesor dueño del aula</strong>. En chat rápido AURA sólo expone tools que no necesitan aula (sugerir dinámica, plan mediación).
-</div>
-
-<h3>📝 Sistema de ejercicios profesor ↔ alumno</h3>
-<p>Cada aula tiene una pestaña de <strong>Ejercicios</strong> donde el profesor (o AURA, mediante tools) crea tareas que los alumnos completan en la propia plataforma. Cuatro tipos disponibles:</p>
-
-<table class="compare-table">
-    <thead>
-        <tr><th>Tipo</th><th>Para qué</th><th>Cómo responde el alumno</th></tr>
-    </thead>
-    <tbody>
-        <tr><td><strong>📝 Texto</strong></td><td>Respuesta corta (1-3 líneas)</td><td>Caja de texto pequeña</td></tr>
-        <tr><td><strong>💭 Reflexión</strong></td><td>Respuesta larga, reflexiva</td><td>Textarea grande</td></tr>
-        <tr><td><strong>☑ Multichoice</strong></td><td>Opciones cerradas</td><td>Radio buttons</td></tr>
-        <tr><td><strong>⭐ Rating 1-5</strong></td><td>Valoración numérica</td><td>5 botones clicables</td></tr>
-    </tbody>
-</table>
-
-<p>El profesor revisa cada entrega, deja feedback breve y pone una nota de 0 a 10. Los alumnos ven sus ejercicios pendientes, completados y revisados.</p>
-
-<div class="callout tip">
-    <strong>Caso de uso real:</strong> al final de cada semana, AURA puede crear automáticamente un ejercicio de tipo "rating" para que los alumnos valoren cómo se han sentido del 1 al 5. El profesor recibe el agregado y puede actuar antes de que un mal clima escale.
-</div>
-
-<h3>🎨 Personalización del aula</h3>
-<p>Cada aula puede tener su propia identidad visual:</p>
-<ul>
-    <li><strong>Color de tema</strong> — accent color que se aplica a los detalles del aula.</li>
-    <li><strong>Logo</strong> — imagen identificativa (URL).</li>
-    <li><strong>Lema (motto)</strong> — frase corta que define el espíritu del grupo.</li>
-    <li><strong>Nivel educativo, asignatura, idioma</strong> — para que AURA adapte sus respuestas al contexto correcto.</li>
-    <li><strong>Permisos de alumnos</strong> — qué pueden hacer (postear en el foro, mensajear compañeros, ver el sociograma, ver respuestas de otros).</li>
-    <li><strong>Normas de convivencia</strong> — lista editable (máximo 20). AURA las consulta y, si el profesor lo pide, las actualiza.</li>
-</ul>
-<p>Cuando AURA construye respuestas para el aula, <strong>tiene en cuenta las normas guardadas</strong> y las cita si son relevantes para resolver un conflicto o explicar un comportamiento.</p>
-
-<hr style="margin: 32px 0; border: none; border-top: 1px solid #e0e0e0;">
-
 <h2>Dos formas de usar AuraEON</h2>
 
 <h3 style="color:#1565C0">🏢 AuraEON estándar — para particulares</h3>
@@ -394,7 +302,90 @@
     <li><strong>Modelos restringidos</strong>: desactivados modelos que no son apropiados para entorno escolar.</li>
 </ul>
 
-<!-- (Las secciones de tools, ejercicios y personalización se han movido arriba, antes de "Dos formas de usar AuraEON", para que se vea que están disponibles para TODOS los usuarios, no solo instituciones.) -->
+<h2>🛠 Herramientas de AURA (Tools) <span class="status-badge education">F.8</span></h2>
+<p>Desde F.8, AURA <strong>no solo conversa: actúa</strong>. Cuenta con un sistema de <em>function calling</em> que le permite ejecutar tareas reales en tu aula desde la misma conversación. Cuando le pides algo (crear un ejercicio, hacer un sociograma, mediar un conflicto…), AURA invoca la herramienta correspondiente, la ejecuta y te resume el resultado en lenguaje natural.</p>
+
+<div class="callout education">
+    <strong>Ejemplo:</strong> <em>"AURA, crea un sociograma de afinidad para 2ºA y luego ponles un ejercicio de reflexión sobre cómo se sienten esta semana"</em> → AURA llama a <code>crear_sociograma</code> y a <code>crear_ejercicio</code> automáticamente, ambas en el mismo turno.
+</div>
+
+<div class="feature-grid">
+    <div class="feature-card">
+        <span class="fc-icon">🧠</span>
+        <h4>crear_sociograma</h4>
+        <p>Prepara un sociograma del aula (afinidad, colaboración, liderazgo, rechazo) con la pregunta que tú decidas.</p>
+    </div>
+    <div class="feature-card">
+        <span class="fc-icon">🔄</span>
+        <h4>actualizar_sociograma</h4>
+        <p>Añade, quita o cambia el tipo de relación entre dos alumnos del sociograma. Sustituye al viejo sistema inline.</p>
+    </div>
+    <div class="feature-card">
+        <span class="fc-icon">🎯</span>
+        <h4>sugerir_dinamica</h4>
+        <p>Busca en el banco de +12 dinámicas (cohesión, emociones, mediación, autoestima, comunicación, inclusión, normas) por edad y duración.</p>
+    </div>
+    <div class="feature-card">
+        <span class="fc-icon">🤝</span>
+        <h4>plan_mediacion</h4>
+        <p>Plan estructurado en 3-5 pasos para mediar un conflicto. Si la urgencia es alta, recomienda escalar a dirección.</p>
+    </div>
+    <div class="feature-card">
+        <span class="fc-icon">📝</span>
+        <h4>crear_ejercicio</h4>
+        <p>Crea y asigna ejercicios a la clase: respuesta corta, reflexión larga, opciones múltiples o valoración 1-5. Con plazo configurable.</p>
+    </div>
+    <div class="feature-card">
+        <span class="fc-icon">📢</span>
+        <h4>enviar_anuncio</h4>
+        <p>Publica un anuncio en el foro del aula con prioridad (normal/importante/urgente).</p>
+    </div>
+    <div class="feature-card">
+        <span class="fc-icon">📊</span>
+        <h4>analizar_clima</h4>
+        <p>Análisis numérico + textual del clima del aula a partir del sociograma. Score de 0-10 e interpretación.</p>
+    </div>
+    <div class="feature-card">
+        <span class="fc-icon">📜</span>
+        <h4>consultar / actualizar_normas</h4>
+        <p>Lee o reescribe las normas de convivencia del aula. Solo el profesor dueño puede modificarlas.</p>
+    </div>
+</div>
+
+<div class="callout warning">
+    <strong>Importante:</strong> AURA usa estas tools solo cuando tu intención es clara. Si no lo es, te pregunta primero. Las tools que mutan datos (crear sociograma, ejercicios, anuncios…) <strong>solo funcionan si eres el profesor dueño del aula</strong>.
+</div>
+
+<h2>📝 Sistema de ejercicios profesor ↔ alumno <span class="status-badge education">F.8</span></h2>
+<p>Cada aula tiene una pestaña de <strong>Ejercicios</strong> donde el profesor (o AURA, mediante tools) crea tareas que los alumnos completan en la propia plataforma. Cuatro tipos disponibles:</p>
+
+<table class="compare-table">
+    <thead>
+        <tr><th>Tipo</th><th>Para qué</th><th>Cómo responde el alumno</th></tr>
+    </thead>
+    <tbody>
+        <tr><td><strong>📝 Texto</strong></td><td>Respuesta corta (1-3 líneas)</td><td>Caja de texto pequeña</td></tr>
+        <tr><td><strong>💭 Reflexión</strong></td><td>Respuesta larga, reflexiva</td><td>Textarea grande</td></tr>
+        <tr><td><strong>☑ Multichoice</strong></td><td>Opciones cerradas</td><td>Radio buttons</td></tr>
+        <tr><td><strong>⭐ Rating 1-5</strong></td><td>Valoración numérica</td><td>5 botones clicables</td></tr>
+    </tbody>
+</table>
+
+<p>El profesor puede revisar cada entrega, dejar feedback breve y poner una nota de 0 a 10. Los alumnos ven sus ejercicios pendientes, completados y revisados desde su panel.</p>
+
+<div class="callout tip">
+    <strong>Caso de uso real:</strong> al final de cada semana, AURA puede crear automáticamente un ejercicio de tipo "rating" para que los alumnos valoren cómo se han sentido del 1 al 5. El profesor recibe el agregado y puede actuar antes de que un mal clima escale.
+</div>
+
+<h2>🎨 Personalización del aula <span class="status-badge education">F.8</span></h2>
+<p>Cada aula puede tener su propia identidad visual:</p>
+<ul>
+    <li><strong>Color de tema</strong> — accent color que se aplica a los detalles del aula.</li>
+    <li><strong>Logo</strong> — imagen identificativa (URL).</li>
+    <li><strong>Lema (motto)</strong> — frase corta que define el espíritu del grupo.</li>
+    <li><strong>Normas de convivencia</strong> — lista editable (máximo 20). AURA puede consultarlas y, si el profesor lo pide, actualizarlas.</li>
+</ul>
+<p>Esto no es solo estética: cuando AURA construye respuestas para el aula, <strong>tiene en cuenta las normas guardadas</strong> y las cita si son relevantes para resolver un conflicto o explicar un comportamiento.</p>
 
 <h2 style="margin-top:32px">¿Eres un centro educativo? Contacta con AuraEON</h2>
 <p>Si representas a una institución educativa y quieres usar AuraEON, lo más rápido es entrar a la página específica para centros donde tienes el vídeo, los brochures descargables y el formulario de solicitud (te respondemos en 48 h laborables):</p>

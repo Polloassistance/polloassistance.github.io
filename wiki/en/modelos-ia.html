@@ -232,43 +232,51 @@
 
 <div class="tier-card">
     <h4>🐔 Palos <span class="status-badge">FREE</span></h4>
-    <div class="tier-desc"><strong>Fast and direct</strong>. Brain: Mistral Small. For short questions, quick translations, casual chat.</div>
+    <div class="tier-desc"><strong>Fast and direct</strong>. For short questions, quick translations, casual chat.</div>
     <div class="tier-pool">
-        <span>llama-3.1-8b-instant</span>
-        <span>laguna-xs2</span>
+        <span>gpt-oss-20b</span>
+        <span>gemini-3.5-flash-lite</span>
+        <span>gpt-oss-20b (Cloudflare)</span>
+        <span>nemotron-3.5-lightning</span>
+        <span>ling-3.0-flash</span>
     </div>
 </div>
 
 <div class="tier-card luces">
     <h4>💡 Luces <span class="status-badge">FREE</span></h4>
-    <div class="tier-desc"><strong>Balanced</strong>. Brain: Llama 3.3 70B. The most-used tier: code, study, medium-depth analysis.</div>
+    <div class="tier-desc"><strong>Balanced</strong>. The most-used tier: code, study, medium-depth analysis.</div>
     <div class="tier-pool">
-        <span>llama-3.3-70b-versatile</span>
-        <span>llama-4-scout</span>
-        <span>qwen3-32b</span>
         <span>gpt-oss-20b</span>
-        <span>ling-flash</span>
-        <span>glm-air</span>
-        <span>nemotron-nano-9b</span>
-        <span>nemotron-nano-30b</span>
-        <span>gemma4-26b</span>
+        <span>qwen3.6-27b</span>
+        <span>mistral-small</span>
+        <span>gemini-2.5-flash</span>
+        <span>gemini-3.5-flash</span>
+        <span>gemini-3.7-flash</span>
+        <span>llama-3.3-70b (Cloudflare)</span>
+        <span>gpt-oss-20b (Cloudflare)</span>
+        <span>nemotron-3.5-lightning</span>
+        <span>ling-3.0-flash</span>
+        <span>laguna-s-2.1</span>
+        <span>dots-3-note</span>
+        <span>gemma-4-26b</span>
     </div>
 </div>
 
 <div class="tier-card summum">
     <h4>⭐ Summum <span class="status-badge premium">PREMIUM RECOMMENDED</span></h4>
-    <div class="tier-desc"><strong>Max power</strong>. Brain: DeepSeek R1 (with GPT-OSS-120B and Llama 3.1 8B as fallbacks). For deep reasoning, complete projects, architecture.</div>
+    <div class="tier-desc"><strong>Max power</strong>. For deep reasoning, complete projects, architecture.</div>
     <div class="tier-pool">
-        <span>llama-3.3-70b-versatile</span>
-        <span>llama-4-scout</span>
-        <span>qwen3-32b</span>
-        <span>gpt-oss-20b</span>
         <span>gpt-oss-120b</span>
-        <span>kimi-k2</span>
+        <span>qwen3.6-27b</span>
         <span>gemini-2.5-flash</span>
-        <span>deepseek-r1</span>
-        <span>mistral-large</span>
-        <span>+ OpenRouter free pool</span>
+        <span>gemini-3.5-flash</span>
+        <span>gemini-3.7-flash</span>
+        <span>gpt-oss-120b (Cloudflare)</span>
+        <span>llama-3.3-70b (Cloudflare)</span>
+        <span>qwen3-30b (Cloudflare)</span>
+        <span>nemotron-3-super-120b</span>
+        <span>laguna-s-2.1</span>
+        <span>dots-3-note</span>
     </div>
 </div>
 
@@ -282,17 +290,16 @@
         <tr><td>Deep reasoning, math, philosophy</td><td>⭐ Summum</td></tr>
         <tr><td>Complete projects, software architecture</td><td>⭐ Summum</td></tr>
         <tr><td>Long-context analysis (huge PDFs)</td><td>⭐ Summum (Gemini Flash, 1M+ tokens)</td></tr>
-        <tr><td>Document/screenshot analysis (vision)</td><td>💡 Luces or ⭐ Summum (Llama 4 Scout)</td></tr>
+        <tr><td>Document/screenshot analysis (vision)</td><td>💡 Luces or ⭐ Summum (Qwen 3.6 or Gemini)</td></tr>
     </tbody>
 </table>
 
 <h2>Multimodal models (vision)</h2>
 <p>Some AIs in the pool understand images. If you attach an image to your message, the brain prioritizes one of these:</p>
 <ul>
-    <li><strong>Llama 4 Scout</strong> &mdash; vision + text, 131K context window.</li>
+    <li><strong>Qwen 3.6 27B</strong> &mdash; vision + text, 131K context, with tool calling.</li>
     <li><strong>Gemini 2.5 Flash</strong> &mdash; vision + text, 1M+ tokens of context.</li>
-    <li><strong>Nemotron Nano 12B VL</strong> &mdash; vision-language compact.</li>
-    <li><strong>Nemotron Omni</strong> &mdash; full multimodal (vision, audio, video).</li>
+    <li><strong>Gemini 3.7 Flash</strong> &mdash; vision + text, 1M+ context, Google's most capable.</li>
 </ul>
 
 <div class="callout tip">
