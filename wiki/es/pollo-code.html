@@ -1,0 +1,502 @@
+<!DOCTYPE html>
+<html lang="es">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Pollo CODE - Wiki de Pollo Assistance</title>
+    <meta name="description" content="Pollo CODE — Wiki de Pollo Assistance">
+    <meta name="author" content="Pollo Assistance Studios">
+    <link rel="icon" type="image/png" href="../logo.png">
+    <link rel="preconnect" href="https://fonts.googleapis.com">
+    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="../wiki.css?v=fased246">
+    <style>
+        .hero-banner {
+            background: linear-gradient(135deg, #fff7e6 0%, #ffe6cc 100%);
+            border-left: 4px solid #FF9800;
+            border-radius: 12px;
+            padding: 22px 24px;
+            margin: 18px 0 28px;
+        }
+        .hero-banner h2 { margin: 0 0 8px; font-size: 18px; color: #1a1a2e; }
+        .hero-banner p { margin: 0; color: #555; font-size: 14px; line-height: 1.6; }
+        .status-badge {
+            display: inline-block;
+            background: linear-gradient(135deg, #4CAF50, #2E7D32);
+            color: white; font-size: 11px; font-weight: 700;
+            padding: 3px 10px; border-radius: 11px; letter-spacing: 0.5px;
+            margin-left: 10px; vertical-align: middle;
+        }
+        .status-badge.beta { background: linear-gradient(135deg, #2196F3, #1565C0); }
+        .status-badge.premium { background: linear-gradient(135deg, #FFD54F, #F57C00); color: #1a1a2e; }
+        .status-badge.education { background: linear-gradient(135deg, #9C27B0, #6A1B9A); }
+
+        .feature-grid {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(260px, 1fr));
+            gap: 14px; margin: 20px 0;
+        }
+        .feature-card {
+            background: #fafafa; border: 1px solid #e8e8e8;
+            border-radius: 10px; padding: 16px 18px;
+            transition: all 0.18s;
+        }
+        .feature-card:hover {
+            border-color: #FF9800;
+            box-shadow: 0 4px 14px rgba(255,152,0,0.12);
+            transform: translateY(-1px);
+        }
+        .feature-card .fc-icon { font-size: 22px; margin-bottom: 8px; display: block; }
+        .feature-card h4 { margin: 0 0 6px; font-size: 14px; color: #1a1a2e; font-weight: 700; }
+        .feature-card p { margin: 0; font-size: 13px; color: #666; line-height: 1.5; }
+
+        .compare-table {
+            width: 100%; border-collapse: collapse;
+            margin: 18px 0; background: white;
+            border: 1px solid #e8e8e8; border-radius: 10px; overflow: hidden;
+        }
+        .compare-table th, .compare-table td {
+            padding: 10px 14px; text-align: left;
+            border-bottom: 1px solid #f0f0f0; font-size: 13px;
+        }
+        .compare-table th {
+            background: #fafafa; color: #1a1a2e; font-weight: 700;
+            font-size: 12px; text-transform: uppercase; letter-spacing: 0.4px;
+        }
+        .compare-table td:first-child { font-weight: 600; color: #1a1a2e; }
+        .compare-table tr:last-child td { border-bottom: none; }
+        .check { color: #4CAF50; font-weight: 700; }
+        .cross { color: #ccc; }
+
+        .callout {
+            border-left: 4px solid #2196F3;
+            background: #E3F2FD; padding: 12px 16px;
+            border-radius: 6px; margin: 16px 0;
+            font-size: 13px; color: #1565C0; line-height: 1.55;
+        }
+        .callout.tip { border-color: #4CAF50; background: #E8F5E9; color: #2E7D32; }
+        .callout.warning { border-color: #FF9800; background: #FFF3E0; color: #E65100; }
+        .callout.danger { border-color: #f44336; background: #FFEBEE; color: #C62828; }
+        .callout.education { border-color: #9C27B0; background: #F3E5F5; color: #6A1B9A; }
+        .callout strong { display: inline; }
+
+        .price-cards {
+            display: grid;
+            grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+            gap: 14px; margin: 20px 0;
+        }
+        .price-card {
+            background: white; border: 2px solid #e8e8e8;
+            border-radius: 14px; padding: 22px 18px;
+            text-align: center; transition: all 0.18s; position: relative;
+        }
+        .price-card.featured {
+            border-color: #FF9800;
+            box-shadow: 0 6px 20px rgba(255,152,0,0.15);
+        }
+        .price-card.featured::before {
+            content: '★'; position: absolute; top: -12px; right: 16px;
+            background: linear-gradient(135deg, #FFD54F, #F57C00);
+            color: white; font-size: 14px; padding: 4px 10px;
+            border-radius: 12px; font-weight: 700;
+        }
+        .price-card .pc-name { font-size: 14px; font-weight: 700; color: #888; text-transform: uppercase; letter-spacing: 0.6px; }
+        .price-card .pc-amount { font-size: 32px; font-weight: 800; color: #1a1a2e; margin: 6px 0 4px; }
+        .price-card .pc-note { font-size: 12px; color: #888; margin-bottom: 14px; }
+        .price-card ul { list-style: none; padding: 0; margin: 0; text-align: left; }
+        .price-card ul li { font-size: 13px; color: #555; padding: 5px 0; border-bottom: 1px dashed #f0f0f0; }
+        .price-card ul li:last-child { border-bottom: none; }
+        .price-card ul li::before { content: '✓'; color: #4CAF50; font-weight: 700; margin-right: 6px; }
+
+        .mono { font-family: 'JetBrains Mono', 'Cascadia Code', ui-monospace, monospace; }
+
+        .tier-card {
+            background: white; border: 1px solid #e8e8e8;
+            border-radius: 12px; padding: 16px 20px; margin: 10px 0;
+            border-left: 4px solid #FF9800;
+        }
+        .tier-card.luces { border-left-color: #2196F3; }
+        .tier-card.summum { border-left-color: #FFD54F; }
+        .tier-card h4 { margin: 0 0 4px; font-size: 16px; color: #1a1a2e; }
+        .tier-card .tier-desc { font-size: 13px; color: #555; margin-bottom: 8px; }
+        .tier-card .tier-pool { display: flex; flex-wrap: wrap; gap: 6px; margin-top: 8px; }
+        .tier-card .tier-pool span {
+            background: #f5f5f5; border: 1px solid #e0e0e0;
+            color: #555; font-size: 11px;
+            padding: 2px 8px; border-radius: 4px;
+            font-family: ui-monospace, monospace;
+        }
+
+        .cta-button {
+            display: inline-block;
+            background: linear-gradient(135deg, #FF9800, #F57C00);
+            color: white !important;
+            padding: 12px 24px;
+            border-radius: 10px;
+            text-decoration: none !important;
+            font-weight: 700;
+            font-size: 14px;
+            transition: all 0.18s;
+            margin: 10px 6px 10px 0;
+            border: none;
+            cursor: pointer;
+        }
+        .cta-button:hover {
+            transform: translateY(-2px);
+            box-shadow: 0 6px 18px rgba(255,152,0,0.35);
+        }
+        .cta-button.purple {
+            background: linear-gradient(135deg, #9C27B0, #6A1B9A);
+        }
+        .cta-button.purple:hover {
+            box-shadow: 0 6px 18px rgba(156,39,176,0.35);
+        }
+        .cta-button.secondary {
+            background: white;
+            color: #FF9800 !important;
+            border: 2px solid #FF9800;
+        }
+
+        .credit-counter {
+            display: inline-flex; align-items: center; gap: 6px;
+            background: rgba(255,152,0,0.12);
+            color: #E65100; font-family: ui-monospace, monospace;
+            font-weight: 700; font-size: 13px;
+            padding: 3px 10px; border-radius: 6px;
+        }
+    </style>
+</head>
+<body>
+    <nav class="wiki-navbar">
+        <div class="wiki-navbar-inner">
+            <div class="wiki-navbar-brand">
+                <a href="../../"><img src="../logo.png" alt="" style="width:24px;height:24px;border-radius:5px;vertical-align:middle;margin-right:6px;">Pollo Assistance</a>
+                <span class="wiki-label">Wiki</span>
+            </div>
+            <div class="wiki-navbar-links">
+                <a href="../../">Inicio</a>
+                <a href="./">Wiki</a>
+                <a href="https://polloassistance.com" class="wiki-cta">Abrir app</a>
+                <select id="wikiLangSwitch" onchange="switchWikiLang(this.value)" style="background:white; border:1px solid #ddd; border-radius:6px; padding:4px 8px; font-size:12px; font-weight:600; cursor:pointer; margin-left:8px;">
+                    <option value="en">🇬🇧 EN</option>
+                    <option value="es">🇪🇸 ES</option>
+                </select>
+                <div id="wikiUserWidget" style="display:none; align-items:center; gap:8px; margin-left:10px;">
+                    <img id="wikiUserAvatar" src="../logo.png" alt="" style="width:30px; height:30px; border-radius:50%; object-fit:cover;">
+                    <span id="wikiUserName" style="font-size:13px; font-weight:600; max-width:120px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"></span>
+                    <button id="wikiLogoutBtn" style="background:none; border:1px solid #ddd; border-radius:6px; padding:3px 8px; cursor:pointer; font-size:11px;" title="Cerrar sesión">↩</button>
+                </div>
+                <button id="wikiLoginBtn" onclick="wikiOpenLogin()" style="background:linear-gradient(135deg,#FF9800,#F57C00); color:white; border:none; padding:6px 14px; border-radius:8px; cursor:pointer; font-size:13px; font-weight:600; margin-left:8px;">Iniciar sesión</button>
+            </div>
+        </div>
+    </nav>
+
+    <div class="wiki-layout">
+        <aside class="wiki-sidebar">
+            <h3>General</h3>
+            <ul>
+                <li><a href="./">Inicio</a></li>
+                <li><a href="pollo-assistance.html">Pollo Assistance</a></li>
+                <li><a href="primeros-pasos.html">Primeros pasos</a></li>
+            </ul>
+            <h3>Módulos</h3>
+            <ul>
+                <li><a href="pollo-study.html">Pollo STUDY</a></li>
+                <li><a href="pollo-code.html" class="active">Pollo CODE</a></li>
+                <li><a href="pollo-files.html">Pollo FILES</a></li>
+                <li><a href="pollo-go.html">Pollo GO</a></li>
+                <li><a href="extensiones.html">Extensiones</a></li>
+                <li><a href="app-escritorio.html">App de escritorio</a></li>
+            </ul>
+            <h3>Plataforma</h3>
+            <ul>
+                <li><a href="modelos-ia.html">Modelos de IA</a></li>
+                <li><a href="pollo-utility.html">Pollo Utility</a></li>
+                <li><a href="personalizar.html">Skills, conectores y tareas</a></li>
+                <li><a href="precios.html">Precios y Premium</a></li>
+                <li><a href="auraeon.html">AuraEON</a></li>
+            </ul>
+            <h3>Ayuda</h3>
+            <ul>
+                <li><a href="preguntas-frecuentes.html">Preguntas frecuentes</a></li>
+            </ul>
+        </aside>
+        <main class="wiki-content">
+<h1>Pollo CODE</h1>
+<p class="wiki-subtitle">Pollo Assistance dentro de tu terminal. Lee y escribe los archivos de tu proyecto y ejecuta comandos de verdad, en la carpeta donde estés.</p>
+
+<table class="wiki-info-table">
+    <tr><th>Qué es</th><td>Un programa de terminal que se instala en tu ordenador</td></tr>
+    <tr><th>Comando</th><td><code class="mono">pollo</code></td></tr>
+    <tr><th>Necesita</th><td>Node.js 18 o más nuevo</td></tr>
+    <tr><th>Sistemas</th><td>Windows, macOS y Linux</td></tr>
+    <tr><th>Descarga</th><td><a href="../../code.html">polloassistance.com/code.html</a></td></tr>
+    <tr><th>Cuota</th><td>La misma que la web: no se paga aparte</td></tr>
+</table>
+
+<div class="callout warning">
+    <strong>Esto cambió en octubre de 2026.</strong> Antes Pollo CODE era un editor
+    dentro del navegador, con workspaces y visor en vivo. Ahora es un programa de
+    terminal. Esta página describe lo que hay hoy.
+</div>
+
+<h2>Instalarlo</h2>
+<p>Una sola línea. La página de descarga detecta tu sistema y te da la que te toca.</p>
+
+<table class="compare-table">
+    <thead><tr><th>Sistema</th><th>Comando</th></tr></thead>
+    <tbody>
+        <tr><td>Windows</td><td><code class="mono">irm https://polloassistance.com/descargas/instalar.ps1 | iex</code></td></tr>
+        <tr><td>macOS y Linux</td><td><code class="mono">curl -fsSL https://polloassistance.com/descargas/instalar.sh | sh</code></td></tr>
+    </tbody>
+</table>
+
+<div class="callout tip">
+    Si no tienes Node.js, el instalador te lo dice y te explica cómo ponerlo, en vez
+    de fallar con un error raro a mitad.
+</div>
+
+<h2>Vincular tu ordenador</h2>
+<p>
+    Al escribir <code class="mono">pollo login</code>, la terminal te enseña un código
+    de ocho letras y te manda a una página para confirmarlo desde tu cuenta. Tecleas el
+    código, lo apruebas y la terminal queda vinculada.
+</p>
+<p>
+    <strong>El código que ves no es la llave.</strong> La llave de verdad la genera tu
+    ordenador, nunca se enseña por pantalla y nunca viaja por donde la puedas leer. Por
+    eso el código puede ser corto y fácil de teclear sin que eso debilite nada: con él
+    solo no se entra a ninguna parte.
+</p>
+<!-- Lo de arriba cuesta de ver solo con texto: hay DOS secretos y solo uno se
+     enseña. El dibujo separa los dos caminos, que es justo lo que hay que
+     entender. -->
+<figure style="margin:22px 0;">
+    <svg viewBox="0 0 680 270" width="100%" role="img"
+         aria-label="El código corto viaja por la pantalla y caduca en diez minutos; la llave la genera tu ordenador, nunca se enseña y no viaja por donde puedas leerla."
+         style="max-width:680px; display:block;">
+        <g font-family="Inter, system-ui, sans-serif">
+            <!-- Columna 1: tu ordenador -->
+            <rect x="8" y="34" width="190" height="212" rx="12" fill="#fafafa" stroke="#e4e4e4"/>
+            <text x="103" y="20" font-size="13" font-weight="700" fill="#1a1a2e" text-anchor="middle">Tu ordenador</text>
+
+            <text x="24" y="62" font-size="12" fill="#555">Al escribir</text>
+            <text x="24" y="80" font-size="12.5" font-weight="600" fill="#1a1a2e">pollo login</text>
+
+            <rect x="24" y="96" width="158" height="62" rx="9" fill="#fff7ed" stroke="#f0cfa8"/>
+            <text x="36" y="116" font-size="11.5" font-weight="700" fill="#C96104">LA LLAVE</text>
+            <text x="36" y="133" font-size="11" fill="#555">32 bytes al azar</text>
+            <text x="36" y="149" font-size="11" fill="#555">no se enseña nunca</text>
+
+            <rect x="24" y="168" width="158" height="58" rx="9" fill="#fff" stroke="#e4e4e4"/>
+            <text x="36" y="188" font-size="11.5" font-weight="700" fill="#1a1a2e">EL CÓDIGO</text>
+            <text x="36" y="205" font-size="12" font-weight="600" fill="#C96104"
+                  font-family="ui-monospace, Consolas, monospace">V4BK-28KB</text>
+            <text x="36" y="220" font-size="10.5" fill="#777">caduca en 10 min</text>
+
+            <!-- El camino del código: visible -->
+            <path d="M198 197 H 300" stroke="#C96104" stroke-width="2" fill="none"/>
+            <path d="M296 192 l 8 5 l -8 5" fill="none" stroke="#C96104" stroke-width="2"/>
+            <text x="249" y="188" font-size="11" fill="#C96104" text-anchor="middle">lo tecleas tú</text>
+
+            <!-- El camino de la llave: NO sale -->
+            <path d="M198 127 H 290" stroke="#bbb" stroke-width="2" stroke-dasharray="5 5" fill="none"/>
+            <line x1="252" y1="112" x2="272" y2="142" stroke="#d32f2f" stroke-width="2.5"/>
+            <line x1="272" y1="112" x2="252" y2="142" stroke="#d32f2f" stroke-width="2.5"/>
+            <text x="262" y="160" font-size="11" fill="#d32f2f" text-anchor="middle">no sale de aquí</text>
+
+            <!-- Columna 2: la web -->
+            <rect x="306" y="34" width="180" height="212" rx="12" fill="#fafafa" stroke="#e4e4e4"/>
+            <text x="396" y="20" font-size="13" font-weight="700" fill="#1a1a2e" text-anchor="middle">La web, con tu sesión</text>
+            <text x="322" y="66" font-size="12" fill="#555">Escribes el código</text>
+            <text x="322" y="84" font-size="12" fill="#555">y lo apruebas.</text>
+            <text x="322" y="112" font-size="11.5" fill="#777">Aquí ya se sabe</text>
+            <text x="322" y="128" font-size="11.5" fill="#777">quién eres: has</text>
+            <text x="322" y="144" font-size="11.5" fill="#777">entrado con tu</text>
+            <text x="322" y="160" font-size="11.5" fill="#777">cuenta.</text>
+
+            <path d="M486 140 H 568" stroke="#C96104" stroke-width="2" fill="none"/>
+            <path d="M564 135 l 8 5 l -8 5" fill="none" stroke="#C96104" stroke-width="2"/>
+
+            <!-- Columna 3: el resultado -->
+            <rect x="574" y="34" width="98" height="212" rx="12" fill="#fff7ed" stroke="#f0cfa8"/>
+            <text x="623" y="20" font-size="13" font-weight="700" fill="#1a1a2e" text-anchor="middle">El servidor</text>
+            <text x="586" y="108" font-size="11.5" fill="#555">Guarda solo</text>
+            <text x="586" y="126" font-size="11.5" fill="#555">una HUELLA</text>
+            <text x="586" y="144" font-size="11.5" fill="#555">de la llave,</text>
+            <text x="586" y="162" font-size="11.5" fill="#555">no la llave.</text>
+        </g>
+    </svg>
+    <figcaption style="font-size:12px; color:#777; margin-top:6px;">
+        Por eso el código puede ser corto: con él solo no se abre nada.
+    </figcaption>
+</figure>
+
+<p>
+    Cada máquina vinculada aparece en <a href="../../settings.html">tus ajustes</a>, y
+    puedes echar a cualquiera de ellas sin tocar las demás. Al revocarla, esa terminal
+    deja de identificarte en la siguiente petición.
+</p>
+
+<h2>Cómo se usa</h2>
+<p>Trabaja en la carpeta donde estés. No hay que abrir ni configurar un proyecto.</p>
+
+<table class="compare-table">
+    <thead><tr><th>Comando</th><th>Qué hace</th></tr></thead>
+    <tbody>
+        <tr><td><code class="mono">pollo</code></td><td>Abre la sesión en esta carpeta</td></tr>
+        <tr><td><code class="mono">pollo login</code></td><td>Vincula este ordenador con tu cuenta</td></tr>
+        <tr><td><code class="mono">pollo logout</code></td><td>Borra la llave de este ordenador</td></tr>
+        <tr><td><code class="mono">pollo modelos</code></td><td>Los modelos y cuál tienes puesto</td></tr>
+        <tr><td><code class="mono">pollo --demo</code></td><td>Ver la interfaz sin cuenta y sin gastar cuota</td></tr>
+        <tr><td><code class="mono">pollo --nuevo</code></td><td>Empezar sin retomar la conversación anterior</td></tr>
+    </tbody>
+</table>
+
+<p>Y dentro de la sesión:</p>
+<table class="compare-table">
+    <thead><tr><th>Dentro</th><th>Qué hace</th></tr></thead>
+    <tbody>
+        <tr><td><code class="mono">/modelo</code></td><td>Cambiar de modelo a mitad</td></tr>
+        <tr><td><code class="mono">/cuota</code></td><td>Lo que te queda hoy</td></tr>
+        <tr><td><code class="mono">/limpiar</code></td><td>Empezar de cero y olvidar lo hablado</td></tr>
+        <tr><td><code class="mono">/ayuda</code></td><td>Lo que se puede hacer</td></tr>
+        <tr><td><code class="mono">/salir</code></td><td>Cerrar la sesión</td></tr>
+    </tbody>
+</table>
+
+<div class="callout">
+    <strong>Ctrl+C una vez corta el turno y conserva lo hecho; dos veces sale.</strong>
+    Un Ctrl+C que mata la sesión entera a mitad de trabajo es una forma de perder cosas.
+</div>
+
+<h2>Lo que puede hacer</h2>
+<div class="feature-grid">
+    <div class="feature-card" data-entra>
+        <h4>Leer tus archivos</h4>
+        <p>Mira la carpeta y abre lo que necesita para entender el proyecto.</p>
+    </div>
+    <div class="feature-card" data-entra>
+        <h4>Escribir y corregir</h4>
+        <p>Crea archivos, cambia trozos concretos y borra lo que sobra.</p>
+    </div>
+    <div class="feature-card" data-entra>
+        <h4>Ejecutar comandos</h4>
+        <p>Lanza lo que haga falta y lee la salida para corregirse.</p>
+    </div>
+    <div class="feature-card" data-entra>
+        <h4>Ejecutar Python</h4>
+        <p>Scripts de verdad, con su resultado de vuelta.</p>
+    </div>
+</div>
+
+<h2>La conversación se queda en la carpeta</h2>
+<p>
+    Al trabajar en una carpeta, Pollo deja dentro un <code class="mono">.pollo/</code>
+    con lo hablado. Si vuelves días después, sigue por donde ibais.
+</p>
+<p>
+    <strong>Se busca hacia arriba, como hace git.</strong> Si abres la terminal en
+    <code class="mono">mi-proyecto/src/componentes</code>, retoma la conversación de
+    <code class="mono">mi-proyecto</code>: es el mismo proyecto, y lo contrario sería
+    tener una conversación distinta en cada subcarpeta.
+</p>
+<div class="callout tip">
+    <strong>Está en tu ordenador a propósito, no en la nube.</strong> La conversación
+    lleva dentro trozos de tus archivos, y subir eso a un servidor sería sacar tu
+    código de tu máquina para resolver algo que se resuelve con un archivo al lado.
+    Además funciona sin conexión y no gasta cuota.
+</div>
+<div class="callout warning">
+    <strong>Tu llave nunca se guarda ahí.</strong> Vive aparte, en tu carpeta personal.
+    Y el <code class="mono">.pollo/</code> trae su propio
+    <code class="mono">.gitignore</code>, para que la conversación no acabe en un commit
+    por descuido.
+</div>
+
+<h2>Los modelos</h2>
+<p>
+    Los mismos tres de la web, y los eliges tú. Por defecto viene
+    <strong>Razonamiento</strong>, porque Complejo se come la cuota del día en pocos
+    turnos y eso conviene elegirlo a mano, sabiendo lo que cuesta.
+</p>
+
+<h2>Por qué no tiene dependencias</h2>
+<p>
+    Node ya trae todo lo que esto necesita. Cada dependencia es una cosa más que puede
+    romperse, que hay que actualizar y que alguien tiene que auditar — y aquí se trata
+    de un programa que lee y escribe en tus carpetas, así que cuanto menos código de
+    terceros corra ahí dentro, mejor.
+</p>
+
+<div style="margin: 20px 0;">
+    <a href="../../code.html" class="cta-button purple">Descargar Pollo CODE</a>
+    <a href="primeros-pasos.html" class="cta-button secondary">Primeros pasos</a>
+</div>
+</main>
+    </div>
+
+    <footer class="wiki-footer">
+        © 2024-2026 Pollo Assistance Studios. Todos los derechos reservados.
+    </footer>
+
+    <div id="wikiLoginModal" style="display:none; position:fixed; inset:0; background:rgba(0,0,0,0.5); z-index:9999; align-items:center; justify-content:center;">
+        <div style="background:white; padding:32px; border-radius:18px; max-width:380px; width:90%;">
+            <div style="text-align:center; margin-bottom:20px;">
+                <img src="../logo.png" style="width:60px; height:60px; border-radius:14px;">
+                <h2 style="font-size:22px; color:#1a1a2e; margin:10px 0 0;">Iniciar sesión</h2>
+            </div>
+            <input type="email" id="wikiEmail" placeholder="Correo" style="width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:10px; font-size:14px; margin-bottom:10px;">
+            <input type="password" id="wikiPassword" placeholder="Contraseña" style="width:100%; padding:12px 14px; border:1px solid #ddd; border-radius:10px; font-size:14px; margin-bottom:14px;">
+            <button onclick="wikiDoLogin()" style="width:100%; background:linear-gradient(135deg,#FF9800,#F57C00); color:white; border:none; padding:12px; border-radius:10px; font-size:15px; font-weight:600; cursor:pointer; margin-bottom:8px;">Iniciar sesión</button>
+            <button onclick="wikiDoSignup()" style="width:100%; background:white; color:#FF9800; border:1px solid #FF9800; padding:12px; border-radius:10px; font-size:14px; font-weight:600; cursor:pointer; margin-bottom:8px;">Registrarse</button>
+            <button onclick="document.getElementById('wikiLoginModal').style.display='none'" style="width:100%; background:none; border:none; color:#999; padding:8px; cursor:pointer;">Cerrar</button>
+            <p id="wikiLoginError" style="color:#f44336; font-size:13px; text-align:center; margin-top:8px; min-height:18px;"></p>
+        </div>
+    </div>
+
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+    <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+    <script>
+    (function(){
+        var cfg={apiKey:'AIzaSyAF-Cnq56kTOZ8ltRfi2lmJNyaeronW0Zw',authDomain:'pollo-assistance.firebaseapp.com',projectId:'pollo-assistance',storageBucket:'pollo-assistance.firebasestorage.app',messagingSenderId:'823252162365',appId:'1:823252162365:web:abc123def456'};
+        if(!firebase.apps.length)firebase.initializeApp(cfg);
+        var auth=firebase.auth(),db=firebase.firestore();
+        window.wikiOpenLogin=function(){document.getElementById('wikiLoginModal').style.display='flex';};
+        window.wikiDoLogin=function(){var e=document.getElementById('wikiEmail').value,p=document.getElementById('wikiPassword').value;auth.signInWithEmailAndPassword(e,p).then(function(){document.getElementById('wikiLoginModal').style.display='none';}).catch(function(err){document.getElementById('wikiLoginError').textContent=err.message;});};
+        window.wikiDoSignup=function(){var e=document.getElementById('wikiEmail').value,p=document.getElementById('wikiPassword').value;auth.createUserWithEmailAndPassword(e,p).then(function(u){if(u.user)u.user.sendEmailVerification();document.getElementById('wikiLoginModal').style.display='none';}).catch(function(err){document.getElementById('wikiLoginError').textContent=err.message;});};
+        var lb=document.getElementById('wikiLogoutBtn');if(lb)lb.onclick=function(){auth.signOut();};
+        auth.onAuthStateChanged(async function(user){
+            var w=document.getElementById('wikiUserWidget'),b=document.getElementById('wikiLoginBtn');
+            if(user){w.style.display='flex';b.style.display='none';var dn=user.email,av=user.photoURL||'../logo.png';
+            try{var doc=await db.collection('users').doc(user.uid).get();if(doc.exists){var d=doc.data();if(d.displayName)dn=d.displayName;if(d.avatarUrl)av=d.avatarUrl;}}catch(e){}
+            document.getElementById('wikiUserName').textContent=dn;
+            if(av&&av.indexOf('logo.png')<0){document.getElementById('wikiUserAvatar').src=av;}
+            else{var l=(dn||'P').charAt(0).toUpperCase();document.getElementById('wikiUserAvatar').src='data:image/svg+xml;utf8,'+encodeURIComponent('<svg xmlns="http://www.w3.org/2000/svg" viewBox="0 0 64 64"><circle cx="32" cy="32" r="32" fill="#FF9800"/><text x="32" y="42" font-family="Arial" font-size="32" font-weight="bold" fill="white" text-anchor="middle">'+l+'</text></svg>');}
+            }else{w.style.display='none';b.style.display='';}
+        });
+    })();
+    </script>
+    <script>
+    (function () {
+        var path = location.pathname;
+        var m = path.match(/\/wiki\/(en|es)\//);
+        var cur = m ? m[1] : 'en';
+        document.addEventListener('DOMContentLoaded', function () {
+            var sel = document.getElementById('wikiLangSwitch');
+            if (sel) sel.value = cur;
+        });
+        window.switchWikiLang = function (target) {
+            if (target !== 'en' && target !== 'es') return;
+            if (target === cur) return;
+            try { localStorage.setItem('wiki_lang', target); } catch (e) {}
+            var newPath = path.replace(/\/wiki\/(en|es)\//, '/wiki/' + target + '/');
+            location.href = newPath + (location.search || '') + (location.hash || '');
+        };
+    })();
+    </script>
+<script src="../../pollo-movimiento.js?v=fased246"></script>
+</body>
+</html>
