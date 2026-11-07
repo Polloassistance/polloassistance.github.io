@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../wiki.css?v=fased252">
+    <link rel="stylesheet" href="../wiki.css?v=fased253">
     <style>
         .hero-banner {
             background: linear-gradient(135deg, #fff7e6 0%, #ffe6cc 100%);
@@ -329,6 +329,51 @@ the steps interleaved in the real order: what it searched, what it ran, what it 
     the step would not be there.
 </div>
 
+<h2>Images <span class="status-badge beta">NEW</span></h2>
+<p>Pollo Utility cannot see images, but it can ask about them. If you attach a photo, it sends the
+image <strong>on its own, with one question</strong>, to a compact Razonamiento that can see, and gets
+back what is in it. It can ask several times ("what does the sign say?", "what colour is the car?").
+In the animation it shows as <strong>"Reading the image"</strong>. It costs the same as Razonamiento,
+and not much: the image does not travel with the whole conversation, only with the question.</p>
+
+<h2>The plan of a task <span class="status-badge beta">NEW</span></h2>
+<p>For a job with several steps, Razonamiento and Complejo make a plan and tick it off as they go.
+You see it at the top of the message as a list of circles:</p>
+<ul>
+    <li><strong>white</strong>: that step has not started yet;</li>
+    <li><strong>yellow</strong>: it is working on it;</li>
+    <li><strong>green</strong>: it is done;</li>
+    <li><strong>red</strong>: it could not be done, and it says why.</li>
+</ul>
+<p>The AI always has it in front of it, so it does not skip steps. Luces, Summum, the desktop app and
+Pollo CODE do it too.</p>
+
+<h2>What it says before getting to work</h2>
+<p>Before searching or writing a file, it may tell you in one sentence what it is about to do ("OK,
+I'll look it up so I don't give you wrong data"). That sentence stays on screen, with the blocks of
+what it did in each part above and below it. What it does not do is give you data before it has it:
+the answer comes at the end.</p>
+
+<h2>When lots of people are using it</h2>
+<p>Pollo Utility runs for free on Cloudflare, with a daily allowance. When that runs out, it carries on
+elsewhere with the <strong>same model</strong>:</p>
+<ul>
+    <li>Razonamiento, on OpenRouter;</li>
+    <li>all three modes, on our own servers on Kaggle, when they are switched on.</li>
+</ul>
+<p>If everything is full, you get a notice:</p>
+<ul>
+    <li><strong>There is a server, but it is busy.</strong> You can <strong>wait your turn</strong>:
+    your message is sent automatically when it is your turn, and you can see your place in the
+    queue. Premium users go first, but one turn in every three goes to whoever has waited longest.</li>
+    <li><strong>Today's allowance is used up.</strong> It tells you when it comes back. Meanwhile,
+    you can try Palos, Luces or Summum.</li>
+</ul>
+<div class="callout">
+    Where each message is processed, and what is kept while you wait in the queue (almost nothing,
+    and only for a few minutes), is explained in the <a href="https://polloassistance.com/privacy.html">privacy policy</a>.
+</div>
+
 <h2>What it costs</h2>
 <p>Pollo Utility spends credits like everything else, but the modes do not cost the same:
 the table above is credits <em>per token</em>. Complex spends considerably more than the
@@ -402,6 +447,6 @@ and Reasoning last far longer on the same credits.</p>
         };
     })();
     </script>
-<script src="../../pollo-movimiento.js?v=fased252"></script>
+<script src="../../pollo-movimiento.js?v=fased253"></script>
 </body>
 </html>

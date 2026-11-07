@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../wiki.css?v=fased252">
+    <link rel="stylesheet" href="../wiki.css?v=fased253">
     <style>
         .hero-banner {
             background: linear-gradient(135deg, #fff7e6 0%, #ffe6cc 100%);
@@ -328,6 +328,51 @@ el orden real: lo que buscó, lo que ejecutó, lo que entregó.</p>
     no aparecería.
 </div>
 
+<h2>Imágenes <span class="status-badge beta">NUEVO</span></h2>
+<p>Pollo Utility no ve imágenes, pero puede preguntar por ellas. Si adjuntas una foto, le pasa
+la imagen <strong>sola, con una pregunta</strong>, a un Razonamiento compacto que sí ve, y le
+vuelve lo que hay. Puede preguntar varias veces («¿qué pone en el cartel?», «¿de qué color es
+el coche?»). En la animación sale como <strong>«Leyendo la imagen»</strong>. Cuesta como
+Razonamiento, y poco: la imagen no viaja con toda la conversación, solo con la pregunta.</p>
+
+<h2>El plan de una tarea <span class="status-badge beta">NUEVO</span></h2>
+<p>Para un trabajo de varios pasos, Razonamiento y Complejo hacen un plan y lo van marcando.
+Lo ves arriba del mensaje como una lista de círculos:</p>
+<ul>
+    <li><strong>blanco</strong>: aún no ha empezado ese paso;</li>
+    <li><strong>amarillo</strong>: lo está haciendo;</li>
+    <li><strong>verde</strong>: ya está hecho;</li>
+    <li><strong>rojo</strong>: no ha podido, y te dice por qué.</li>
+</ul>
+<p>La IA lo tiene siempre delante, así que no se salta pasos. También lo hacen Luces, Summum, la
+app de escritorio y Pollo CODE.</p>
+
+<h2>Lo que dice antes de ponerse a trabajar</h2>
+<p>Antes de buscar o de escribir un archivo, puede decirte en una frase lo que va a hacer
+(«Vale, voy a buscarlo para no darte datos erróneos»). Esa frase se queda a la vista, y encima
+y debajo van los bloques de lo que ha hecho en cada trozo. Lo que no hace es adelantarte datos
+antes de tenerlos: la respuesta va al final.</p>
+
+<h2>Cuando hay mucha gente</h2>
+<p>Pollo Utility corre gratis en Cloudflare, con una cuota diaria. Cuando se acaba, sigue en
+otros sitios con el <strong>mismo modelo</strong>:</p>
+<ul>
+    <li>Razonamiento, en OpenRouter;</li>
+    <li>los tres modos, en servidores propios en Kaggle, cuando están encendidos.</li>
+</ul>
+<p>Si todo está lleno, te sale un aviso:</p>
+<ul>
+    <li><strong>Hay servidor, pero está ocupado.</strong> Puedes <strong>esperar tu turno</strong>:
+    tu mensaje se envía solo cuando te toque, y ves en qué puesto vas. Los Premium van delante,
+    pero de cada tres turnos uno es para quien más lleva esperando.</li>
+    <li><strong>Se ha acabado lo del día.</strong> Te dice a qué hora vuelve. Mientras, puedes
+    probar con Palos, Luces o Summum.</li>
+</ul>
+<div class="callout">
+    Dónde se procesa cada mensaje, y lo que se guarda mientras esperas en la cola (casi nada,
+    y solo unos minutos), lo cuenta la <a href="https://polloassistance.com/privacy.html">política de privacidad</a>.
+</div>
+
 <h2>Lo que gasta</h2>
 <p>Pollo Utility consume créditos como el resto, pero no todos los modos cuestan igual: la
 tabla de arriba son créditos <em>por token</em>. Complejo gasta bastante más que los otros
@@ -401,6 +446,6 @@ Razonamiento te duran mucho más con los mismos créditos.</p>
         };
     })();
     </script>
-<script src="../../pollo-movimiento.js?v=fased252"></script>
+<script src="../../pollo-movimiento.js?v=fased253"></script>
 </body>
 </html>
