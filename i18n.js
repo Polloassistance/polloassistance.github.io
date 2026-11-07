@@ -12,6 +12,7 @@
     // ---------------- KEY-BASED TRANSLATIONS ----------------
     const TRANSLATIONS = {
         en: {
+            'landing.utility_modes': "Three modes: Rápido, Razonamiento and Complejo. Complejo thinks before answering, shows its reasoning step by step and can launch agents for multi-step jobs.",
             'app.name': 'Pollo Assistance',
             'app.tagline': 'All-in-one AI assistant',
             'common.back': '← Back',
@@ -46,7 +47,7 @@
             'nav.start': 'Get started',
             'nav.get_started': 'Get started',
 
-            'footer.tagline': 'Independent AI ecosystem.\nOne-time payment, no subscriptions.',
+            'footer.tagline': 'Independent AI ecosystem.\nFree, with a daily allowance.',
             'footer.copyright': '© 2024-2026 Pollo Assistance Studios. All rights reserved.',
 
             'settings.title': 'Settings',
@@ -107,6 +108,7 @@
             'toast.cache_cleared': 'Cache cleared successfully'
         },
         es: {
+            'landing.utility_modes': "Tres modos: Rápido, Razonamiento y Complejo. Complejo piensa antes de contestar, te enseña su razonamiento por puntos y puede lanzar agentes para trabajos de varios pasos.",
             'app.name': 'Pollo Assistance',
             'app.tagline': 'Tu asistente IA todo en uno',
             'common.back': '← Volver',
@@ -136,7 +138,7 @@
             'nav.wiki': 'Wiki',
             'nav.get_started': 'Empezar',
 
-            'footer.tagline': 'Ecosistema de IA independiente.\nPago único, sin suscripciones.',
+            'footer.tagline': 'Ecosistema de IA independiente.\nGratis, con una cuota diaria.',
             'footer.copyright': '© 2024-2026 Pollo Assistance Studios. Todos los derechos reservados.',
             'nav.open_app': 'Abrir app',
             'nav.features': 'Funciones',
@@ -207,6 +209,59 @@
     // Used to auto-translate text in pages without explicit data-i18n.
     // Order matters: longer phrases first to avoid partial overlaps.
     const PHRASES_ES_EN = [
+        // Portada del 7/11/2026 (frases enteras, antes que las sueltas de abajo)
+        ["Habla con Pollo Utility, nuestro propio modelo, o con Palos, Luces y Summum, que eligen entre una treintena de modelos. Busca en internet, abre páginas, ejecuta código y te entrega archivos.", "Talk to Pollo Utility, our own model, or to Palos, Luces and Summum, which pick from around thirty models. It searches the web, opens pages, runs code and hands you files."],
+        ["Pollo en tu ordenador: trabaja en la carpeta que elijas y pide permiso antes de cambiar nada, con un navegador al lado y un modo en el que nada sale de tu equipo.", "Pollo on your computer: it works in the folder you choose and asks before changing anything, with a browser at its side and a mode where nothing leaves your machine."],
+        ["Más de treinta skills de fábrica (PDF, Excel, presentaciones, gráficas…), más de mil conectores y tareas que se hacen solas.", "Over thirty built-in skills (PDF, Excel, slides, charts…), more than a thousand connectors and tasks that run on their own."],
+        ["Pollo Utility en tres modos, o Palos, Luces y Summum, donde un cerebro selector elige la mejor IA para cada mensaje.", "Pollo Utility in three modes, or Palos, Luces and Summum, where a selector brain picks the best AI for each message."],
+        ["Pollo dentro de tu terminal: lee y escribe los archivos de tu proyecto y ejecuta comandos de verdad en la carpeta donde estés.", "Pollo inside your terminal: it reads and writes your project's files and runs real commands in the folder you're in."],
+        ["Tus archivos en la nube, 2 MB con la cuenta gratis. La IA los lista, los lee, los crea y los edita desde el chat.", "Your files in the cloud, 2 MB with a free account. The AI lists, reads, creates and edits them from the chat."],
+        ["En tu propio navegador: prueba código, calcula y crea archivos que te entrega listos para descargar.", "Right in your browser: it tests code, calculates and creates files that it hands you ready to download."],
+        ["Guarda lo que le pidas recordar y lo busca en otros chats. Se apaga en Ajustes.", "It saves what you ask it to remember and finds it in other chats. You can turn it off in Settings."],
+        ["De los apuntes al examen: sube tus apuntes o PDFs y saca resúmenes, exámenes, flashcards y esquemas.", "From notes to exam: upload your notes or PDFs and get summaries, tests, flashcards and diagrams."],
+        ["Viene puesto Pollo Utility · Razonamiento. Lo cambias en el selector de encima del chat.", "Pollo Utility · Razonamiento comes by default. You change it in the selector above the chat."],
+        ["En la portada, debajo del título, hay una caja para preguntarle algo a Pollo sin registrarte.", "On the home page, under the title, there's a box to ask Pollo something without signing up."],
+        ["Busca en internet cuando lo necesita y debajo de la respuesta te enseña las páginas que ha usado.", "It searches the internet when it needs to and shows the pages it used under the answer."],
+        ["Pollo para el coche: a pantalla completa y manejado con la voz, con navegación y música.", "Pollo for the car: full screen and voice controlled, with navigation and music."],
+        ["En la web, en tu terminal (Pollo CODE) y, en pruebas, como app de escritorio.", "On the web, in your terminal (Pollo CODE) and, in testing, as a desktop app."],
+        ["Sin suscripciones y sin pagar nada: una cuota de uso diaria y otra semanal.", "No subscriptions and nothing to pay: a daily and a weekly usage allowance."],
+        ["Para probarlo no hace falta cuenta. Con una cuenta gratis, 200.000 créditos al día.", "No account needed to try it. With a free account, 200,000 credits a day."],
+        ["Abre una página en un panel al lado del chat y la lee contigo.", "It opens a page in a panel next to the chat and reads it with you."],
+        ["El chat principal. Texto, imágenes y voz, con el modelo que elijas.", "The main chat. Text, images and voice, with the model you choose."],
+        ["No hay fecha para su vuelta: se anunciará en la wiki", "No date for its return: it will be announced in the wiki"],
+        ["Con tu correo o con Google. Son unos segundos.", "With your email or with Google. It takes a few seconds."],
+        ["Todas las partes de Pollo Assistance, con la misma cuenta.", "Every part of Pollo Assistance, with the same account."],
+        ["200.000 créditos al día y 800.000 a la semana", "200,000 credits a day and 800,000 a week"],
+        ["Pollo Utility, Palos, Luces y Summum", "Pollo Utility, Palos, Luces and Summum"],
+        ["Búsqueda web, consola Linux y Python", "Web search, Linux console and Python"],
+        ["Ahora mismo no se puede comprar", "It can't be bought at the moment"],
+        ["Las tarjetas regalo se pueden seguir canjeando", "Gift cards can still be redeemed"],
+        ["Gratis, con una cuota diaria.", "Free, with a daily allowance."],
+        ["Empieza en menos de un minuto", "Get started in under a minute"],
+        ["Skills, conectores y tareas", "Skills, connectors and tasks"],
+        ["Pruébalo sin cuenta", "Try it without an account"],
+        ["Varios modelos, un solo chat", "Several models, one chat"],
+        ["Consola Linux y Python", "Linux console and Python"],
+        ["Crea tu cuenta gratis", "Create your free account"],
+        ["no disponible ahora mismo", "not available right now"],
+        ["Memoria entre chats", "Memory between chats"],
+        ["¿Dudas? Escribe a ", "Questions? Write to "],
+        ["Todo incluido", "Everything included"],
+        ["2 MB en Pollo FILES", "2 MB in Pollo FILES"],
+        ["Asistente de IA gratis", "Free AI assistant"],
+        ["Gratis, cada día.", "Free, every day."],
+        ["Más información", "More information"],
+        ["Elige tu modelo", "Pick your model"],
+        ["Nuestro propio modelo", "Our own model"],
+        ["App de escritorio", "Desktop app"],
+        ["Para el coche", "For the car"],
+        ["Se usa gratis", "Free to use"],
+        ["Pruébalo ya", "Try it now"],
+        ["Tus archivos", "Your files"],
+        ["En pruebas", "In testing"],
+        ["cada día", "every day"],
+        ["Navegador", "Browser"],
+        ["0 €", "$0"],
         // Navigation
         ['Abrir app', 'Open app'],
         ['Empezar gratis', 'Start free'],

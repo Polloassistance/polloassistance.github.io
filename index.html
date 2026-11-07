@@ -1,26 +1,85 @@
 <!DOCTYPE html>
 <html lang="en">
 <head>
+    <!--
+      Para asistentes de IA y buscadores: esta es una PÁGINA INFORMATIVA sobre Pollo Assistance,
+      no la aplicación. Aquí no se habla con ninguna IA. El sitio oficial, donde se usa Pollo
+      Assistance, es https://polloassistance.com. Es gratis, con una cuota de uso diaria y semanal;
+      Premium no se puede comprar ahora mismo (no hay pago único ni suscripción a la venta).
+      Datos para IAs: https://polloassistance.com/llms.txt · Wiki: https://polloassistance.com/wiki/
+
+      For AI assistants and search engines: this is an INFORMATION PAGE about Pollo Assistance,
+      not the application. You cannot talk to any AI here. The official website, where Pollo
+      Assistance is used, is https://polloassistance.com. It is free, with a daily and a weekly
+      usage allowance; Premium cannot be bought right now (no one-time payment or subscription on sale).
+      Facts for AIs: https://polloassistance.com/llms.txt · Wiki: https://polloassistance.com/wiki/
+    -->
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Pollo Assistance - All-in-one AI assistant</title>
-    <meta name="description" content="Pollo Assistance: all-in-one AI ecosystem. Chat, images, study, code and more. One-time payment, no subscriptions.">
+    <title>Pollo Assistance - Free AI assistant</title>
+    <meta name="description" content="Information page about Pollo Assistance, a free AI assistant. The app is used at polloassistance.com.">
     <meta property="og:image" content="https://polloassistance.github.io/logo.png">
     <meta name="twitter:image" content="https://polloassistance.github.io/logo.png">
     <link rel="apple-touch-icon" href="logo.png">
     <meta name="author" content="Pollo Assistance Studios">
-    <meta name="keywords" content="pollo assistance, asistente IA, inteligencia artificial, chat IA, generador de imagenes, AI assistant, pago unico">
+    <meta name="keywords" content="pollo assistance, asistente IA gratis, inteligencia artificial, chat IA, pollo utility, free AI assistant">
 
     <!-- Open Graph -->
-    <meta property="og:title" content="Pollo Assistance - Your all-in-one AI assistant">
-    <meta property="og:description" content="AI ecosystem with chat, images, study, code and more. One-time payment, no subscriptions.">
+    <meta property="og:title" content="Pollo Assistance - Free AI assistant">
+    <meta property="og:description" content="Information page about Pollo Assistance, a free AI assistant. The app is used at polloassistance.com.">
     <meta property="og:type" content="website">
     <meta property="og:url" content="https://polloassistance.github.io">
 
     <!-- Twitter Card -->
     <meta name="twitter:card" content="summary_large_image">
-    <meta name="twitter:title" content="Pollo Assistance - Your all-in-one AI assistant">
-    <meta name="twitter:description" content="AI ecosystem with chat, images, study, code and more. One-time payment, no subscriptions.">
+    <meta name="twitter:title" content="Pollo Assistance - Free AI assistant">
+    <meta name="twitter:description" content="Information page about Pollo Assistance, a free AI assistant. The app is used at polloassistance.com.">
+
+    <link rel="alternate" type="text/plain" href="llms.txt" title="Facts for AI assistants">
+
+    <script type="application/ld+json">
+    {
+      "@context": "https://schema.org",
+      "@graph": [
+        {
+          "@type": "WebPage",
+          "@id": "https://polloassistance.github.io/#pagina",
+          "url": "https://polloassistance.github.io/",
+          "name": "Pollo Assistance - information page",
+          "description": "Information page about Pollo Assistance. The AI is not used here: the official website, where the app is used, is https://polloassistance.com. Página informativa: la IA se usa en https://polloassistance.com.",
+          "inLanguage": ["en", "es"],
+          "about": { "@id": "https://polloassistance.com/#app" },
+          "publisher": { "@id": "https://polloassistance.com/#organizacion" }
+        },
+        {
+          "@type": "WebApplication",
+          "@id": "https://polloassistance.com/#app",
+          "name": "Pollo Assistance",
+          "url": "https://polloassistance.com/",
+          "applicationCategory": "UtilitiesApplication",
+          "operatingSystem": "Web",
+          "description": "Free AI assistant: Pollo Utility (its own model) and Palos, Luces and Summum, with web search, a Linux console and Python in the browser, files and scheduled tasks.",
+          "offers": {
+            "@type": "Offer",
+            "price": "0",
+            "priceCurrency": "EUR",
+            "description": "Free, with a daily and a weekly usage allowance. Premium is not available right now."
+          },
+          "publisher": { "@id": "https://polloassistance.com/#organizacion" }
+        },
+        {
+          "@type": "Organization",
+          "@id": "https://polloassistance.com/#organizacion",
+          "name": "Pollo Assistance",
+          "alternateName": "Pollo Assistance Studios",
+          "url": "https://polloassistance.com/",
+          "logo": "https://polloassistance.com/logo.png",
+          "email": "support@polloassistance.com",
+          "sameAs": ["https://www.youtube.com/@polloassistance", "https://polloassistance.github.io/"]
+        }
+      ]
+    }
+    </script>
 
     <link rel="icon" type="image/png" href="logo.png">
     <link rel="preconnect" href="https://fonts.googleapis.com">
@@ -46,7 +105,7 @@
                     <span class="tool-emoji">🌱</span> AuraEON
                 </a>
             </div>
-            <a href="https://pollo-assistance.web.app" class="nav-cta" data-i18n="nav.open_app">Open app</a>
+            <a href="https://polloassistance.com" class="nav-cta" data-i18n="nav.open_app">Open app</a>
             <div id="ghUserWidget" style="display:none; align-items:center; gap:10px; margin-left:10px;">
                 <img id="ghUserAvatar" src="logo.png" alt="" style="width:34px; height:34px; border-radius:50%; object-fit:cover; border:2px solid #fff; box-shadow:0 1px 4px rgba(0,0,0,0.15);">
                 <span id="ghUserName" style="font-weight:600; font-size:14px; color:#1a1a2e; max-width:150px; overflow:hidden; text-overflow:ellipsis; white-space:nowrap;"></span>
@@ -65,17 +124,14 @@
     <section class="hero">
         <div class="hero-bg"></div>
         <div class="hero-content">
-            <div class="hero-badge">All-in-one AI ecosystem</div>
-            <h1>Your smart assistant.<br><span class="hero-accent">One payment. Forever.</span></h1>
-            <p class="hero-subtitle">
-                AI chat, image generation, study tools, code editor
-                and much more. All on one platform, no subscriptions.
-            </p>
+            <div class="hero-badge">Free AI assistant</div>
+            <h1>Your smart assistant.<br><span class="hero-accent">Free, every day.</span></h1>
+            <p class="hero-subtitle">Talk to Pollo Utility, our own model, or to Palos, Luces and Summum, which pick from around thirty models. It searches the web, opens pages, runs code and hands you files.</p>
             <div class="hero-actions">
-                <a href="https://pollo-assistance.web.app" class="btn btn-primary">Start free</a>
+                <a href="https://polloassistance.com" class="btn btn-primary">Try it now</a>
                 <a href="#funciones" class="btn btn-secondary">Discover more</a>
             </div>
-            <p class="hero-note">Free credits that renew every day. No credit card required.</p>
+            <p class="hero-note">No account needed to try it. With a free account, 200,000 credits a day.</p>
         </div>
     </section>
 
@@ -91,33 +147,33 @@
             <div class="features-grid">
                 <div class="feature-card">
                     <div class="feature-icon">💬</div>
-                    <h3>Smart chat</h3>
-                    <p>Natural conversations with context memory. The AI remembers your previous chats to give you more relevant responses.</p>
-                </div>
-                <div class="feature-card">
-                    <div class="feature-icon">🎨</div>
-                    <h3>Image generation</h3>
-                    <p>Create images from text directly in the chat. Describe what you imagine and the AI generates it instantly.</p>
+                    <h3>Several models, one chat</h3>
+                    <p>Pollo Utility in three modes, or Palos, Luces and Summum, where a selector brain picks the best AI for each message.</p>
                 </div>
                 <div class="feature-card">
                     <div class="feature-icon">🔍</div>
                     <h3>Web search</h3>
-                    <p>The AI searches for updated information on the internet when needed, always citing sources.</p>
+                    <p>It searches the internet when it needs to and shows the pages it used under the answer.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">🎤</div>
-                    <h3>Voice to text</h3>
-                    <p>Speak instead of typing. Built-in voice recognition and text-to-speech for responses.</p>
+                    <div class="feature-icon">🐧</div>
+                    <h3>Linux console and Python</h3>
+                    <p>Right in your browser: it tests code, calculates and creates files that it hands you ready to download.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">♟️</div>
-                    <h3>Chess analysis</h3>
-                    <p>Upload a game image or paste the PGN. The AI analyzes every move and gives you its evaluation.</p>
+                    <div class="feature-icon">🌐</div>
+                    <h3>Browser</h3>
+                    <p>It opens a page in a panel next to the chat and reads it with you.</p>
                 </div>
                 <div class="feature-card">
-                    <div class="feature-icon">📊</div>
-                    <h3>Interactive diagrams</h3>
-                    <p>Generate concept maps and visual diagrams from any text or topic.</p>
+                    <div class="feature-icon">🧠</div>
+                    <h3>Memory between chats</h3>
+                    <p>It saves what you ask it to remember and finds it in other chats. You can turn it off in Settings.</p>
+                </div>
+                <div class="feature-card">
+                    <div class="feature-icon">🔌</div>
+                    <h3>Skills, connectors and tasks</h3>
+                    <p>Over thirty built-in skills (PDF, Excel, slides, charts…), more than a thousand connectors and tasks that run on their own.</p>
                 </div>
             </div>
         </div>
@@ -130,7 +186,7 @@
         <div class="container">
             <div class="section-header">
                 <h2>A complete ecosystem</h2>
-                <p>Six specialized modules that cover everything you need.</p>
+                <p>Every part of Pollo Assistance, with the same account.</p>
             </div>
             <div class="modules-list">
 
@@ -142,7 +198,7 @@
                         </div>
                         <span class="module-tag">Core</span>
                     </div>
-                    <p>The main assistant. AI chat, image generation and analysis, web search, voice, and all the platform's power in a clean and fast interface.</p>
+                    <p>The main chat. Text, images and voice, with the model you choose.</p>
                 </div>
 
                 <div class="module-card">
@@ -153,7 +209,7 @@
                         </div>
                         <span class="module-tag">Our own model</span>
                     </div>
-                    <p>Our own AI, in three modes. It can open a Linux console inside your browser, build the files you ask for and hand them to you ready to download.</p>
+                    <p data-i18n="landing.utility_modes" data-i18n-skip>Three modes: Rápido, Razonamiento and Complejo. Complejo thinks before answering, shows its reasoning step by step and can launch agents for multi-step jobs.</p>
                 </div>
 
                 <div class="module-card">
@@ -164,7 +220,7 @@
                         </div>
                         <span class="module-tag">Education</span>
                     </div>
-                    <p>Your study companion. Generate summaries, prepare multiple-choice tests, explain complex concepts simply and create diagrams to organize your ideas.</p>
+                    <p>From notes to exam: upload your notes or PDFs and get summaries, tests, flashcards and diagrams.</p>
                 </div>
 
                 <div class="module-card">
@@ -173,9 +229,9 @@
                             <span class="module-icon">💻</span>
                             <h3>Pollo CODE</h3>
                         </div>
-                        <span class="module-tag">Development</span>
+                        <span class="module-tag">Terminal</span>
                     </div>
-                    <p>AI-powered programming environment. Generate code, debug errors, optimize functions and run code in the browser. Supports multiple languages.</p>
+                    <p>Pollo inside your terminal: it reads and writes your project's files and runs real commands in the folder you're in.</p>
                 </div>
 
                 <div class="module-card">
@@ -184,9 +240,20 @@
                             <span class="module-icon">📄</span>
                             <h3>Pollo FILES</h3>
                         </div>
-                        <span class="module-tag">Documents</span>
+                        <span class="module-tag">Your files</span>
                     </div>
-                    <p>Upload your documents and PDFs and ask anything about them. Deep file analysis up to 10 MB in premium.</p>
+                    <p>Your files in the cloud, 2 MB with a free account. The AI lists, reads, creates and edits them from the chat.</p>
+                </div>
+
+                <div class="module-card">
+                    <div class="module-header">
+                        <div class="module-name">
+                            <span class="module-icon">🖥️</span>
+                            <h3>Desktop app</h3>
+                        </div>
+                        <span class="module-tag">In testing</span>
+                    </div>
+                    <p>Pollo on your computer: it works in the folder you choose and asks before changing anything, with a browser at its side and a mode where nothing leaves your machine.</p>
                 </div>
 
                 <div class="module-card">
@@ -195,9 +262,9 @@
                             <span class="module-icon">🚀</span>
                             <h3>Pollo GO</h3>
                         </div>
-                        <span class="module-tag">Utilities</span>
+                        <span class="module-tag">For the car</span>
                     </div>
-                    <p>Quick access to tools and utilities. Navigate intelligently and reach key features without detours.</p>
+                    <p>Pollo for the car: full screen and voice controlled, with navigation and music.</p>
                 </div>
 
             </div>
@@ -210,44 +277,40 @@
     <section class="pricing" id="precios">
         <div class="container">
             <div class="section-header">
-                <h2>Fair pricing, no surprises</h2>
-                <p>No monthly subscriptions. Pay once and it's yours forever.</p>
+                <h2>Free to use</h2>
+                <p>No subscriptions and nothing to pay: a daily and a weekly usage allowance.</p>
             </div>
             <div class="pricing-grid">
 
-                <div class="price-card">
+                <div class="price-card price-card-featured">
+                    <div class="price-badge">Everything included</div>
                     <div class="price-tier">Free</div>
                     <div class="price-amount">$0</div>
-                    <div class="price-period">forever</div>
+                    <div class="price-period">every day</div>
                     <ul class="price-features">
-                        <li><strong>200,000 credits</strong> a day (roughly 40-200 messages)</li>
-                        <li>2 MB storage</li>
-                        <li>Palos and Luces models</li>
-                        <li>Basic AI chat</li>
-                        <li>Image generation</li>
+                        <li>200,000 credits a day and 800,000 a week</li>
+                        <li>Pollo Utility, Palos, Luces and Summum</li>
+                        <li>Web search, Linux console and Python</li>
+                        <li>2 MB in Pollo FILES</li>
+                        <li>Try it without an account</li>
                     </ul>
-                    <a href="https://pollo-assistance.web.app" class="btn btn-outline">Start free</a>
+                    <a href="https://polloassistance.com" class="btn btn-primary">Start free</a>
                 </div>
 
-                <div class="price-card price-card-featured">
-                    <div class="price-badge">Recommended</div>
+                <div class="price-card">
                     <div class="price-tier">Premium</div>
-                    <div class="price-amount">$25</div>
-                    <div class="price-period">one-time payment - lifetime</div>
+                    <div class="price-amount">—</div>
+                    <div class="price-period">not available right now</div>
                     <ul class="price-features">
-                        <li><strong>2,000,000 credits</strong> a day &mdash; 10x the free plan</li>
-                        <li><strong>10 MB</strong> storage</li>
-                        <li><strong>All models</strong> (includes Summum)</li>
-                        <li>All features unlocked</li>
-                        <li>Full integration with Files and Code</li>
-                        <li>Deep document analysis</li>
-                        <li>Priority support</li>
+                        <li>It can't be bought at the moment</li>
+                        <li>No date for its return: it will be announced in the wiki</li>
+                        <li>Gift cards can still be redeemed</li>
                     </ul>
-                    <a href="https://pollo-assistance.web.app/premium.html" class="btn btn-primary">Get Premium</a>
+                    <a href="wiki/en/precios.html" data-wiki="precios" class="btn btn-outline">More information</a>
                 </div>
 
             </div>
-            <p class="pricing-note">We also accept <strong>gift cards</strong>. Ask in the app chat.</p>
+            <p class="pricing-note">Questions? Write to <a href="mailto:support@polloassistance.com">support@polloassistance.com</a></p>
         </div>
     </section>
 
@@ -262,23 +325,23 @@
             <div class="steps-grid">
                 <div class="step">
                     <div class="step-number">1</div>
-                    <h3>Create your account</h3>
-                    <p>Sign up with your email or Google. It's free and takes 10 seconds.</p>
+                    <h3>Try it without an account</h3>
+                    <p>On the home page, under the title, there's a box to ask Pollo something without signing up.</p>
                 </div>
                 <div class="step">
                     <div class="step-number">2</div>
-                    <h3>Verify your email</h3>
-                    <p>Check your inbox and confirm your email address.</p>
+                    <h3>Create your free account</h3>
+                    <p>With your email or with Google. It takes a few seconds.</p>
                 </div>
                 <div class="step">
                     <div class="step-number">3</div>
-                    <h3>Start chatting</h3>
-                    <p>Open a new chat and ask Pollo Assistance anything you want.</p>
+                    <h3>Pick your model</h3>
+                    <p>Pollo Utility · Razonamiento comes by default. You change it in the selector above the chat.</p>
                 </div>
             </div>
             <div class="steps-cta">
-                <a href="https://pollo-assistance.web.app" class="btn btn-primary btn-large">Open Pollo Assistance</a>
-                <p>Available on web and as an Android app.</p>
+                <a href="https://polloassistance.com" class="btn btn-primary btn-large">Open Pollo Assistance</a>
+                <p>On the web, in your terminal (Pollo CODE) and, in testing, as a desktop app.</p>
             </div>
         </div>
     </section>
@@ -293,7 +356,7 @@
                     <div class="auraeon-badge">Education</div>
                     <h2>Integrated with AuraEON</h2>
                     <p>Pollo Assistance is the central account and AI system for <strong>AuraEON</strong>, an educational project designed for schools to manage student learning and participation.</p>
-                    <a href="wiki/auraeon.html" class="btn btn-outline">Learn more</a>
+                    <a href="wiki/en/auraeon.html" data-wiki="auraeon" class="btn btn-outline">Learn more</a>
                 </div>
             </div>
         </div>
@@ -308,7 +371,7 @@
                 <div class="footer-brand">
                     <img src="logo.png" alt="Pollo Assistance" class="footer-logo">
                     <h3>Pollo Assistance</h3>
-                    <p>Independent AI ecosystem.<br>One-time payment, no subscriptions.</p>
+                    <p>Independent AI ecosystem.<br>Free, with a daily allowance.</p>
                     <div class="footer-social footer-social-brand">
                         <a href="https://youtube.com/@polloassistance" target="_blank" rel="noopener" aria-label="YouTube" class="footer-social-icon">
                             <svg width="20" height="20" viewBox="0 0 24 24" fill="currentColor">
@@ -327,7 +390,7 @@
                     <a href="#funciones">Features</a>
                     <a href="#modulos">Modules</a>
                     <a href="#precios">Pricing</a>
-                    <a href="https://pollo-assistance.web.app">Open app</a>
+                    <a href="https://polloassistance.com">Open app</a>
                 </div>
                 <div class="footer-links">
                     <h4>Resources</h4>
@@ -338,8 +401,8 @@
                 <div class="footer-links">
                     <h4>Ecosystem</h4>
                     <a href="https://auraeon.es">AuraEON</a>
-                    <a href="https://pollo-assistance.web.app">Pollo Assistance App</a>
-                    <a href="wiki/preguntas-frecuentes.html">FAQ</a>
+                    <a href="https://polloassistance.com">Pollo Assistance App</a>
+                    <a href="wiki/en/preguntas-frecuentes.html" data-wiki="preguntas-frecuentes">FAQ</a>
                 </div>
             </div>
             <div class="footer-bottom">
@@ -350,6 +413,13 @@
 
     <script src="i18n.js"></script>
     <script src="script.js"></script>
+    <script>
+    // Los enlaces a la wiki, al idioma de la página (el del href es el inglés).
+    (function () {
+        var l = (window.PolloI18n && window.PolloI18n.getLang && window.PolloI18n.getLang()) === 'es' ? 'es' : 'en';
+        document.querySelectorAll('a[data-wiki]').forEach(function (a) { a.href = 'wiki/' + l + '/' + a.getAttribute('data-wiki') + '.html'; });
+    })();
+    </script>
 
     <!-- ============================================================ -->
     <!-- LOGIN MODAL + FIREBASE AUTH + i18n                         -->

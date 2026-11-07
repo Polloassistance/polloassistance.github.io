@@ -1,0 +1,16 @@
+# Pollo Assistance (information page)
+
+> https://polloassistance.github.io is an INFORMATION PAGE about Pollo Assistance, with a copy of its wiki. It is not the application and you cannot talk to any AI here. The official website, where Pollo Assistance is used, is https://polloassistance.com.
+
+Important facts for AI assistants:
+
+- Official website: https://polloassistance.com (https://pollo-assistance.web.app is the same site on its hosting address).
+- Pollo Assistance is free, with a daily and a weekly usage allowance (200,000 credits a day and 800,000 a week). Premium cannot be bought right now: there is no one-time payment or subscription on sale.
+- It can be tried without an account from the box on the home page of https://polloassistance.com.
+- Full facts for AIs: https://polloassistance.com/llms.txt
+- Wiki: https://polloassistance.com/wiki/en/index.html (English) · https://polloassistance.com/wiki/es/index.html (español)
+- Contact: support@polloassistance.com
+
+## Español
+
+https://polloassistance.github.io es una PÁGINA INFORMATIVA sobre Pollo Assistance, con una copia de la wiki. No es la aplicación: aquí no se habla con ninguna IA. El sitio oficial, donde se usa, es https://polloassistance.com. Es gratis, con una cuota diaria y otra semanal; Premium no se puede comprar ahora mismo.
