@@ -10,7 +10,7 @@
     <link rel="preconnect" href="https://fonts.googleapis.com">
     <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
     <link href="https://fonts.googleapis.com/css2?family=Inter:wght@400;500;600;700;800&display=swap" rel="stylesheet">
-    <link rel="stylesheet" href="../wiki.css?v=fased253">
+    <link rel="stylesheet" href="../wiki.css?v=fased255">
     <style>
         .hero-banner {
             background: linear-gradient(135deg, #fff7e6 0%, #ffe6cc 100%);
@@ -253,8 +253,9 @@ chosen for what it is being asked to do.</p>
         <span class="fc-icon">🧠</span>
         <h4>Reasoning</h4>
         <p>Developed answers, with context and nuance. It searches the web and also
-        <strong>opens the pages</strong> when the search snippets are not enough. This is
-        the balance: clearly better than Fast without the cost of Complex.</p>
+        <strong>opens the pages</strong> when the search snippets are not enough. Before
+        answering it <strong>thinks for a moment</strong> (a few seconds at most) and you can
+        read it. This is the balance: clearly better than Fast without the cost of Complex.</p>
     </div>
     <div class="feature-card" data-entra>
         <span class="fc-icon">🔬</span>
@@ -271,7 +272,7 @@ chosen for what it is being asked to do.</p>
         <tr><td>Web search</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
         <tr><td>Open a full page</td><td><span class="cross">✗</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
         <tr><td>Linux console</td><td><span class="check">✓</span></td><td><span class="check">✓</span></td><td><span class="check">✓</span></td></tr>
-        <tr><td>Shows its reasoning</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="check">✓</span></td></tr>
+        <tr><td>Shows its reasoning</td><td><span class="cross">✗</span></td><td><span class="check">✓</span> (brief)</td><td><span class="check">✓</span></td></tr>
         <tr><td>Agents</td><td><span class="cross">✗</span></td><td><span class="cross">✗</span></td><td><span class="check">✓</span></td></tr>
         <tr><td>Credits per token</td><td>6</td><td>10</td><td>16</td></tr>
     </tbody>
@@ -317,8 +318,9 @@ blind. That is why only Complex can launch them — writing a good assignment is
 part.</p>
 
 <h2>Thinking, point by point</h2>
-<p>Complex is the only one of the three that reasons before answering, so it is the only
-one where you will see this: while it thinks, the header tells you <strong>which point it
+<p>Reasoning thinks for a moment before answering (if it goes on too long, it is cut after a
+few seconds and answers), and Complex reasons in depth. In Complex you will also see this:
+while it thinks, the header tells you <strong>which point it
 is on</strong> and how long it has been going. When it finishes it collapses — "Pollo
 Assistance thought for 45 seconds" — and you can open it to read the whole reasoning with
 the steps interleaved in the real order: what it searched, what it ran, what it delivered.</p>
@@ -447,6 +449,6 @@ and Reasoning last far longer on the same credits.</p>
         };
     })();
     </script>
-<script src="../../pollo-movimiento.js?v=fased253"></script>
+<script src="../../pollo-movimiento.js?v=fased255"></script>
 </body>
 </html>
