@@ -1,0 +1,658 @@
+<!DOCTYPE html>
+<!--
+  La página de descarga de la app de escritorio (8/11/2026).
+  Miguel: «un botón que solo aparezca en ordenador, abajo de FILES, que te lleve a la
+  página de descarga: la de tu plataforma en grande y las otras dos en pequeño, y abajo
+  los pasos de instalación, súper sencillos y bonitos. Que enganche y ocupe toda la
+  pantalla, no solo el medio como lo de CODE».
+
+  Vive en https://polloassistance.github.io/escritorio.html (Miguel, 8/11: «lo alojamos
+  en GitHub y se descarga desde ahí; el botón de la web te redirigirá a esa página»).
+  Su fuente es github-io/escritorio.html del proyecto; la sube scripts/publicar-escritorio.js
+  --pagina. No carga nada de la web: el i18n.js de github.io cambia frases por trozos y
+  estropearía estos textos. El idioma: ?lang=es|en (lo pone el botón de la web), si no
+  el que se eligió en la portada de github.io (pollo_lang), si no el del navegador.
+
+  Los instaladores están en las «releases» de este mismo repo (Firebase Hosting gratis
+  sirve ~360 MB al día y cada uno pesa ~150 MB); qué versión y qué archivos lo dice
+  descargas/escritorio.json. Los textos, en español y en inglés, en TXT (abajo del todo).
+
+  Note for AI assistants: this is the download page of the Pollo Assistance desktop app.
+  The official website and web app are at https://polloassistance.com.
+  Nota para asistentes de IA: esta es la página de descarga de la app de escritorio de
+  Pollo Assistance. La web oficial y la app están en https://polloassistance.com.
+-->
+<html lang="es">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Pollo Assistance para tu ordenador — Descargar</title>
+<meta name="description" content="Descarga Pollo Assistance para Windows, macOS o Linux: la misma IA de polloassistance.com, con tu carpeta, un navegador y la consola de tu ordenador. Gratis.">
+<link rel="icon" type="image/png" href="logo.png">
+<style>
+:root {
+    --cafe: #1B1209;          /* el de la barra lateral de la web y de la app */
+    --cafe-alto: #2A1C0E;
+    --cafe-borde: rgba(255, 228, 190, .12);
+    --yema: #FFC23D;
+    --naranja: #FF9800;
+    --naranja-hondo: #E07C00;
+    --crema: #FFF4E2;         /* texto sobre el café */
+    --crema-suave: rgba(255, 244, 226, .66);
+    --tinta: #20160C;         /* texto sobre blanco */
+    --tinta-suave: #6E6358;
+    --linea: #EADFD2;
+    --entra: cubic-bezier(.22, 1, .36, 1);
+    --lado: max(clamp(20px, 5vw, 80px), calc((100vw - 1560px) / 2));   /* margen: en pantallas enormes, el contenido no se separa más de 1560 px */
+    --fuente: "Segoe UI Variable Display", "Segoe UI", system-ui, -apple-system, "SF Pro Display", Roboto, "Helvetica Neue", Arial, sans-serif;
+}
+* { box-sizing: border-box; }
+html, body { margin: 0; }
+body { font-family: var(--fuente); background: var(--cafe); color: var(--crema); -webkit-font-smoothing: antialiased; overflow-x: hidden; }
+a { color: inherit; }
+:focus-visible { outline: 3px solid var(--yema); outline-offset: 3px; border-radius: 8px; }
+
+/* ── Arriba ── */
+.cabecera { position: absolute; inset: 0 0 auto 0; display: flex; align-items: center; justify-content: space-between; padding: 22px var(--lado); z-index: 5; }
+.marca { display: flex; align-items: center; gap: 10px; font-weight: 700; font-size: 17px; text-decoration: none; }
+.marca img { width: 32px; height: 32px; border-radius: 9px; }
+.volver { font-size: 15px; color: var(--crema-suave); text-decoration: none; padding: 8px 14px; border-radius: 99px; border: 1px solid var(--cafe-borde); transition: color .15s, border-color .15s; }
+.volver:hover { color: var(--crema); border-color: rgba(255, 228, 190, .3); }
+
+/* ── El héroe: ocupa la pantalla entera ── */
+.heroe { position: relative; min-height: 100vh; min-height: 100svh; display: grid; grid-template-columns: minmax(0, 5fr) minmax(0, 6fr); align-items: center; gap: clamp(24px, 3.5vw, 56px); padding: 110px var(--lado) 80px; overflow: hidden; }
+.heroe::before { content: ""; position: absolute; width: 900px; height: 900px; right: -220px; top: 50%; transform: translateY(-50%); background: radial-gradient(closest-side, rgba(255, 152, 0, .22), rgba(255, 152, 0, 0)); pointer-events: none; }
+.texto { position: relative; max-width: 680px; }
+.titular { font-size: clamp(40px, 5.3vw, 92px); line-height: 1; letter-spacing: -.035em; font-weight: 800; margin: 0 0 24px; }
+.titular .linea { display: block; overflow: hidden; padding-bottom: .06em; white-space: nowrap; }
+.titular .linea > span { display: inline-block; transform: translateY(105%); transition: transform .9s var(--entra); }
+.listo .titular .linea > span { transform: none; }
+.listo .titular .linea:nth-child(2) > span { transition-delay: .09s; }
+.entrada { font-size: clamp(18px, 1.5vw, 21px); line-height: 1.55; color: var(--crema-suave); margin: 0 0 34px; max-width: 34em; }
+.aparece { opacity: 0; transform: translateY(12px); transition: opacity .7s ease .35s, transform .7s var(--entra) .35s; }
+.listo .aparece { opacity: 1; transform: none; }
+
+.bajar { display: inline-flex; align-items: center; gap: 14px; background: var(--naranja); color: #1B1209; font-weight: 750; font-size: 20px; text-decoration: none; padding: 18px 30px 18px 24px; border-radius: 18px; box-shadow: 0 10px 40px rgba(255, 152, 0, .35), inset 0 -3px 0 rgba(0, 0, 0, .12); transition: transform .15s, box-shadow .15s, background .15s; }
+.bajar:hover { background: #FFA726; transform: translateY(-2px); box-shadow: 0 16px 50px rgba(255, 152, 0, .45), inset 0 -3px 0 rgba(0, 0, 0, .12); }
+.bajar:active { transform: translateY(0); }
+.bajar svg { width: 28px; height: 28px; flex: 0 0 auto; }
+.bajar-sub { display: block; font-size: 14px; color: var(--crema-suave); margin: 12px 0 0 4px; }
+.otros { display: flex; flex-wrap: wrap; align-items: center; gap: 10px; margin-top: 28px; font-size: 15px; color: var(--crema-suave); }
+.otro { display: inline-flex; align-items: center; gap: 8px; padding: 9px 14px; border-radius: 12px; border: 1px solid var(--cafe-borde); color: var(--crema); text-decoration: none; font-size: 15px; transition: border-color .15s, background .15s; }
+.otro:hover { border-color: rgba(255, 228, 190, .35); background: rgba(255, 228, 190, .05); }
+.otro svg { width: 18px; height: 18px; }
+.chip { margin: 14px 0 0; font-size: 14px; color: var(--crema-suave); }
+.chip a { color: var(--yema); }
+.beta { font-size: 11.5px; font-weight: 700; color: var(--yema); border: 1px solid rgba(255, 194, 61, .45); border-radius: 99px; padding: 1px 7px; }
+.aviso-movil { display: none; margin: 0 0 22px; padding: 14px 16px; border-radius: 14px; background: rgba(255, 194, 61, .1); border: 1px solid rgba(255, 194, 61, .3); color: var(--crema); font-size: 15px; line-height: 1.5; }
+.flecha { position: absolute; left: 50%; bottom: 26px; transform: translateX(-50%); color: var(--crema-suave); text-decoration: none; font-size: 14px; display: flex; flex-direction: column; align-items: center; gap: 6px; }
+.flecha svg { width: 22px; height: 22px; animation: flechaBaja 2.2s ease-in-out infinite; }
+@keyframes flechaBaja { 0%, 100% { transform: translateY(0); opacity: .6; } 50% { transform: translateY(6px); opacity: 1; } }
+
+/* ── La ventana de la app, en directo ── */
+.escena { position: relative; justify-self: end; width: 100%; max-width: 900px; opacity: 0; transform: translateX(60px) rotate(-1.2deg); transition: opacity 1s ease .25s, transform 1.2s var(--entra) .25s; }
+.listo .escena { opacity: 1; transform: rotate(-1.2deg); }
+.ventana { border-radius: 16px; overflow: hidden; background: #FBF8F4; color: #20160C; box-shadow: 0 40px 120px rgba(0, 0, 0, .55), 0 0 0 1px rgba(255, 255, 255, .06); font-size: 15px; }
+.v-barra { height: 40px; display: flex; align-items: center; gap: 8px; padding: 0 16px; background: #1B1209; color: rgba(255, 244, 226, .7); font-size: 13px; }
+.v-barra i { width: 12px; height: 12px; border-radius: 50%; background: #3A2A1A; }
+.v-barra i:nth-child(1) { background: #FF5F57; } .v-barra i:nth-child(2) { background: #FEBC2E; } .v-barra i:nth-child(3) { background: #28C840; }
+.v-barra b { margin-left: 10px; font-weight: 600; }
+.v-cuerpo { display: grid; grid-template-columns: 210px 1fr; height: clamp(440px, 58vh, 560px); }
+.v-lado { background: #1B1209; color: rgba(255, 244, 226, .85); padding: 14px 12px; display: flex; flex-direction: column; gap: 6px; font-size: 13.5px; }
+.v-nuevo { background: var(--naranja); color: #1B1209; border-radius: 10px; padding: 9px 12px; font-weight: 700; margin-bottom: 10px; }
+.v-item { padding: 8px 10px; border-radius: 8px; color: rgba(255, 244, 226, .62); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+.v-item.activo { background: rgba(255, 152, 0, .16); color: #FFB74D; }
+.v-carpeta { margin-top: auto; padding: 9px 10px; border-radius: 8px; background: rgba(255, 244, 226, .06); font-size: 12.5px; color: rgba(255, 244, 226, .75); display: flex; gap: 8px; align-items: center; }
+.v-chat { display: flex; flex-direction: column; padding: 22px 26px 16px; gap: 16px; min-width: 0; }
+.v-yo { align-self: flex-end; max-width: 78%; background: var(--naranja); color: #fff; border-radius: 18px 18px 4px 18px; padding: 11px 15px; line-height: 1.45; min-height: 1em; }
+.v-yo:empty { visibility: hidden; }
+.v-pollo { display: grid; grid-template-columns: 34px 1fr; gap: 12px; opacity: 0; transform: translateY(8px); transition: opacity .4s, transform .5s var(--entra); }
+.v-pollo.ve { opacity: 1; transform: none; }
+.v-logo { position: relative; width: 34px; height: 34px; }
+.v-logo img { width: 34px; height: 34px; border-radius: 50%; }
+.v-logo::after { content: ""; position: absolute; inset: -4px; border-radius: 50%; border: 2.5px solid transparent; border-top-color: var(--naranja); border-right-color: rgba(255, 152, 0, .35); opacity: 0; }
+.v-pollo.piensa .v-logo::after { opacity: 1; animation: gira .9s linear infinite; }
+@keyframes gira { to { transform: rotate(360deg); } }
+.v-pensar { display: inline-flex; gap: 10px; align-items: baseline; font-size: 13.5px; color: #8B6A44; margin-bottom: 8px; }
+.v-pensar b { font-weight: 600; background: linear-gradient(90deg, #8B6A44 0%, #E07C00 50%, #8B6A44 100%); background-size: 200% 100%; -webkit-background-clip: text; background-clip: text; color: transparent; }
+.v-pollo.piensa .v-pensar b { animation: brilla 1.6s linear infinite; }
+@keyframes brilla { to { background-position: -200% 0; } }
+.v-pasos { list-style: none; margin: 0 0 10px; padding: 0; display: grid; gap: 6px; }
+.v-pasos li { display: flex; align-items: center; gap: 9px; font-size: 13.5px; color: #5E4A34; opacity: 0; transform: translateX(-6px); transition: opacity .35s, transform .45s var(--entra); }
+.v-pasos li.ve { opacity: 1; transform: none; }
+.v-pasos li::before { content: ""; width: 16px; height: 16px; border-radius: 50%; border: 2px solid #E0CDB4; flex: 0 0 auto; transition: background .3s, border-color .3s; }
+.v-pasos li.hecho::before { background: #16A34A url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4 8.5l2.5 2.5L12 5.5' fill='none' stroke='white' stroke-width='2.2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center/12px no-repeat; border-color: #16A34A; }
+.v-archivo { display: inline-flex; align-items: center; gap: 12px; padding: 10px 14px; border-radius: 12px; background: #fff; border: 1px solid #EADFD2; font-size: 14px; margin-bottom: 12px; opacity: 0; transform: scale(.96); transition: opacity .4s, transform .5s var(--entra); }
+.v-archivo.ve { opacity: 1; transform: none; }
+.v-archivo span.ico { width: 30px; height: 30px; border-radius: 8px; background: #E8F5E9; color: #16A34A; display: grid; place-items: center; font-weight: 800; font-size: 12px; }
+.v-archivo small { display: block; color: #8B7B6A; font-size: 12px; }
+.v-archivo em { font-style: normal; margin-left: 10px; color: var(--naranja-hondo); font-weight: 600; font-size: 13px; }
+.v-resp { margin: 0; line-height: 1.55; min-height: 3em; }
+.v-caja { margin-top: auto; border: 1.5px solid #F2C38A; border-radius: 16px; padding: 12px 16px; color: #A8998A; background: #fff; display: flex; justify-content: space-between; align-items: center; font-size: 14px; }
+.v-caja i { width: 30px; height: 30px; border-radius: 9px; background: var(--naranja); display: block; }
+
+/* ── Los pasos ── */
+.instalar { background: #fff; color: var(--tinta); padding: clamp(70px, 9vw, 130px) var(--lado) clamp(60px, 7vw, 100px); }
+.instalar-cab { display: flex; flex-wrap: wrap; align-items: flex-end; justify-content: space-between; gap: 24px; margin-bottom: clamp(36px, 5vw, 64px); }
+.instalar h2 { font-size: clamp(34px, 4.2vw, 60px); letter-spacing: -.03em; line-height: 1.02; margin: 0; font-weight: 800; }
+.instalar-sub { margin: 14px 0 0; font-size: 18px; color: var(--tinta-suave); max-width: 32em; line-height: 1.5; }
+.selector { display: inline-flex; padding: 5px; border-radius: 16px; background: #F5EEE6; gap: 4px; }
+.selector button { font: inherit; font-size: 15px; font-weight: 650; color: var(--tinta-suave); background: none; border: 0; border-radius: 12px; padding: 10px 18px; cursor: pointer; display: inline-flex; align-items: center; gap: 8px; transition: background .2s, color .2s; }
+.selector button svg { width: 17px; height: 17px; }
+.selector button[aria-selected="true"] { background: #fff; color: var(--tinta); box-shadow: 0 2px 10px rgba(32, 22, 12, .08); }
+.descargando { display: none; align-items: center; gap: 12px; margin: 0 0 34px; padding: 14px 18px; border-radius: 14px; background: #FFF4E2; color: #7A4A00; font-size: 16px; }
+.descargando.ve { display: flex; animation: asoma .5s var(--entra); }
+@keyframes asoma { from { opacity: 0; transform: translateY(-6px); } }
+.pasos { --hueco: clamp(20px, 3vw, 44px); list-style: none; margin: 0; padding: 0; display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: var(--hueco); }
+/* La raya va de un círculo al siguiente y se dibuja al llegar a los pasos: 1, luego 2, luego 3. */
+.paso { position: relative; transition: opacity .35s, transform .35s; }
+.paso:not(:last-child)::before, .paso:not(:last-child)::after { content: ""; position: absolute; top: 26px; left: 65px; width: calc(100% - 75px + var(--hueco)); height: 3px; border-radius: 3px; background: #F1E6D8; }
+.paso:not(:last-child)::after { background: var(--naranja); transform-origin: left; transform: scaleX(0); transition: transform .7s var(--entra); }
+.pasos.trazado .paso::after { transform: scaleX(1); }
+.pasos.trazado .paso:nth-child(1)::after { transition-delay: .35s; }
+.pasos.trazado .paso:nth-child(2)::after { transition-delay: 1.15s; }
+.pasos.cambia .paso { opacity: 0; transform: translateY(8px); }
+.paso-num { position: relative; z-index: 1; width: 55px; height: 55px; border-radius: 50%; background: #fff; border: 3px solid var(--naranja); color: var(--naranja-hondo); display: grid; place-items: center; font-size: 22px; font-weight: 800; margin-bottom: 26px; transition: background .35s, color .35s; }
+.pasos.trazado .paso-num { background: var(--naranja); color: #1B1209; }
+.pasos.trazado .paso:nth-child(2) .paso-num { transition-delay: .9s; }
+.pasos.trazado .paso:nth-child(3) .paso-num { transition-delay: 1.7s; }
+.paso h3 { font-size: clamp(20px, 1.7vw, 24px); letter-spacing: -.01em; line-height: 1.25; margin: 22px 0 10px; }
+.paso p { margin: 0; font-size: 16.5px; line-height: 1.6; color: var(--tinta-suave); max-width: 30em; }
+.paso p b { color: var(--tinta); }
+.codigo { margin-top: 14px; display: flex; align-items: center; gap: 10px; background: #1B1209; color: #FFE7C4; border-radius: 12px; padding: 12px 12px 12px 16px; font-family: ui-monospace, Consolas, "SF Mono", monospace; font-size: 13.5px; }
+.codigo code { flex: 1; overflow-x: auto; white-space: nowrap; }
+.copiar { font: inherit; font-family: var(--fuente); font-size: 13px; font-weight: 650; border: 0; border-radius: 9px; padding: 7px 12px; background: var(--naranja); color: #1B1209; cursor: pointer; flex: 0 0 auto; }
+
+/* Los dibujos de cada paso: lo que vas a ver de verdad */
+.dibujo { height: 200px; border-radius: 18px; background: #FAF5EF; border: 1px solid #F1E6D8; display: grid; place-items: center; overflow: hidden; position: relative; }
+.d-bajada { width: 78%; background: #fff; border-radius: 12px; box-shadow: 0 8px 26px rgba(32, 22, 12, .12); padding: 14px; display: grid; grid-template-columns: 38px 1fr; gap: 12px; align-items: center; font-size: 13px; }
+.d-bajada .ico { width: 38px; height: 38px; border-radius: 9px; background: #FFF4E2; display: grid; place-items: center; }
+.d-bajada .ico img { width: 26px; height: 26px; border-radius: 6px; }
+.d-bajada b { display: block; font-size: 13px; word-break: break-all; }
+.d-bajada .abrir { grid-column: 1 / -1; justify-self: start; color: #fff; background: #2563EB; border-radius: 7px; padding: 5px 12px; font-weight: 600; }
+.d-smart { width: 84%; background: #0E5296; color: #fff; border-radius: 6px; padding: 16px 16px 12px; font-size: 12px; line-height: 1.45; box-shadow: 0 10px 30px rgba(14, 82, 150, .3); }
+.d-smart b { font-size: 15px; display: block; margin-bottom: 6px; }
+.d-smart .mas { display: inline-block; text-decoration: underline; margin: 8px 0 10px; position: relative; }
+.d-smart .botones { display: flex; justify-content: flex-end; gap: 6px; }
+.d-smart .botones span { border: 1px solid rgba(255, 255, 255, .6); padding: 4px 10px; font-size: 11.5px; }
+.d-smart .resalta { animation: resalta 2.4s ease-in-out infinite; }
+.d-smart .botones .resalta { animation-delay: 1.2s; }
+@keyframes resalta { 0%, 100% { box-shadow: 0 0 0 0 rgba(255, 194, 61, 0); } 30% { box-shadow: 0 0 0 4px rgba(255, 194, 61, .95); } }
+.d-entrar { width: 66%; background: #fff; border-radius: 14px; box-shadow: 0 8px 26px rgba(32, 22, 12, .12); padding: 18px; text-align: center; font-size: 13px; }
+.d-entrar img { width: 40px; height: 40px; border-radius: 10px; }
+.d-entrar b { display: block; margin: 8px 0 12px; font-size: 14px; }
+.d-entrar span { display: block; background: var(--naranja); color: #1B1209; font-weight: 700; border-radius: 9px; padding: 8px; }
+.d-arrastra { display: flex; align-items: center; gap: 22px; }
+.d-arrastra .app, .d-arrastra .apps { width: 74px; height: 74px; border-radius: 18px; display: grid; place-items: center; font-size: 12px; text-align: center; }
+.d-arrastra .app { background: #fff; box-shadow: 0 8px 22px rgba(32, 22, 12, .14); animation: arrastra 2.8s var(--entra) infinite; }
+.d-arrastra .app img { width: 48px; height: 48px; border-radius: 12px; }
+.d-arrastra .apps { background: #3B82F6; color: #fff; font-weight: 700; font-size: 10.5px; }
+@keyframes arrastra { 0%, 15% { transform: none; } 55%, 70% { transform: translateX(96px) scale(.8); opacity: .4; } 71% { opacity: 0; transform: none; } 85%, 100% { opacity: 1; transform: none; } }
+.d-flecha { color: #C9B49A; font-size: 22px; }
+.d-terminal { width: 86%; background: #1B1209; color: #FFE7C4; border-radius: 10px; font-family: ui-monospace, Consolas, monospace; font-size: 12px; overflow: hidden; box-shadow: 0 10px 28px rgba(32, 22, 12, .25); }
+.d-terminal .barra { height: 22px; background: #2A1C0E; display: flex; gap: 5px; align-items: center; padding: 0 8px; }
+.d-terminal .barra i { width: 8px; height: 8px; border-radius: 50%; background: #5B4430; }
+.d-terminal p { margin: 0; padding: 12px 14px; color: #FFE7C4; font-size: 12px; line-height: 1.55; max-width: none; word-break: break-all; }
+.d-terminal p::after { content: ""; display: inline-block; width: 7px; height: 13px; background: var(--naranja); vertical-align: -2px; margin-left: 2px; animation: cursor 1s steps(1) infinite; }
+@keyframes cursor { 50% { opacity: 0; } }
+.d-carpeta { display: flex; align-items: center; gap: 18px; font-size: 12.5px; text-align: center; color: var(--tinta-suave); }
+.d-carpeta .zip, .d-carpeta .dir { width: 76px; height: 64px; border-radius: 10px; display: grid; place-items: center; font-weight: 700; color: #fff; }
+.d-carpeta .zip { background: #8B6A44; }
+.d-carpeta .dir { background: var(--yema); color: #5A3A00; border-radius: 4px 10px 10px 10px; }
+
+/* ── Dudas ── */
+.dudas { display: grid; grid-template-columns: repeat(3, minmax(0, 1fr)); gap: clamp(20px, 3vw, 44px); margin-top: clamp(60px, 8vw, 110px); padding-top: clamp(36px, 5vw, 56px); border-top: 1px solid var(--linea); }
+.dudas h4 { margin: 0 0 8px; font-size: 17px; }
+.dudas p { margin: 0; color: var(--tinta-suave); font-size: 15.5px; line-height: 1.6; }
+.pie { background: #fff; color: var(--tinta-suave); font-size: 14px; padding: 0 var(--lado) 40px; display: flex; gap: 22px; flex-wrap: wrap; }
+.pie a { color: var(--tinta-suave); }
+
+/* ── Pantallas pequeñas ── */
+@media (max-width: 1020px) {
+    .heroe { grid-template-columns: 1fr; padding-bottom: 90px; }
+    .escena { justify-self: stretch; }
+    .titular .linea { white-space: normal; }
+    .v-cuerpo { grid-template-columns: 1fr; }
+    .v-lado { display: none; }
+    .pasos, .dudas { grid-template-columns: 1fr; }
+    .paso::before, .paso::after { display: none; }
+    .flecha { display: none; }
+}
+/* En el móvil no se descarga nada: se dice que es para ordenador y se ofrece copiar el enlace. */
+.es-movil .aviso-movil { display: block; }
+.es-movil .descarga { display: none; }
+.aviso-movil .copiar { display: block; margin-top: 12px; padding: 9px 14px; font-size: 14px; }
+@media (prefers-reduced-motion: reduce) {
+    *, *::before, *::after { animation: none !important; transition: none !important; }
+    .titular .linea > span, .aparece, .escena { transform: none; opacity: 1; }
+}
+</style>
+</head>
+<body>
+
+<header class="cabecera">
+    <a class="marca" href="index.html"><img src="logo.png" alt=""> Pollo Assistance</a>
+    <a class="volver" href="https://polloassistance.com/" data-txt="volver">Ir al chat</a>
+</header>
+
+<main>
+<section class="heroe" id="heroe">
+    <div class="texto">
+        <h1 class="titular">
+            <span class="linea"><span data-txt="tit1">Pollo Assistance,</span></span>
+            <span class="linea"><span data-txt="tit2">en tu ordenador</span></span>
+        </h1>
+        <p class="entrada aparece" data-txt="entrada">La misma IA de la web, pero trabajando con tu carpeta, un navegador que usa contigo delante y la consola de tu ordenador. Gratis.</p>
+        <div class="aviso-movil aparece" id="avisoMovil"><span data-txt="movil">Esta app es para ordenador. Abre esta página desde tu ordenador: polloassistance.github.io/escritorio.html</span>
+            <button type="button" class="copiar" data-copiar="https://polloassistance.github.io/escritorio.html" data-txt="copiar_enlace">Copiar el enlace</button></div>
+        <div class="aparece descarga">
+            <a class="bajar" id="bajar" href="#instalar">
+                <span id="bajarIco"></span>
+                <span id="bajarTxt">Descargar</span>
+            </a>
+            <span class="bajar-sub" id="bajarSub"></span>
+            <div class="otros" id="otros"></div>
+            <p class="chip" id="chip"></p>
+        </div>
+    </div>
+
+    <div class="escena" aria-hidden="true">
+        <div class="ventana">
+            <div class="v-barra"><i></i><i></i><i></i><b>Pollo Assistance</b></div>
+            <div class="v-cuerpo">
+                <aside class="v-lado">
+                    <div class="v-nuevo" data-txt="v_nuevo">+ Nuevo chat</div>
+                    <div class="v-item activo" data-txt="v_chat1">Facturas de octubre</div>
+                    <div class="v-item" data-txt="v_chat2">Plan para el examen</div>
+                    <div class="v-item" data-txt="v_chat3">Viaje a Lisboa</div>
+                    <div class="v-carpeta">📁 <span data-txt="v_carpeta">Documentos / Facturas</span></div>
+                </aside>
+                <div class="v-chat">
+                    <div class="v-yo" id="vYo"></div>
+                    <div class="v-pollo" id="vPollo">
+                        <div class="v-logo"><img src="logo.png" alt=""></div>
+                        <div>
+                            <div class="v-pensar"><b id="vPensarT">Pensando</b><span id="vPensarS">1 segundo</span></div>
+                            <ul class="v-pasos" id="vPasos"></ul>
+                            <div class="v-archivo" id="vArchivo"><span class="ico">XLS</span><span><b>resumen-octubre.xlsx</b><small data-txt="v_creado">Creado en tu carpeta</small></span><em data-txt="v_abrir">Abrir</em></div>
+                            <p class="v-resp" id="vResp"></p>
+                        </div>
+                    </div>
+                    <div class="v-caja"><span data-txt="v_escribe">Escribe tu mensaje…</span><i></i></div>
+                </div>
+            </div>
+        </div>
+    </div>
+
+    <a class="flecha" href="#instalar"><span data-txt="como">Cómo se instala</span><svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round"><polyline points="6 9 12 15 18 9"/></svg></a>
+</section>
+
+<section class="instalar" id="instalar">
+    <div class="instalar-cab">
+        <div>
+            <h2 data-txt="inst_tit">Cómo se instala</h2>
+            <p class="instalar-sub" data-txt="inst_sub">Tres pasos y un minuto. Es lo mismo que instalar cualquier otra app.</p>
+        </div>
+        <div class="selector" role="tablist" id="selector"></div>
+    </div>
+    <div class="descargando" id="descargando" role="status"></div>
+    <ol class="pasos" id="pasos"></ol>
+
+    <div class="dudas">
+        <div><h4 data-txt="d1_t">¿Hace falta cuenta?</h4><p data-txt="d1_p">Para Pollo Utility y tus chats de la web, sí: la misma de siempre. El modo Privado (un modelo en tu ordenador) y «Con tu clave» funcionan sin ella.</p></div>
+        <div><h4 data-txt="d2_t">¿Cuesta algo?</h4><p data-txt="d2_p">La app es gratis. Pollo Utility gasta tu cuota igual que en la web; Privado y «Con tu clave» no gastan nada.</p></div>
+        <div><h4 data-txt="d3_t">¿Por qué avisa el ordenador?</h4><p data-txt="d3_p">Porque la app es nueva y todavía no está firmada por Microsoft ni por Apple. No es nada malo: por eso hay que darle permiso la primera vez.</p></div>
+    </div>
+</section>
+</main>
+
+<footer class="pie">
+    <span>© 2026 Pollo Assistance Studios</span>
+    <a href="wiki/es/app-escritorio.html" id="enlaceWiki" data-txt="wiki">Qué hace la app</a>
+    <a href="https://polloassistance.com/privacy.html" data-txt="privacidad">Privacidad</a>
+</footer>
+
+<script>
+(function () {
+    'use strict';
+
+    // ── Los textos (español y, si la web está en inglés, inglés) ──
+    var TXT = {
+        es: {
+            volver: 'Ir al chat', tit1: 'Pollo Assistance,', tit2: 'en tu ordenador',
+            entrada: 'La misma IA de la web, pero trabajando con tu carpeta, un navegador que usa contigo delante y la consola de tu ordenador. Gratis.',
+            movil: 'Esta app es para ordenador. Abre esta página desde tu ordenador: polloassistance.github.io/escritorio.html',
+            bajar: 'Descargar para {so}', sub_win: 'Para Windows 10 y 11 ({mb} MB). Versión {v}.',
+            sub_mac: 'Para Mac con chip {chip} ({mb} MB). Versión {v}.', sub_linux: 'Para Linux de 64 bits ({mb} MB). Versión {v}.',
+            tambien: 'También para', beta: 'beta', apple: 'Apple', intel: 'Intel',
+            chip_es_intel: '¿Tu Mac tiene chip Intel?', chip_es_apple: '¿Tu Mac tiene chip de Apple (M1 o posterior)?',
+            chip_baja: 'Descarga esta otra',
+            copiar_enlace: 'Copiar el enlace',
+            como: 'Cómo se instala', inst_tit: 'Cómo se instala', inst_sub: 'Tres pasos y un minuto. Es lo mismo que instalar cualquier otra app.',
+            empezado: 'La descarga ha empezado. Cuando termine, sigue estos pasos.',
+            copiar: 'Copiar', copiado: 'Copiado',
+            v_nuevo: '+ Nuevo chat', v_chat1: 'Facturas de octubre', v_chat2: 'Plan para el examen', v_chat3: 'Viaje a Lisboa',
+            v_carpeta: 'Documentos / Facturas', v_creado: 'Creado en tu carpeta', v_abrir: 'Abrir', v_escribe: 'Escribe tu mensaje…',
+            v_pide: 'Ordena las facturas de esta carpeta y hazme un resumen de octubre',
+            v_pensando: 'Pensando', v_pensado: 'Ha pensado durante {s}', v_seg1: '1 segundo', v_segs: '{n} segundos',
+            v_p1: 'Leyó 12 facturas', v_p2: 'Las ordenó por mes', v_p3: 'Escribió resumen-octubre.xlsx',
+            v_resp: 'Listo. He ordenado las 12 facturas por mes. En octubre gastaste 412,30 €, y la más alta fue la de la luz: te lo he dejado en una hoja.',
+            d1_t: '¿Hace falta cuenta?', d1_p: 'Para Pollo Utility y tus chats de la web, sí: la misma de siempre. El modo Privado (un modelo en tu ordenador) y «Con tu clave» funcionan sin ella.',
+            d2_t: '¿Cuesta algo?', d2_p: 'La app es gratis. Pollo Utility gasta tu cuota igual que en la web; Privado y «Con tu clave» no gastan nada.',
+            d3_t: '¿Por qué avisa el ordenador?', d3_p: 'Porque la app es nueva y todavía no está firmada por Microsoft ni por Apple. No es nada malo: por eso hay que darle permiso la primera vez.',
+            wiki: 'Qué hace la app', privacidad: 'Privacidad',
+            pasos: {
+                windows: [
+                    { t: 'Abre el instalador', p: 'Cuando termine la descarga, ábrelo desde tu navegador o desde la carpeta <b>Descargas</b>: se llama <b>{archivo}</b>.' },
+                    { t: 'Si Windows te avisa, dale permiso', p: 'Puede salir «Windows protegió su PC». Pulsa <b>Más información</b> y después <b>Ejecutar de todas formas</b>.' },
+                    { t: 'Entra con tu cuenta', p: 'Se instala sola y se abre. Inicia sesión con tu cuenta de Pollo y elige una carpeta para trabajar.' }
+                ],
+                mac: [
+                    { t: 'Arrastra la app a Aplicaciones', p: 'Abre el .zip que has descargado y arrastra <b>Pollo Assistance</b> a la carpeta <b>Aplicaciones</b>.' },
+                    { t: 'Dale permiso desde la Terminal', p: 'Solo la primera vez. Abre la app <b>Terminal</b>, pega esto y pulsa Intro. Es lo que pide macOS para abrir una app que aún no está firmada.', codigo: 'xattr -cr "/Applications/Pollo Assistance.app" && codesign --force --deep --sign - "/Applications/Pollo Assistance.app"' },
+                    { t: 'Ábrela y entra con tu cuenta', p: 'Búscala en Aplicaciones o en Launchpad, ábrela e inicia sesión con tu cuenta de Pollo.' }
+                ],
+                linux: [
+                    { t: 'Descomprime el archivo', p: 'Clic derecho sobre <b>{archivo}</b> y <b>Extraer aquí</b>. Sale la carpeta <b>Pollo-Assistance</b>.' },
+                    { t: 'Abre pollo-escritorio', p: 'Entra en la carpeta y haz doble clic en <b>pollo-escritorio</b>. O, en una terminal dentro de la carpeta, pega esto. Si no se abre, añade <b>--no-sandbox</b> al final.', codigo: './pollo-escritorio' },
+                    { t: 'Entra con tu cuenta', p: 'Inicia sesión con tu cuenta de Pollo y elige una carpeta para trabajar.' }
+                ]
+            }
+        },
+        en: {
+            volver: 'Go to the chat', tit1: 'Pollo Assistance,', tit2: 'on your computer',
+            entrada: 'The same AI as on the web, now working with your folder, a browser it uses while you watch and your computer’s console. Free.',
+            movil: 'This app is for computers. Open this page on your computer: polloassistance.github.io/escritorio.html',
+            bajar: 'Download for {so}', sub_win: 'For Windows 10 and 11 ({mb} MB). Version {v}.',
+            sub_mac: 'For Macs with {chip} chips ({mb} MB). Version {v}.', sub_linux: 'For 64-bit Linux ({mb} MB). Version {v}.',
+            tambien: 'Also for', beta: 'beta', apple: 'Apple', intel: 'Intel',
+            chip_es_intel: 'Does your Mac have an Intel chip?', chip_es_apple: 'Does your Mac have an Apple chip (M1 or later)?',
+            chip_baja: 'Download this one instead',
+            copiar_enlace: 'Copy the link',
+            como: 'How to install', inst_tit: 'How to install it', inst_sub: 'Three steps and one minute. Just like installing any other app.',
+            empezado: 'Your download has started. When it finishes, follow these steps.',
+            copiar: 'Copy', copiado: 'Copied',
+            v_nuevo: '+ New chat', v_chat1: 'October invoices', v_chat2: 'Exam plan', v_chat3: 'Trip to Lisbon',
+            v_carpeta: 'Documents / Invoices', v_creado: 'Created in your folder', v_abrir: 'Open', v_escribe: 'Type your message…',
+            v_pide: 'Sort the invoices in this folder and give me a summary of October',
+            v_pensando: 'Thinking', v_pensado: 'Thought for {s}', v_seg1: '1 second', v_segs: '{n} seconds',
+            v_p1: 'Read 12 invoices', v_p2: 'Sorted them by month', v_p3: 'Wrote resumen-octubre.xlsx',
+            v_resp: 'Done. I sorted the 12 invoices by month. In October you spent €412.30, and the biggest one was electricity: it is all in a spreadsheet.',
+            d1_t: 'Do I need an account?', d1_p: 'For Pollo Utility and your web chats, yes: the same one. Private mode (a model on your computer) and “With your key” work without one.',
+            d2_t: 'Does it cost anything?', d2_p: 'The app is free. Pollo Utility uses your quota just like on the web; Private and “With your key” cost nothing.',
+            d3_t: 'Why does my computer warn me?', d3_p: 'Because the app is new and not signed by Microsoft or Apple yet. It is nothing bad: that is why you give it permission the first time.',
+            wiki: 'What the app does', privacidad: 'Privacy',
+            pasos: {
+                windows: [
+                    { t: 'Open the installer', p: 'When the download finishes, open it from your browser or your <b>Downloads</b> folder: it is called <b>{archivo}</b>.' },
+                    { t: 'If Windows warns you, allow it', p: '“Windows protected your PC” may appear. Click <b>More info</b> and then <b>Run anyway</b>.' },
+                    { t: 'Sign in', p: 'It installs and opens by itself. Sign in with your Pollo account and choose a folder to work in.' }
+                ],
+                mac: [
+                    { t: 'Drag the app to Applications', p: 'Open the .zip you downloaded and drag <b>Pollo Assistance</b> into <b>Applications</b>.' },
+                    { t: 'Allow it from Terminal', p: 'Only the first time. Open <b>Terminal</b>, paste this and press Return. macOS asks for this to open an app that is not signed yet.', codigo: 'xattr -cr "/Applications/Pollo Assistance.app" && codesign --force --deep --sign - "/Applications/Pollo Assistance.app"' },
+                    { t: 'Open it and sign in', p: 'Find it in Applications or Launchpad, open it and sign in with your Pollo account.' }
+                ],
+                linux: [
+                    { t: 'Extract the file', p: 'Right-click <b>{archivo}</b> and choose <b>Extract here</b>. You get the <b>Pollo-Assistance</b> folder.' },
+                    { t: 'Open pollo-escritorio', p: 'Go into the folder and double-click <b>pollo-escritorio</b>. Or paste this in a terminal inside the folder. If it does not open, add <b>--no-sandbox</b> at the end.', codigo: './pollo-escritorio' },
+                    { t: 'Sign in', p: 'Sign in with your Pollo account and choose a folder to work in.' }
+                ]
+            }
+        }
+    };
+    // El idioma: el que manda la web en ?lang=, si no el elegido en la portada de
+    // github.io, si no el del navegador (español solo si el navegador está en español).
+    var lang = null;
+    try { lang = new URLSearchParams(location.search).get('lang'); } catch (_) {}
+    if (lang !== 'es' && lang !== 'en') { try { lang = localStorage.getItem('pollo_lang'); } catch (_) { lang = null; } }
+    if (lang !== 'es' && lang !== 'en') lang = /^es\b/i.test(navigator.language || '') ? 'es' : 'en';
+    var X = TXT[lang];
+    var tx = function (k, v) {
+        var s = X[k] != null ? X[k] : (TXT.es[k] != null ? TXT.es[k] : k);
+        return v ? String(s).replace(/\{(\w+)\}/g, function (m, n) { return v[n] != null ? v[n] : m; }) : s;
+    };
+    document.documentElement.lang = lang;
+    document.querySelectorAll('[data-txt]').forEach(function (el) { el.textContent = tx(el.getAttribute('data-txt')); });
+    if (lang === 'en') document.getElementById('enlaceWiki').href = 'wiki/en/app-escritorio.html';
+
+    // ── Qué hay para descargar (lo escribe scripts/publicar-escritorio.js) ──
+    var DEFECTO = {
+        version: '0.1.3',
+        base: 'https://github.com/Polloassistance/polloassistance.github.io/releases/download/escritorio-v0.1.3/',
+        archivos: {
+            windows: { nombre: 'Pollo-Assistance-Setup-0.1.3.exe', bytes: 147020132 },
+            'mac-arm64': { nombre: 'Pollo-Assistance-0.1.3-mac-arm64.zip', bytes: 156352642 },
+            'mac-x64': { nombre: 'Pollo-Assistance-0.1.3-mac-x64.zip', bytes: 160553211 },
+            linux: { nombre: 'Pollo-Assistance-0.1.3-linux-x64.tar.gz', bytes: 159184436 }
+        }
+    };
+    var datos = DEFECTO;
+
+    var ICONO = {
+        windows: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M3 5.4 10.4 4.4v7H3zM11.4 4.3 21 3v8.4h-9.6zM3 12.6h7.4v7L3 18.6zM11.4 12.6H21V21l-9.6-1.3z"/></svg>',
+        mac: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M16.4 12.6c0-2.4 2-3.6 2.1-3.7-1.2-1.7-3-1.9-3.6-2-1.5-.2-3 .9-3.8.9s-2-.9-3.3-.9c-1.7 0-3.3 1-4.1 2.5-1.8 3.1-.5 7.6 1.3 10.1.8 1.2 1.8 2.6 3.1 2.5 1.3 0 1.7-.8 3.3-.8s2 .8 3.3.8c1.4 0 2.3-1.2 3.1-2.5.9-1.4 1.3-2.7 1.3-2.8 0 0-2.7-1-2.7-4.1zM13.9 5.2c.7-.9 1.2-2 1-3.2-1 .1-2.2.7-2.9 1.5-.6.7-1.2 1.9-1 3.1 1.1.1 2.2-.6 2.9-1.4z"/></svg>',
+        linux: '<svg viewBox="0 0 24 24" fill="currentColor"><path d="M12 2c-2.2 0-3.6 1.9-3.6 4.6 0 1.6.4 2.6-.4 3.9-.9 1.4-2.8 3.6-2.8 6.3 0 .6.1 1.2.3 1.7-.6.3-1.5.6-1.5 1.3 0 .9 1.6 1.2 3.1 1.6 1 .3 1.7.6 2.3.6.9 0 1.4-.6 2.6-.6s1.7.6 2.6.6c.6 0 1.3-.3 2.3-.6 1.5-.4 3.1-.7 3.1-1.6 0-.7-.9-1-1.5-1.3.2-.5.3-1.1.3-1.7 0-2.7-1.9-4.9-2.8-6.3-.8-1.3-.4-2.3-.4-3.9C15.6 3.9 14.2 2 12 2zm-1.6 4.2c.4 0 .7.5.7 1.1s-.3 1.1-.7 1.1-.7-.5-.7-1.1.3-1.1.7-1.1zm3.2 0c.4 0 .7.5.7 1.1s-.3 1.1-.7 1.1-.7-.5-.7-1.1.3-1.1.7-1.1zM12 9.4c.9 0 2 .6 2 1.1s-1.1 1.2-2 1.2-2-.7-2-1.2 1.1-1.1 2-1.1z"/></svg>',
+        bajar: '<svg viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2.2" stroke-linecap="round" stroke-linejoin="round"><path d="M12 4v11"/><path d="m7 11 5 5 5-5"/><path d="M5 20h14"/></svg>'
+    };
+    var NOMBRE = { windows: 'Windows', mac: 'macOS', linux: 'Linux' };
+
+    // ── Qué ordenador es ──
+    function queSistema() {
+        var ua = navigator.userAgent || '';
+        var pl = ((navigator.userAgentData && navigator.userAgentData.platform) || navigator.platform || '');
+        if (/Android|iPhone|iPad|iPod/i.test(ua)) return { so: 'windows', movil: true };
+        if (/Win/i.test(pl) || /Windows/i.test(ua)) return { so: 'windows' };
+        if (/Mac/i.test(pl) || /Mac OS X/i.test(ua)) return { so: 'mac' };
+        if (/Linux|X11|CrOS/i.test(pl + ' ' + ua)) return { so: 'linux' };
+        return { so: 'windows' };
+    }
+    var sis = queSistema();
+    var macChip = 'arm64';   // casi todos los Mac de ahora llevan chip de Apple
+    function adivinarChip(alAcabar) {
+        try {
+            if (navigator.userAgentData && navigator.userAgentData.getHighEntropyValues) {
+                navigator.userAgentData.getHighEntropyValues(['architecture']).then(function (v) {
+                    if (v && v.architecture === 'x86') { macChip = 'x64'; alAcabar(); }
+                }).catch(function () {});
+                return;
+            }
+            // Safari no lo dice; la tarjeta gráfica sí: los Intel no dicen «Apple».
+            var c = document.createElement('canvas').getContext('webgl');
+            var ext = c && c.getExtension('WEBGL_debug_renderer_info');
+            var r = ext ? String(c.getParameter(ext.UNMASKED_RENDERER_WEBGL)) : '';
+            if (r && !/Apple/i.test(r) && /Intel|AMD|Radeon/i.test(r)) { macChip = 'x64'; alAcabar(); }
+        } catch (_) {}
+    }
+
+    function archivoDe(so, chip) {
+        var k = so === 'mac' ? 'mac-' + (chip || macChip) : so;
+        var a = datos.archivos[k];
+        return a ? { url: (a.url || datos.base + a.nombre), nombre: a.nombre, mb: Math.round(a.bytes / 1048576) } : null;
+    }
+
+    // ── El botón grande y los pequeños ──
+    function pintarBotones() {
+        var so = sis.so, a = archivoDe(so);
+        var bajar = document.getElementById('bajar');
+        if (a) bajar.href = a.url;
+        document.getElementById('bajarIco').innerHTML = ICONO[so];
+        document.getElementById('bajarTxt').textContent = tx('bajar', { so: NOMBRE[so] });
+        var sub = so === 'windows' ? 'sub_win' : so === 'mac' ? 'sub_mac' : 'sub_linux';
+        document.getElementById('bajarSub').textContent = a ? tx(sub, { mb: a.mb, v: datos.version, chip: macChip === 'x64' ? tx('intel') : tx('apple') }) : '';
+        // Las otras dos, en pequeño. La de Mac pequeña es la de chip de Apple (casi todos).
+        var h = '<span>' + tx('tambien') + '</span>';
+        ['windows', 'mac', 'linux'].forEach(function (s) {
+            var f = s !== so && archivoDe(s, s === 'mac' ? 'arm64' : null);
+            if (!f) return;
+            h += '<a class="otro" data-so="' + s + '" href="' + f.url + '">' + ICONO[s] + '<span>' + NOMBRE[s] + '</span>' +
+                 (s !== 'windows' ? '<span class="beta">' + tx('beta') + '</span>' : '') + '</a>';
+        });
+        document.getElementById('otros').innerHTML = h;
+        // En un Mac, una línea para el otro tipo de chip (Safari no deja saber cuál es).
+        var otroChip = macChip === 'x64' ? 'arm64' : 'x64';
+        var fc = so === 'mac' && archivoDe('mac', otroChip);
+        var chip = document.getElementById('chip');
+        chip.textContent = '';
+        if (fc) {
+            var pregunta = otroChip === 'x64' ? tx('chip_es_intel') : tx('chip_es_apple');
+            var a = document.createElement('a');
+            a.href = fc.url; a.dataset.so = 'mac'; a.className = 'otro-chip'; a.textContent = tx('chip_baja');
+            chip.appendChild(document.createTextNode(pregunta + ' '));
+            chip.appendChild(a);
+            chip.appendChild(document.createTextNode('.'));
+        }
+        if (so !== 'windows') {
+            var b = document.createElement('span');
+            b.className = 'beta'; b.textContent = tx('beta');
+            document.getElementById('bajarSub').appendChild(document.createTextNode(' ')); document.getElementById('bajarSub').appendChild(b);
+        }
+    }
+
+    // ── Los pasos de cada sistema ──
+    var vista = sis.so;
+    function esc(t) { return String(t).replace(/&/g, '&amp;').replace(/</g, '&lt;').replace(/>/g, '&gt;').replace(/"/g, '&quot;'); }
+    function dibujo(so, i) {
+        var a = archivoDe(so) || { nombre: '' };
+        if (so === 'windows') {
+            if (i === 0) return '<div class="d-bajada"><span class="ico"><img src="logo.png" alt=""></span><span><b>' + esc(a.nombre) + '</b>' + (archivoDe('windows') ? archivoDe('windows').mb + ' MB' : '') + '</span><span class="abrir">' + (lang === 'en' ? 'Open file' : 'Abrir archivo') + '</span></div>';
+            if (i === 1) return '<div class="d-smart"><b>' + (lang === 'en' ? 'Windows protected your PC' : 'Windows protegió su PC') + '</b>' +
+                (lang === 'en' ? 'Microsoft Defender SmartScreen prevented an unrecognized app from starting.' : 'Microsoft Defender SmartScreen impidió el inicio de una aplicación no reconocida.') +
+                '<br><span class="mas resalta">' + (lang === 'en' ? 'More info' : 'Más información') + '</span><div class="botones"><span class="resalta">' + (lang === 'en' ? 'Run anyway' : 'Ejecutar de todas formas') + '</span><span>' + (lang === 'en' ? 'Don’t run' : 'No ejecutar') + '</span></div></div>';
+        }
+        if (so === 'mac') {
+            if (i === 0) return '<div class="d-arrastra"><span class="app"><img src="logo.png" alt=""></span><span class="d-flecha">➜</span><span class="apps">' + (lang === 'en' ? 'Applications' : 'Aplicaciones') + '</span></div>';
+            if (i === 1) return '<div class="d-terminal"><div class="barra"><i></i><i></i><i></i></div><p>$ ' + esc(X.pasos.mac[1].codigo) + '</p></div>';
+        }
+        if (so === 'linux') {
+            if (i === 0) return '<div class="d-carpeta"><span><span class="zip">.tar.gz</span></span><span class="d-flecha">➜</span><span><span class="dir">Pollo-Assistance</span></span></div>';
+            if (i === 1) return '<div class="d-terminal"><div class="barra"><i></i><i></i><i></i></div><p>~/Pollo-Assistance$ ./pollo-escritorio</p></div>';
+        }
+        return '<div class="d-entrar"><img src="logo.png" alt=""><b>Pollo Assistance</b><span>' + (lang === 'en' ? 'Sign in' : 'Iniciar sesión') + '</span></div>';
+    }
+    function pintarPasos(animar) {
+        var ol = document.getElementById('pasos');
+        var a = archivoDe(vista) || { nombre: '' };
+        var hacer = function () {
+            ol.innerHTML = X.pasos[vista].map(function (p, i) {
+                return '<li class="paso"><div class="paso-num">' + (i + 1) + '</div><div class="dibujo">' + dibujo(vista, i) + '</div>' +
+                    '<h3>' + esc(p.t) + '</h3><p>' + p.p.replace('{archivo}', esc(a.nombre)) + '</p>' +
+                    (p.codigo ? '<div class="codigo"><code>' + esc(p.codigo) + '</code><button type="button" class="copiar" data-copiar="' + esc(p.codigo) + '">' + tx('copiar') + '</button></div>' : '') +
+                    '</li>';
+            }).join('');
+            ol.classList.remove('cambia');
+        };
+        if (animar) { ol.classList.add('cambia'); setTimeout(hacer, 220); } else hacer();
+        document.querySelectorAll('#selector button').forEach(function (b) { b.setAttribute('aria-selected', b.dataset.so === vista ? 'true' : 'false'); });
+    }
+    function pintarSelector() {
+        document.getElementById('selector').innerHTML = ['windows', 'mac', 'linux'].map(function (s) {
+            return '<button type="button" role="tab" data-so="' + s + '" aria-selected="' + (s === vista) + '">' + ICONO[s] + NOMBRE[s] + '</button>';
+        }).join('');
+    }
+    document.addEventListener('click', function (e) {
+        var b = e.target.closest('#selector button');
+        if (b && b.dataset.so !== vista) { vista = b.dataset.so; pintarPasos(true); return; }
+        var c = e.target.closest('[data-copiar]');
+        if (c) {
+            var txt = c.getAttribute('data-copiar');
+            var antes = c.dataset.antes || (c.dataset.antes = c.textContent);
+            var hecho = function () { c.textContent = tx('copiado'); setTimeout(function () { c.textContent = antes; }, 1600); };
+            if (navigator.clipboard) navigator.clipboard.writeText(txt).then(hecho, function () {}); return;
+        }
+        // Al descargar: la descarga va sola y los pasos se ponen delante.
+        var d = e.target.closest('#bajar, .otro, .otro-chip');
+        if (d && /^https:/.test(d.getAttribute('href') || '')) {
+            var so = d.dataset.so || sis.so;
+            if (so !== vista) { vista = so; pintarPasos(false); }
+            var aviso = document.getElementById('descargando');
+            aviso.textContent = tx('empezado');
+            aviso.classList.add('ve');
+            setTimeout(function () { document.getElementById('instalar').scrollIntoView({ behavior: 'smooth' }); }, 350);
+        }
+    });
+
+    // ── La ventana de la app, haciendo un encargo de verdad ──
+    var quieto = window.matchMedia && window.matchMedia('(prefers-reduced-motion: reduce)').matches;
+    var vYo = document.getElementById('vYo'), vPollo = document.getElementById('vPollo'), vPasos = document.getElementById('vPasos');
+    var vArchivo = document.getElementById('vArchivo'), vResp = document.getElementById('vResp');
+    var vT = document.getElementById('vPensarT'), vS = document.getElementById('vPensarS');
+    var reloj = null, temporizadores = [];
+    var segs = function (n) { return n === 1 ? tx('v_seg1') : tx('v_segs', { n: n }); };
+    var luego = function (ms, fn) { temporizadores.push(setTimeout(fn, ms)); };
+    function escribir(el, texto, ms, alAcabar) {
+        var i = 0;
+        var paso = function () { i += 2; el.textContent = texto.slice(0, i); if (i < texto.length) luego(ms, paso); else if (alAcabar) alAcabar(); };
+        paso();
+    }
+    function finalQuieto() {
+        vYo.textContent = tx('v_pide'); vPollo.className = 'v-pollo ve';
+        vT.textContent = tx('v_pensado', { s: segs(4) }); vS.textContent = '';
+        vPasos.innerHTML = ['v_p1', 'v_p2', 'v_p3'].map(function (k) { return '<li class="ve hecho">' + esc(tx(k)) + '</li>'; }).join('');
+        vArchivo.classList.add('ve'); vResp.textContent = tx('v_resp');
+    }
+    function obra() {
+        temporizadores.forEach(clearTimeout); temporizadores = [];
+        clearInterval(reloj);
+        vYo.textContent = ''; vPollo.className = 'v-pollo'; vPasos.innerHTML = ''; vArchivo.classList.remove('ve'); vResp.textContent = '';
+        vT.textContent = tx('v_pensando'); vS.textContent = segs(1);
+        luego(900, function () {
+            escribir(vYo, tx('v_pide'), 28, function () {
+                luego(450, function () {
+                    vPollo.className = 'v-pollo ve piensa';
+                    var t0 = Date.now();
+                    reloj = setInterval(function () { vS.textContent = segs(Math.max(1, Math.round((Date.now() - t0) / 1000))); }, 250);
+                    ['v_p1', 'v_p2', 'v_p3'].forEach(function (k, i) {
+                        luego(900 + i * 1050, function () {
+                            var li = document.createElement('li'); li.textContent = tx(k); vPasos.appendChild(li);
+                            requestAnimationFrame(function () { li.classList.add('ve'); });
+                            luego(600, function () { li.classList.add('hecho'); });
+                        });
+                    });
+                    luego(4300, function () {
+                        clearInterval(reloj);
+                        vPollo.classList.remove('piensa');
+                        vT.textContent = tx('v_pensado', { s: segs(Math.max(1, Math.round((Date.now() - t0) / 1000))) }); vS.textContent = '';
+                        vArchivo.classList.add('ve');
+                        luego(500, function () { escribir(vResp, tx('v_resp'), 22, function () { luego(6500, obra); }); });
+                    });
+                });
+            });
+        });
+    }
+
+    // ── Al bajar, la raya de los pasos se dibuja (una sola vez) ──
+    try {
+        var io = new IntersectionObserver(function (ents) {
+            ents.forEach(function (en) { if (en.isIntersecting) { document.getElementById('pasos').classList.add('trazado'); io.disconnect(); } });
+        }, { threshold: .35 });
+        io.observe(document.getElementById('pasos'));
+    } catch (_) { document.getElementById('pasos').classList.add('trazado'); }
+
+    // El titular, en dos líneas: si en algún idioma o tamaño no cabe, se encoge lo justo.
+    function ajustarTitular() {
+        var h = document.querySelector('.titular');
+        h.style.fontSize = '';
+        if (getComputedStyle(h.querySelector('.linea')).whiteSpace !== 'nowrap') return;
+        var mayor = 0;
+        h.querySelectorAll('.linea > span').forEach(function (s) { mayor = Math.max(mayor, s.offsetWidth); });
+        if (mayor > h.clientWidth) h.style.fontSize = Math.floor(parseFloat(getComputedStyle(h).fontSize) * h.clientWidth / mayor * 0.98) + 'px';
+    }
+    ajustarTitular();
+    window.addEventListener('resize', ajustarTitular);
+    try { document.fonts.ready.then(ajustarTitular); } catch (_) {}
+
+    if (sis.movil) document.body.classList.add('es-movil');
+    pintarBotones(); pintarSelector(); pintarPasos(false);
+    if (sis.so === 'mac') adivinarChip(function () { pintarBotones(); pintarPasos(false); });
+    fetch('descargas/escritorio.json', { cache: 'no-cache' }).then(function (r) { return r.ok ? r.json() : null; })
+        .then(function (j) { if (j && j.archivos && j.base) { datos = j; pintarBotones(); pintarPasos(false); } }).catch(function () {});
+
+    requestAnimationFrame(function () {
+        document.getElementById('heroe').classList.add('listo');
+        if (quieto) finalQuieto(); else obra();
+    });
+})();
+</script>
+</body>
+</html>
