@@ -323,7 +323,8 @@ a { color: inherit; }
             entrada: 'La misma IA de la web, pero trabajando con tu carpeta, un navegador que usa contigo delante y la consola de tu ordenador. Gratis.',
             movil: 'Esta app es para ordenador. Abre esta página desde tu ordenador: polloassistance.github.io/escritorio.html',
             bajar: 'Descargar para {so}', sub_win: 'Para Windows 10 y 11 ({mb} MB). Versión {v}.',
-            sub_mac: 'Para Mac con chip {chip} ({mb} MB). Versión {v}.', sub_linux: 'Para Linux de 64 bits ({mb} MB). Versión {v}.',
+            sub_mac: 'Para Mac con chip {chip} ({mb} MB). Versión {v}.', sub_linux: 'Para Ubuntu, Debian, Mint, Pop!_OS y parecidos, de 64 bits ({mb} MB). Versión {v}.',
+            otra_linux: '¿Usas Fedora, Arch u otra?', otra_linux_baja: 'Descarga el .tar.gz (trae instalar.sh)',
             tambien: 'También para', beta: 'beta', apple: 'Apple', intel: 'Intel',
             chip_es_intel: '¿Tu Mac tiene chip Intel?', chip_es_apple: '¿Tu Mac tiene chip de Apple (M1 o posterior)?',
             chip_baja: 'Descarga esta otra',
@@ -348,14 +349,14 @@ a { color: inherit; }
                     { t: 'Entra con tu cuenta', p: 'Se instala sola y se abre. Inicia sesión con tu cuenta de Pollo y elige una carpeta para trabajar.' }
                 ],
                 mac: [
-                    { t: 'Arrastra la app a Aplicaciones', p: 'Abre el .zip que has descargado y arrastra <b>Pollo Assistance</b> a la carpeta <b>Aplicaciones</b>.' },
+                    { t: 'Arrastra la app a Aplicaciones', p: 'Abre el .zip que has descargado y arrastra <b>Pollo Assistance</b> a la carpeta <b>Aplicaciones</b>. <i>O, más fácil: en la app <b>Terminal</b>, pega <code>curl -fsSL https://polloassistance.github.io/instalar.sh | bash</code> y se baja, se instala y se abre sola (sin los pasos 1 y 2).</i>' },
                     { t: 'Dale permiso desde la Terminal', p: 'Solo la primera vez. Abre la app <b>Terminal</b>, pega esto y pulsa Intro. Es lo que pide macOS para abrir una app que aún no está firmada.', codigo: 'xattr -cr "/Applications/Pollo Assistance.app" && codesign --force --deep --sign - "/Applications/Pollo Assistance.app"' },
                     { t: 'Ábrela y entra con tu cuenta', p: 'Búscala en Aplicaciones o en Launchpad, ábrela e inicia sesión con tu cuenta de Pollo.' }
                 ],
                 linux: [
-                    { t: 'Descomprime el archivo', p: 'Clic derecho sobre <b>{archivo}</b> y <b>Extraer aquí</b>. Sale la carpeta <b>Pollo-Assistance</b>.' },
-                    { t: 'Abre pollo-escritorio', p: 'Entra en la carpeta y haz doble clic en <b>pollo-escritorio</b>. O, en una terminal dentro de la carpeta, pega esto. Si no se abre, añade <b>--no-sandbox</b> al final.', codigo: './pollo-escritorio' },
-                    { t: 'Entra con tu cuenta', p: 'Inicia sesión con tu cuenta de Pollo y elige una carpeta para trabajar.' }
+                    { t: 'Ábrelo e instálalo', p: 'Haz doble clic en <b>{archivo}</b>: se abre el Centro de aplicaciones. Pulsa <b>Instalar</b> y pon tu contraseña.' },
+                    { t: 'O con un comando', p: 'Si prefieres la terminal, pega esto: elige solo lo que va con tu Linux (también Fedora, Arch y los demás).', codigo: 'curl -fsSL https://polloassistance.github.io/instalar.sh | bash' },
+                    { t: 'Ábrela y entra con tu cuenta', p: 'Búscala en tus aplicaciones como <b>Pollo Assistance</b> (la puedes anclar al dock), ábrela e inicia sesión con tu cuenta de Pollo.' }
                 ]
             }
         },
@@ -364,7 +365,8 @@ a { color: inherit; }
             entrada: 'The same AI as on the web, now working with your folder, a browser it uses while you watch and your computer’s console. Free.',
             movil: 'This app is for computers. Open this page on your computer: polloassistance.github.io/escritorio.html',
             bajar: 'Download for {so}', sub_win: 'For Windows 10 and 11 ({mb} MB). Version {v}.',
-            sub_mac: 'For Macs with {chip} chips ({mb} MB). Version {v}.', sub_linux: 'For 64-bit Linux ({mb} MB). Version {v}.',
+            sub_mac: 'For Macs with {chip} chips ({mb} MB). Version {v}.', sub_linux: 'For 64-bit Ubuntu, Debian, Mint, Pop!_OS and similar ({mb} MB). Version {v}.',
+            otra_linux: 'Using Fedora, Arch or another one?', otra_linux_baja: 'Download the .tar.gz (it has instalar.sh)',
             tambien: 'Also for', beta: 'beta', apple: 'Apple', intel: 'Intel',
             chip_es_intel: 'Does your Mac have an Intel chip?', chip_es_apple: 'Does your Mac have an Apple chip (M1 or later)?',
             chip_baja: 'Download this one instead',
@@ -389,14 +391,14 @@ a { color: inherit; }
                     { t: 'Sign in', p: 'It installs and opens by itself. Sign in with your Pollo account and choose a folder to work in.' }
                 ],
                 mac: [
-                    { t: 'Drag the app to Applications', p: 'Open the .zip you downloaded and drag <b>Pollo Assistance</b> into <b>Applications</b>.' },
+                    { t: 'Drag the app to Applications', p: 'Open the .zip you downloaded and drag <b>Pollo Assistance</b> into <b>Applications</b>. <i>Or, easier: in the <b>Terminal</b> app, paste <code>curl -fsSL https://polloassistance.github.io/instalar.sh | bash</code> and it downloads, installs and opens by itself (no steps 1 and 2).</i>' },
                     { t: 'Allow it from Terminal', p: 'Only the first time. Open <b>Terminal</b>, paste this and press Return. macOS asks for this to open an app that is not signed yet.', codigo: 'xattr -cr "/Applications/Pollo Assistance.app" && codesign --force --deep --sign - "/Applications/Pollo Assistance.app"' },
                     { t: 'Open it and sign in', p: 'Find it in Applications or Launchpad, open it and sign in with your Pollo account.' }
                 ],
                 linux: [
-                    { t: 'Extract the file', p: 'Right-click <b>{archivo}</b> and choose <b>Extract here</b>. You get the <b>Pollo-Assistance</b> folder.' },
-                    { t: 'Open pollo-escritorio', p: 'Go into the folder and double-click <b>pollo-escritorio</b>. Or paste this in a terminal inside the folder. If it does not open, add <b>--no-sandbox</b> at the end.', codigo: './pollo-escritorio' },
-                    { t: 'Sign in', p: 'Sign in with your Pollo account and choose a folder to work in.' }
+                    { t: 'Open it and install it', p: 'Double-click <b>{archivo}</b>: the App Center opens. Click <b>Install</b> and type your password.' },
+                    { t: 'Or with one command', p: 'If you prefer the terminal, paste this: it picks what fits your Linux (Fedora, Arch and the rest too).', codigo: 'curl -fsSL https://polloassistance.github.io/instalar.sh | bash' },
+                    { t: 'Open it and sign in', p: 'Find <b>Pollo Assistance</b> in your apps (you can pin it to the dock), open it and sign in with your Pollo account.' }
                 ]
             }
         }
@@ -418,13 +420,14 @@ a { color: inherit; }
 
     // ── Qué hay para descargar (lo escribe scripts/publicar-escritorio.js) ──
     var DEFECTO = {
-        version: '0.1.3',
-        base: 'https://github.com/Polloassistance/polloassistance.github.io/releases/download/escritorio-v0.1.3/',
+        version: '0.1.4',
+        base: 'https://github.com/Polloassistance/polloassistance.github.io/releases/download/escritorio-v0.1.4/',
         archivos: {
-            windows: { nombre: 'Pollo-Assistance-Setup-0.1.3.exe', bytes: 147020132 },
-            'mac-arm64': { nombre: 'Pollo-Assistance-0.1.3-mac-arm64.zip', bytes: 156352642 },
-            'mac-x64': { nombre: 'Pollo-Assistance-0.1.3-mac-x64.zip', bytes: 160553211 },
-            linux: { nombre: 'Pollo-Assistance-0.1.3-linux-x64.tar.gz', bytes: 159184436 }
+            windows: { nombre: 'Pollo-Assistance-Setup-0.1.4.exe', bytes: 158383108 },
+            'mac-arm64': { nombre: 'Pollo-Assistance-0.1.4-mac-arm64.zip', bytes: 169531631 },
+            'mac-x64': { nombre: 'Pollo-Assistance-0.1.4-mac-x64.zip', bytes: 173732200 },
+            linux: { nombre: 'Pollo-Assistance-0.1.4-linux-x64.tar.gz', bytes: 165801840 },
+            'linux-deb': { nombre: 'Pollo-Assistance-0.1.4-linux-amd64.deb', bytes: 140847216 }
         }
     };
     var datos = DEFECTO;
@@ -466,7 +469,10 @@ a { color: inherit; }
     }
 
     function archivoDe(so, chip) {
-        var k = so === 'mac' ? 'mac-' + (chip || macChip) : so;
+        // 22/11/2026 — En Linux, el principal es el .deb (doble clic e Instalar); el .tar.gz,
+        // para las demás distribuciones (chip === 'tar').
+        var k = so === 'mac' ? 'mac-' + (chip || macChip)
+              : so === 'linux' ? (chip !== 'tar' && datos.archivos['linux-deb'] ? 'linux-deb' : 'linux') : so;
         var a = datos.archivos[k];
         return a ? { url: (a.url || datos.base + a.nombre), nombre: a.nombre, mb: Math.round(a.bytes / 1048576) } : null;
     }
@@ -502,6 +508,15 @@ a { color: inherit; }
             chip.appendChild(a);
             chip.appendChild(document.createTextNode('.'));
         }
+        // En Linux, una línea para el .tar.gz (Fedora, Arch…), como la del otro chip en Mac.
+        var ft = so === 'linux' && datos.archivos['linux-deb'] && archivoDe('linux', 'tar');
+        if (ft) {
+            var at = document.createElement('a');
+            at.href = ft.url; at.dataset.so = 'linux'; at.className = 'otro-chip'; at.textContent = tx('otra_linux_baja');
+            chip.appendChild(document.createTextNode(tx('otra_linux') + ' '));
+            chip.appendChild(at);
+            chip.appendChild(document.createTextNode('.'));
+        }
         if (so !== 'windows') {
             var b = document.createElement('span');
             b.className = 'beta'; b.textContent = tx('beta');
@@ -525,8 +540,8 @@ a { color: inherit; }
             if (i === 1) return '<div class="d-terminal"><div class="barra"><i></i><i></i><i></i></div><p>$ ' + esc(X.pasos.mac[1].codigo) + '</p></div>';
         }
         if (so === 'linux') {
-            if (i === 0) return '<div class="d-carpeta"><span><span class="zip">.tar.gz</span></span><span class="d-flecha">➜</span><span><span class="dir">Pollo-Assistance</span></span></div>';
-            if (i === 1) return '<div class="d-terminal"><div class="barra"><i></i><i></i><i></i></div><p>~/Pollo-Assistance$ ./pollo-escritorio</p></div>';
+            if (i === 0) return '<div class="d-bajada"><span class="ico"><img src="logo.png" alt=""></span><span><b>' + esc(a.nombre) + '</b>' + (a.mb ? a.mb + ' MB' : '') + '</span><span class="abrir">' + (lang === 'en' ? 'Install' : 'Instalar') + '</span></div>';
+            if (i === 1) return '<div class="d-terminal"><div class="barra"><i></i><i></i><i></i></div><p>$ ' + esc(X.pasos.linux[1].codigo) + '</p></div>';
         }
         return '<div class="d-entrar"><img src="logo.png" alt=""><b>Pollo Assistance</b><span>' + (lang === 'en' ? 'Sign in' : 'Iniciar sesión') + '</span></div>';
     }
