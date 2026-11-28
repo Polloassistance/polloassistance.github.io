@@ -1,27 +1,27 @@
 {
-  "version": "0.1.5",
-  "fecha": "2026-11-22",
-  "base": "https://github.com/Polloassistance/polloassistance.github.io/releases/download/escritorio-v0.1.5/",
+  "version": "0.1.6",
+  "fecha": "2026-11-28",
+  "base": "https://github.com/Polloassistance/polloassistance.github.io/releases/download/escritorio-v0.1.6/",
   "archivos": {
     "windows": {
-      "nombre": "Pollo-Assistance-Setup-0.1.5.exe",
-      "bytes": 158389776
+      "nombre": "Pollo-Assistance-Setup-0.1.6.exe",
+      "bytes": 158433439
     },
     "mac-arm64": {
-      "nombre": "Pollo-Assistance-0.1.5-mac-arm64.zip",
-      "bytes": 169538620
+      "nombre": "Pollo-Assistance-0.1.6-mac-arm64.zip",
+      "bytes": 169620677
     },
     "mac-x64": {
-      "nombre": "Pollo-Assistance-0.1.5-mac-x64.zip",
-      "bytes": 173739189
+      "nombre": "Pollo-Assistance-0.1.6-mac-x64.zip",
+      "bytes": 173821246
     },
     "linux": {
-      "nombre": "Pollo-Assistance-0.1.5-linux-x64.tar.gz",
-      "bytes": 165807005
+      "nombre": "Pollo-Assistance-0.1.6-linux-x64.tar.gz",
+      "bytes": 165881411
     },
     "linux-deb": {
-      "nombre": "Pollo-Assistance-0.1.5-linux-amd64.deb",
-      "bytes": 140858532
+      "nombre": "Pollo-Assistance-0.1.6-linux-amd64.deb",
+      "bytes": 140919996
     }
   }
 }
